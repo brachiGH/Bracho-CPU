@@ -1,0 +1,598 @@
+{
+  "vaultName": "Bracho CPU",
+  "lastExport": 1715867121567,
+  "pluginVersion": "1.8.01",
+  "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title",
+  "useCustomHeadContent": false,
+  "useCustomFavicon": false,
+  "files": [
+    "Bracho-CPU/Components/ALU/ALU.md",
+    "Bracho-CPU/Components/ALU/arithmetic operations.md",
+    "Bracho-CPU/Components/ALU/Bit shift operations.md",
+    "Bracho-CPU/Components/ALU/bitwise operations.md",
+    "Bracho-CPU/Components/ALU/The instruction set.md",
+    "Bracho-CPU/Components/Transistors.md",
+    "Bracho-CPU/Drawing/ALU.excalidraw.md",
+    "Bracho-CPU/Drawing/design.excalidraw.md",
+    "Bracho-CPU/Exploring How Computers Work.md",
+    "Bracho-CPU/How Buses Work.md",
+    "Bracho-CPU/How computers remember.md",
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/874d8b8e340f75575caa.svg",
+    "lib/fonts/mathjax_zero.woff",
+    "lib/fonts/mathjax_main-regular.woff",
+    "lib/fonts/mathjax_main-bold.woff",
+    "lib/fonts/mathjax_math-italic.woff",
+    "lib/fonts/mathjax_main-italic.woff",
+    "lib/fonts/mathjax_math-bolditalic.woff",
+    "lib/fonts/mathjax_size1-regular.woff",
+    "lib/fonts/mathjax_size2-regular.woff",
+    "lib/fonts/mathjax_size3-regular.woff",
+    "lib/fonts/mathjax_size4-regular.woff",
+    "lib/fonts/mathjax_ams-regular.woff",
+    "lib/fonts/mathjax_calligraphic-regular.woff",
+    "lib/fonts/mathjax_calligraphic-bold.woff",
+    "lib/fonts/mathjax_fraktur-regular.woff",
+    "lib/fonts/mathjax_fraktur-bold.woff",
+    "lib/fonts/mathjax_sansserif-regular.woff",
+    "lib/fonts/mathjax_sansserif-bold.woff",
+    "lib/fonts/mathjax_sansserif-italic.woff",
+    "lib/fonts/mathjax_script-regular.woff",
+    "lib/fonts/mathjax_typewriter-regular.woff",
+    "lib/fonts/mathjax_vector-regular.woff",
+    "lib/fonts/mathjax_vector-bold.woff",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.png",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/other-plugins.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css",
+    "lib/media/alu_block.gif",
+    "lib/media/alu-20240514212757041.webp",
+    "lib/media/alu-20240514160244770.webp",
+    "lib/media/alu-20240514161607685.webp",
+    "lib/media/transistor-20240514192225339.webp",
+    "lib/media/npn-vs-pnp-transistor-3614303086.gif",
+    "lib/media/transistor-20240514191854998.webp",
+    "lib/media/exploring-how-computers-work-20240514164522871.webp",
+    "lib/media/exploring-how-computers-work-20240514201240964.webp",
+    "lib/media/exploring-how-computers-work-20240514202034917.webp",
+    "lib/media/exploring-how-computers-work-20240514202211214.webp",
+    "lib/media/exploring-how-computers-work-20240514202217974.webp"
+  ],
+  "mainDependencies": [
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/874d8b8e340f75575caa.svg",
+    "lib/fonts/mathjax_zero.woff",
+    "lib/fonts/mathjax_main-regular.woff",
+    "lib/fonts/mathjax_main-bold.woff",
+    "lib/fonts/mathjax_math-italic.woff",
+    "lib/fonts/mathjax_main-italic.woff",
+    "lib/fonts/mathjax_math-bolditalic.woff",
+    "lib/fonts/mathjax_size1-regular.woff",
+    "lib/fonts/mathjax_size2-regular.woff",
+    "lib/fonts/mathjax_size3-regular.woff",
+    "lib/fonts/mathjax_size4-regular.woff",
+    "lib/fonts/mathjax_ams-regular.woff",
+    "lib/fonts/mathjax_calligraphic-regular.woff",
+    "lib/fonts/mathjax_calligraphic-bold.woff",
+    "lib/fonts/mathjax_fraktur-regular.woff",
+    "lib/fonts/mathjax_fraktur-bold.woff",
+    "lib/fonts/mathjax_sansserif-regular.woff",
+    "lib/fonts/mathjax_sansserif-bold.woff",
+    "lib/fonts/mathjax_sansserif-italic.woff",
+    "lib/fonts/mathjax_script-regular.woff",
+    "lib/fonts/mathjax_typewriter-regular.woff",
+    "lib/fonts/mathjax_vector-regular.woff",
+    "lib/fonts/mathjax_vector-bold.woff",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.png",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/other-plugins.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css"
+  ],
+  "fileInfo": {
+    "Bracho-CPU/Exploring How Computers Work.md": {
+      "modifiedTime": 1715859386703,
+      "sourceSize": 5110,
+      "exportedPath": "bracho-cpu/exploring-how-computers-work.html",
+      "dependencies": [
+        "lib/media/exploring-how-computers-work-20240514164522871.webp",
+        "lib/media/exploring-how-computers-work-20240514201240964.webp",
+        "lib/media/exploring-how-computers-work-20240514202034917.webp",
+        "lib/media/exploring-how-computers-work-20240514202211214.webp",
+        "lib/media/exploring-how-computers-work-20240514202217974.webp"
+      ]
+    },
+    "lib/media/alu_block.gif": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 24618,
+      "exportedPath": "lib/media/alu_block.gif",
+      "dependencies": []
+    },
+    "lib/media/alu-20240514160244770.webp": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 7320,
+      "exportedPath": "lib/media/alu-20240514160244770.webp",
+      "dependencies": []
+    },
+    "lib/media/alu-20240514161607685.webp": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 21940,
+      "exportedPath": "lib/media/alu-20240514161607685.webp",
+      "dependencies": []
+    },
+    "lib/media/transistor-20240514192225339.webp": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 9198,
+      "exportedPath": "lib/media/transistor-20240514192225339.webp",
+      "dependencies": []
+    },
+    "lib/media/npn-vs-pnp-transistor-3614303086.gif": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 122102,
+      "exportedPath": "lib/media/npn-vs-pnp-transistor-3614303086.gif",
+      "dependencies": []
+    },
+    "lib/media/transistor-20240514191854998.webp": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 12008,
+      "exportedPath": "lib/media/transistor-20240514191854998.webp",
+      "dependencies": []
+    },
+    "lib/media/exploring-how-computers-work-20240514164522871.webp": {
+      "modifiedTime": 1715859386703,
+      "sourceSize": 11432,
+      "exportedPath": "lib/media/exploring-how-computers-work-20240514164522871.webp",
+      "dependencies": []
+    },
+    "lib/media/exploring-how-computers-work-20240514201240964.webp": {
+      "modifiedTime": 1715859386703,
+      "sourceSize": 4736,
+      "exportedPath": "lib/media/exploring-how-computers-work-20240514201240964.webp",
+      "dependencies": []
+    },
+    "lib/media/exploring-how-computers-work-20240514202034917.webp": {
+      "modifiedTime": 1715859386703,
+      "sourceSize": 6858,
+      "exportedPath": "lib/media/exploring-how-computers-work-20240514202034917.webp",
+      "dependencies": []
+    },
+    "lib/media/exploring-how-computers-work-20240514202211214.webp": {
+      "modifiedTime": 1715859386703,
+      "sourceSize": 6610,
+      "exportedPath": "lib/media/exploring-how-computers-work-20240514202211214.webp",
+      "dependencies": []
+    },
+    "lib/media/exploring-how-computers-work-20240514202217974.webp": {
+      "modifiedTime": 1715859386703,
+      "sourceSize": 3496,
+      "exportedPath": "lib/media/exploring-how-computers-work-20240514202217974.webp",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.wasm": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 23377,
+      "exportedPath": "lib/scripts/graph-wasm.wasm",
+      "dependencies": []
+    },
+    "lib/fonts/94f2f163d4b698242fef.otf": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 66800,
+      "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
+      "dependencies": []
+    },
+    "lib/fonts/72505e6a122c6acd5471.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 104232,
+      "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/2d5198822ab091ce4305.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 104332,
+      "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 98868,
+      "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cb10ffd7684cd9836a05.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 106876,
+      "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/b5f0f109bc88052d4000.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 105804,
+      "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cbe0ae49c52c920fd563.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 106108,
+      "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/535a6cf662596b3bd6a6.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 111708,
+      "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/70cc7ff27245e82ad414.ttf": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 192740,
+      "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/454577c22304619db035.ttf": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 161376,
+      "exportedPath": "lib/fonts/454577c22304619db035.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/52ac8f3034507f1d9e53.ttf": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 191568,
+      "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/05b618077343fbbd92b7.ttf": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 155288,
+      "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 7876,
+      "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+      "dependencies": []
+    },
+    "lib/media/874d8b8e340f75575caa.svg": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 317,
+      "exportedPath": "lib/media/874d8b8e340f75575caa.svg",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_zero.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 1368,
+      "exportedPath": "lib/fonts/mathjax_zero.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_main-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 34160,
+      "exportedPath": "lib/fonts/mathjax_main-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_main-bold.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 34464,
+      "exportedPath": "lib/fonts/mathjax_main-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_math-italic.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 19360,
+      "exportedPath": "lib/fonts/mathjax_math-italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_main-italic.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 20832,
+      "exportedPath": "lib/fonts/mathjax_main-italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_math-bolditalic.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 19776,
+      "exportedPath": "lib/fonts/mathjax_math-bolditalic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size1-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 5792,
+      "exportedPath": "lib/fonts/mathjax_size1-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size2-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 5464,
+      "exportedPath": "lib/fonts/mathjax_size2-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size3-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 3244,
+      "exportedPath": "lib/fonts/mathjax_size3-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size4-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 5148,
+      "exportedPath": "lib/fonts/mathjax_size4-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_ams-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 40808,
+      "exportedPath": "lib/fonts/mathjax_ams-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_calligraphic-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 9600,
+      "exportedPath": "lib/fonts/mathjax_calligraphic-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_calligraphic-bold.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 9908,
+      "exportedPath": "lib/fonts/mathjax_calligraphic-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_fraktur-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 21480,
+      "exportedPath": "lib/fonts/mathjax_fraktur-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_fraktur-bold.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 22340,
+      "exportedPath": "lib/fonts/mathjax_fraktur-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_sansserif-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 12660,
+      "exportedPath": "lib/fonts/mathjax_sansserif-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_sansserif-bold.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 15944,
+      "exportedPath": "lib/fonts/mathjax_sansserif-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_sansserif-italic.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 14628,
+      "exportedPath": "lib/fonts/mathjax_sansserif-italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_script-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 11852,
+      "exportedPath": "lib/fonts/mathjax_script-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_typewriter-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 17604,
+      "exportedPath": "lib/fonts/mathjax_typewriter-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_vector-regular.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 1136,
+      "exportedPath": "lib/fonts/mathjax_vector-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_vector-bold.woff": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 1116,
+      "exportedPath": "lib/fonts/mathjax_vector-bold.woff",
+      "dependencies": []
+    },
+    "lib/html/file-tree.html": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 13079,
+      "exportedPath": "lib/html/file-tree.html",
+      "dependencies": []
+    },
+    "lib/scripts/webpage.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 47290,
+      "exportedPath": "lib/scripts/webpage.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-view.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 15519,
+      "exportedPath": "lib/scripts/graph-view.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 14021,
+      "exportedPath": "lib/scripts/graph-wasm.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-render-worker.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 5179,
+      "exportedPath": "lib/scripts/graph-render-worker.js",
+      "dependencies": []
+    },
+    "lib/scripts/tinycolor.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 29832,
+      "exportedPath": "lib/scripts/tinycolor.js",
+      "dependencies": []
+    },
+    "lib/scripts/pixi.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 449509,
+      "exportedPath": "lib/scripts/pixi.js",
+      "dependencies": []
+    },
+    "lib/scripts/minisearch.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 29422,
+      "exportedPath": "lib/scripts/minisearch.js",
+      "dependencies": []
+    },
+    "lib/media/favicon.png": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 1105,
+      "exportedPath": "lib/media/favicon.png",
+      "dependencies": []
+    },
+    "lib/scripts/graph-data.js": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 1024,
+      "exportedPath": "lib/scripts/graph-data.js",
+      "dependencies": []
+    },
+    "lib/styles/obsidian.css": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 157722,
+      "exportedPath": "lib/styles/obsidian.css",
+      "dependencies": []
+    },
+    "lib/styles/global-variable-styles.css": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 236,
+      "exportedPath": "lib/styles/global-variable-styles.css",
+      "dependencies": []
+    },
+    "lib/styles/main-styles.css": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 23130,
+      "exportedPath": "lib/styles/main-styles.css",
+      "dependencies": []
+    },
+    "Bracho-CPU/Drawing/ALU.excalidraw.md": {
+      "modifiedTime": 1715718689740,
+      "sourceSize": 145327,
+      "exportedPath": "bracho-cpu/drawing/alu.excalidraw.html",
+      "dependencies": []
+    },
+    "Bracho-CPU/Drawing/design.excalidraw.md": {
+      "modifiedTime": 1715718689740,
+      "sourceSize": 40659,
+      "exportedPath": "bracho-cpu/drawing/design.excalidraw.html",
+      "dependencies": []
+    },
+    "lib/media/alu-20240514212757041.webp": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 30774,
+      "exportedPath": "lib/media/alu-20240514212757041.webp",
+      "dependencies": []
+    },
+    "Bracho-CPU/Components/ALU/ALU.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 3709,
+      "exportedPath": "bracho-cpu/components/alu/alu.html",
+      "dependencies": [
+        "lib/media/alu_block.gif",
+        "lib/media/alu-20240514212757041.webp",
+        "lib/media/alu-20240514160244770.webp",
+        "lib/media/alu-20240514161607685.webp"
+      ]
+    },
+    "Bracho-CPU/Components/ALU/arithmetic operations.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 0,
+      "exportedPath": "bracho-cpu/components/alu/arithmetic-operations.html",
+      "dependencies": []
+    },
+    "Bracho-CPU/Components/ALU/Bit shift operations.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 0,
+      "exportedPath": "bracho-cpu/components/alu/bit-shift-operations.html",
+      "dependencies": []
+    },
+    "Bracho-CPU/Components/ALU/bitwise operations.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 0,
+      "exportedPath": "bracho-cpu/components/alu/bitwise-operations.html",
+      "dependencies": []
+    },
+    "Bracho-CPU/Components/ALU/The instruction set.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 2299,
+      "exportedPath": "bracho-cpu/components/alu/the-instruction-set.html",
+      "dependencies": []
+    },
+    "Bracho-CPU/Components/Transistors.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 3290,
+      "exportedPath": "bracho-cpu/components/transistors.html",
+      "dependencies": [
+        "lib/media/transistor-20240514192225339.webp",
+        "lib/media/npn-vs-pnp-transistor-3614303086.gif",
+        "lib/media/transistor-20240514191854998.webp"
+      ]
+    },
+    "Bracho-CPU/How Buses Work.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 0,
+      "exportedPath": "bracho-cpu/how-buses-work.html",
+      "dependencies": []
+    },
+    "Bracho-CPU/How computers remember.md": {
+      "modifiedTime": 1715719021277,
+      "sourceSize": 0,
+      "exportedPath": "bracho-cpu/how-computers-remember.html",
+      "dependencies": []
+    },
+    "lib/styles/other-plugins.css": {
+      "modifiedTime": 1715867121567,
+      "sourceSize": 69787,
+      "exportedPath": "lib/styles/other-plugins.css",
+      "dependencies": []
+    }
+  }
+}
