@@ -1,40 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 16 May 2024 13:45:21 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 16 May 2024 13:45:21 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[Exploring How Computers Work]]></title><description><![CDATA[ 
- <br><br><br><br>They is one component that rises above all other component in it importance in making computers do STUFF, and that component is the humble transistor. <br>
-A transistor is a <a data-tooltip-position="top" aria-label="https://en.wikipedia.org/wiki/Semiconductor" rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Semiconductor" target="_blank">semiconductor</a> device used to amplify or switch electrical signals and power. It is one of the basic building blocks of modern electronics.
-<br><br><br><img alt="Exploring How Computers Work-20240514164522871.webp" src="lib\media\exploring-how-computers-work-20240514164522871.webp" style="width: 554px; max-width: 100%;"><br>
-Typical structure of a transistor consisting of an emitter, collector and base. | Image: Shutterstock
-<br>Transistors are fundamental components in modern electronics, serving two main roles:<br>
-<br>Amplification: a transistor can amplify a weak signal into a stronger one.
-<br>Switching: In digital electronics, transistors are used as switches to control the flow of electricity in circuits, representing binary states (0 or 1).
-<br>In learning how computers work we gonna focus on the switching role of a transistor if you wish to learn more about <a data-href="Transistors" href="bracho-cpu\components\transistors.html" class="internal-link" target="_self" rel="noopener">Transistors</a>.<br><br>Have you ever wounded how logic gates are made, I didn't but a was surprised when i learned they can be made using transistors.<br><br>A logic gate is a device that performs a Boolean function, a logical operation performed on one or more binary inputs that produces a single binary output.<br><br><br><img alt="Exploring How Computers Work-20240514201240964.webp" src="lib\media\exploring-how-computers-work-20240514201240964.webp"><br><br><br><img alt="Exploring How Computers Work-20240514202034917.webp" src="lib\media\exploring-how-computers-work-20240514202034917.webp"><br><br><br><img alt="Exploring How Computers Work-20240514202211214.webp" src="lib\media\exploring-how-computers-work-20240514202211214.webp"><img alt="Exploring How Computers Work-20240514202217974.webp" src="lib\media\exploring-how-computers-work-20240514202217974.webp"><br><br>note: did know you can create any logic using just XOR gates or using just NAND gates <a data-tooltip-position="top" aria-label="https://en.wikipedia.org/wiki/Logic_gate#Universal_logic_gates" rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Logic_gate#Universal_logic_gates" target="_blank">click here</a> to learn more.<br><br>Everyone knows that computers manipulate binary numbers (e.i. a bunch of ones and zeros), But how code is transformed form human readable text to binary instructions that can be interpreted  and then executes by a CPU?<br><br>we gonna take this C++ code us an example.<br>int main()
-{
-    int a = 5;
-    int b = a+7;
-}
-Copy<br>So how this code is going to be return into binary instructions?<br>
-using an other Programmed called the Compiler in the case of C++ it compiler is called "g++"<br>
-We can compile the .cpp file into a binary executable:<br>g++ Main.cpp -o Program.exe
-Copy<br>The compiler is gonna turn the C++ code into the appropriate assembly language (assembly is the lowest level of programming) that can be easily transformed into binary instructions.<br>This the assembly version the C++ code <br>mov     r0, #5
-add     r1, r0, #7
-Copy<br>mov and add are called Opcodes and each one has a unique binary code signed to it.<br>
-For example let's say the code for mov is 0001 and add is 0011 <br>
-Notice that every opcode in our case have the same length of 4 bit, And this is because our hypothetical the CPU expects the first 4 bits of every instruction to be the opcode.
-<br>the assembly version cloud be writing like this<br>001     r0, #5
-011     r1, r0, #7
-Copy<br>Let's talk about r0 what it is? it is the short way to write register 0.<br>
-But what is a register? a register in temporary data storage inside the CPU, is a type of storage that is extremely fast but extremely small in size.<br>This assembly instruction mov     r0, #5 is telling the CPU  to move the value 5 to the register 0.<br>
-Then this instruction add     r1, r0, #7 is telling the CPU to add the value 7 to what every inside the register 0 and store the result of the operation inside register 1. (This instruction is equivalent to:  register1 = 7 + register0)<br>Let's suppose the binary code for register 0 is 0000 and the binary code for register 1 is 0001<br>
-the new assembly code version :<br>0001     0000, #5
-0011     0001, 0000, #9
-Copy<br>And we know that 101 is the number 5 in binary and 111 is the number 7<br>001     0000, 0101
-011     0001, 0000, 0111
-Copy<br>But all instructions should be the same length (in our case every instruction should be 16bit long) so  we are going to 0000 at the end of the fist instruction.<br>0001     0000, 0101, 0000
-0011     0001, 0000, 0111
-Copy<br>So our binary executable is:<br>0001000001010000
-0011000100000111
-Copy<br>
-note: this over simplification for the process of turning code to binary executable.
-<br>Next <a data-tooltip-position="top" aria-label="How computers remember" data-href="How computers remember" href="bracho-cpu\how-computers-remember.html" class="internal-link" target="_self" rel="noopener">how registers store data</a>  Or <a data-tooltip-position="top" aria-label="How Buses Work" data-href="How Buses Work" href="bracho-cpu\how-buses-work.html" class="internal-link" target="_self" rel="noopener">how data moves inside a computer</a>]]></description><link>bracho-cpu\exploring-how-computers-work.html</link><guid isPermaLink="false">Bracho-CPU/Exploring How Computers Work.md</guid><pubDate>Tue, 14 May 2024 22:07:43 GMT</pubDate><enclosure url="lib\media\exploring-how-computers-work-20240514164522871.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\exploring-how-computers-work-20240514164522871.webp"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[ALU]]></title><description><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Wed, 05 Jun 2024 22:43:52 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 05 Jun 2024 22:43:49 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[ALU]]></title><description><![CDATA[ 
  <br><br><br>An arithmetic-logic unit is the part of a central processing unit that carries out arithmetic and bitwise operations (logic operations using <a data-tooltip-position="top" aria-label="Exploring How Computers Work > Logic gates" data-href="Exploring How Computers Work#Logic gates" href="bracho-cpu\exploring-how-computers-work.html#Logic_gates" class="internal-link" target="_self" rel="noopener">logic gates</a> ) on the operands in computer instruction words.<br>The inputs of an ALU are:<br>
 <br>Operands: Which are the data to be operated on.
 <br>Opcode: A code indicating the operation to be performed.
@@ -61,10 +25,10 @@ Accumulator (AC)<br>Accumulator register is used to store the result of ALU (ari
 <br><br>
 <br>shift left
 <br>shift right
-<br><br><a data-href="The instruction set" href="bracho-cpu\components\alu\the-instruction-set.html" class="internal-link" target="_self" rel="noopener">The instruction set</a>]]></description><link>bracho-cpu\components\alu\alu.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/ALU.md</guid><pubDate>Tue, 14 May 2024 20:33:53 GMT</pubDate><enclosure url="lib\media\alu_block.gif" length="0" type="image/gif"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\alu_block.gif"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[arithmetic operations]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\components\alu\arithmetic-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/arithmetic operations.md</guid><pubDate>Tue, 14 May 2024 20:35:26 GMT</pubDate></item><item><title><![CDATA[Bit shift operations]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\components\alu\bit-shift-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Bit shift operations.md</guid><pubDate>Tue, 14 May 2024 20:35:39 GMT</pubDate></item><item><title><![CDATA[bitwise operations]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\components\alu\bitwise-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/bitwise operations.md</guid><pubDate>Tue, 14 May 2024 20:35:13 GMT</pubDate></item><item><title><![CDATA[The instruction set]]></title><description><![CDATA[ 
+<br><br><a data-href="The instruction set" href="bracho-cpu\components\alu\the-instruction-set.html" class="internal-link" target="_self" rel="noopener">The instruction set</a>]]></description><link>bracho-cpu\components\alu\alu.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/ALU.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:33:53 GMT</pubDate><enclosure url="lib\media\alu_block.gif" length="0" type="image/gif"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\alu_block.gif&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[arithmetic operations]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\components\alu\arithmetic-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/arithmetic operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:26 GMT</pubDate></item><item><title><![CDATA[Bit shift operations]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\components\alu\bit-shift-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Bit shift operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:39 GMT</pubDate></item><item><title><![CDATA[bitwise operations]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\components\alu\bitwise-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/bitwise operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:13 GMT</pubDate></item><item><title><![CDATA[The instruction set]]></title><description><![CDATA[ 
  <br>NOP                     : No Operation
 AND                     : REG_A &lt;= REG_B AND REG_C
 OR                      : REG_A &lt;= REG_B OR REG_C
@@ -94,7 +58,7 @@ BR                      : Branch to the addres of register A
 BRN                     : Branch to the addres of register A if the negative flag is on
 BRZ                     : Branch to the addres of register A if the zero flag is on
 BRV                     : Branch to the addres of register A if the overflow flag is on
-Copy]]></description><link>bracho-cpu\components\alu\the-instruction-set.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/The instruction set.md</guid><pubDate>Tue, 14 May 2024 20:30:58 GMT</pubDate></item><item><title><![CDATA[Transistors]]></title><description><![CDATA[ 
+Copy]]></description><link>bracho-cpu\components\alu\the-instruction-set.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/The instruction set.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:30:58 GMT</pubDate></item><item><title><![CDATA[Transistors]]></title><description><![CDATA[ 
  <br><br>**Transistor** consists of **three layers of semiconductor** materials or terminals which helps to make a connection to any external circuit and all the layers do carry the current. Here voltage or current applied at any one pair of the terminals controls the current or voltage through the other pair of terminals.<br>There are three terminals for transistor as mentioned below:<br>
 <br>**Base:** To activate the transistor
 <br>**Collector:** Positive lead of transistor
@@ -117,22 +81,46 @@ NPN VS PNP Transistor Understanding the Difference | <a data-tooltip-position="t
 <br>**MOSFET** – Metal-oxide semiconductor FET
 <br><img alt="Transistor-20240514191854998.webp" src="lib\media\transistor-20240514191854998.webp"><br>
 MOSFET VS JFET | The Main Differences - ETechnoG | <a data-tooltip-position="top" aria-label="https://www.etechnog.com/2019/07/mosfet-vs-jfet-differences.html" rel="noopener" class="external-link" href="https://www.etechnog.com/2019/07/mosfet-vs-jfet-differences.html" target="_blank">etechnog.com</a>
-]]></description><link>bracho-cpu\components\transistors.html</link><guid isPermaLink="false">Bracho-CPU/Components/Transistors.md</guid><pubDate>Tue, 14 May 2024 20:26:03 GMT</pubDate><enclosure url="lib\media\transistor-20240514192225339.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\transistor-20240514192225339.webp"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[How Buses Work]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\how-buses-work.html</link><guid isPermaLink="false">Bracho-CPU/How Buses Work.md</guid><pubDate>Tue, 14 May 2024 20:25:04 GMT</pubDate></item><item><title><![CDATA[How computers remember]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\how-computers-remember.html</link><guid isPermaLink="false">Bracho-CPU/How computers remember.md</guid><pubDate>Tue, 14 May 2024 19:24:01 GMT</pubDate></item><item><title><![CDATA[ALU]]></title><description><![CDATA[ 
- 
-  
-  
-  
-    
-    
-  
-  ]]></description><link>bracho-cpu\drawing\alu.excalidraw.html</link><guid isPermaLink="false">Bracho-CPU/Drawing/ALU.excalidraw.md</guid><pubDate>Tue, 14 May 2024 20:11:28 GMT</pubDate></item><item><title><![CDATA[design]]></title><description><![CDATA[ 
- 
-  
-  
-  
-    
-    
-  
-  REG AREG Breg CProgram counterLink Registerinstruction RegisterControl unitALUGeneral purposeregistersRecords the address of the current instruction code Automatically incremented by 2 at each operation (for 16-bit instruction code), except branching operations A branching operation, such as function calls, will change the PC to a specific address, meanwhile it saves the current PC to the Link Register (LR)The LR is used to store the return address of a subroutine or a function call The program counter (PC) will load the value from LR after a function is finishedthe instruction register or current instruction register is the part of a CPU's control unit that holds the instruction currently being executed or decodedThe ALU:addsubmuiltand:or:xor:not:The instruction set:Status Registerthe Status Register ALU register 1ALU register 2]]></description><link>bracho-cpu\drawing\design.excalidraw.html</link><guid isPermaLink="false">Bracho-CPU/Drawing/design.excalidraw.md</guid><pubDate>Sat, 11 May 2024 20:09:14 GMT</pubDate></item></channel></rss>
+]]></description><link>bracho-cpu\components\transistors.html</link><guid isPermaLink="false">Bracho-CPU/Components/Transistors.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:26:03 GMT</pubDate><enclosure url="lib\media\transistor-20240514192225339.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\transistor-20240514192225339.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Exploring How Computers Work]]></title><description><![CDATA[ 
+ <br><br><br><br>They is one component that rises above all other component in it importance in making computers do STUFF, and that component is the humble transistor. <br>
+A transistor is a <a data-tooltip-position="top" aria-label="https://en.wikipedia.org/wiki/Semiconductor" rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Semiconductor" target="_blank">semiconductor</a> device used to amplify or switch electrical signals and power. It is one of the basic building blocks of modern electronics.
+<br><br><br><img alt="Exploring How Computers Work-20240514164522871.webp" src="lib\media\exploring-how-computers-work-20240514164522871.webp" style="width: 554px; max-width: 100%;"><br>
+Typical structure of a transistor consisting of an emitter, collector and base. | Image: Shutterstock
+<br>Transistors are fundamental components in modern electronics, serving two main roles:<br>
+<br>Amplification: a transistor can amplify a weak signal into a stronger one.
+<br>Switching: In digital electronics, transistors are used as switches to control the flow of electricity in circuits, representing binary states (0 or 1).
+<br>In learning how computers work we gonna focus on the switching role of a transistor if you wish to learn more about <a data-href="Transistors" href="bracho-cpu\components\transistors.html" class="internal-link" target="_self" rel="noopener">Transistors</a>.<br><br>Have you ever wounded how logic gates are made, I didn't but a was surprised when i learned they can be made using transistors.<br><br>A logic gate is a device that performs a Boolean function, a logical operation performed on one or more binary inputs that produces a single binary output.<br><br><br><img alt="Exploring How Computers Work-20240514201240964.webp" src="lib\media\exploring-how-computers-work-20240514201240964.webp" style="width: 506px; max-width: 100%;"><br><br><br><img alt="Exploring How Computers Work-20240514202034917.webp" src="lib\media\exploring-how-computers-work-20240514202034917.webp" style="width: 517px; max-width: 100%;"><br><br><br><img alt="Exploring How Computers Work-20240605230016790.webp" src="lib\media\exploring-how-computers-work-20240605230016790.webp"><br><br>note: did know you can create any logic using just XOR gates or using just NAND gates <a data-tooltip-position="top" aria-label="https://en.wikipedia.org/wiki/Logic_gate#Universal_logic_gates" rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Logic_gate#Universal_logic_gates" target="_blank">click here</a> to learn more.<br><br>Everyone knows that computers manipulate binary numbers (e.i. a bunch of ones and zeros), But how code is transformed form human readable text to binary instructions that can be interpreted  and then executes by a CPU?<br><br>we gonna take this C++ code us an example.<br>int main()
+{
+    int a = 5;
+    int b = a+7;
+}
+Copy<br>So how this code is going to be return into binary instructions?<br>
+using an other Programmed called the Compiler in the case of C++ it compiler is called "g++"<br>
+We can compile the .cpp file into a binary executable:<br>g++ Main.cpp -o Program.exe
+Copy<br>The compiler is gonna turn the C++ code into the appropriate assembly language (assembly is the lowest level of programming) that can be easily transformed into binary instructions.<br>This the assembly version the C++ code <br>mov     r0, #5
+add     r1, r0, #7
+Copy<br>mov and add are called Opcodes and each one has a unique binary code signed to it.<br>
+For example let's say the code for mov is 0001 and add is 0011 <br>
+Notice that every opcode in our case have the same length of 4 bit, And this is because our hypothetical the CPU expects the first 4 bits of every instruction to be the opcode.
+<br>the assembly version cloud be writing like this<br>001     r0, #5
+011     r1, r0, #7
+Copy<br>Let's talk about r0 what it is? it is the short way to write register 0.<br>
+But what is a register? a register in temporary data storage inside the CPU, is a type of storage that is extremely fast but extremely small in size.<br>This assembly instruction mov     r0, #5 is telling the CPU  to move the value 5 to the register 0.<br>
+Then this instruction add     r1, r0, #7 is telling the CPU to add the value 7 to what every inside the register 0 and store the result of the operation inside register 1. (This instruction is equivalent to:  register1 = 7 + register0)<br>Let's suppose the binary code for register 0 is 0000 and the binary code for register 1 is 0001<br>
+the new assembly code version :<br>0001     0000, #5
+0011     0001, 0000, #9
+Copy<br>And we know that 101 is the number 5 in binary and 111 is the number 7<br>001     0000, 0101
+011     0001, 0000, 0111
+Copy<br>But all instructions should be the same length (in our case every instruction should be 16bit long) so  we are going to 0000 at the end of the fist instruction.<br>0001     0000, 0101, 0000
+0011     0001, 0000, 0111
+Copy<br>So our binary executable is:<br>0001000001010000
+0011000100000111
+Copy<br>
+note: this over simplification for the process of turning code to binary executable.
+<br>Next <a data-tooltip-position="top" aria-label="How computers remember" data-href="How computers remember" href="bracho-cpu\how-computers-remember.html" class="internal-link" target="_self" rel="noopener">how registers store data</a>  Or <a data-tooltip-position="top" aria-label="How Buses Work" data-href="How Buses Work" href="bracho-cpu\how-buses-work.html" class="internal-link" target="_self" rel="noopener">how data moves inside a computer</a>]]></description><link>bracho-cpu\exploring-how-computers-work.html</link><guid isPermaLink="false">Bracho-CPU/Exploring How Computers Work.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Wed, 05 Jun 2024 22:00:18 GMT</pubDate><enclosure url="lib\media\exploring-how-computers-work-20240514164522871.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\exploring-how-computers-work-20240514164522871.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[How Buses Work]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\how-buses-work.html</link><guid isPermaLink="false">Bracho-CPU/How Buses Work.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:25:04 GMT</pubDate></item><item><title><![CDATA[How computers remember]]></title><description><![CDATA[ 
+ <br>There are many types of electronic memory used in computers, each with its own advantages and disadvantages.<br>
+<img alt="How computers remember-20240605231017365.webp" src="lib\media\how-computers-remember-20240605231017365.webp"><br>
+Memory hierarchy | <a data-tooltip-position="top" aria-label="https://en.wikipedia.org/wiki/Memory_hierarchy" rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Memory_hierarchy" target="_blank">Wikipedia</a>
+<br>E.g. A hard drive have a large storage capacity and slow mean while ram is medium capacity and fast.<br>
+If your computer's CPU had to access the hard drive for every piece of data it needed, it would operate extremely slowly. To ensure the CPU performs at its full potential, programs are loaded into RAM, allowing the CPU to execute them more quickly. However, even RAM isn't fast enough for optimal performance. To address this, we needed a faster and closer (to the cpu) type of memory, ideally located within the CPU itself to minimize delay. The solution is registers.]]></description><link>bracho-cpu\how-computers-remember.html</link><guid isPermaLink="false">Bracho-CPU/How computers remember.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Wed, 05 Jun 2024 22:33:08 GMT</pubDate><enclosure url="lib\media\how-computers-remember-20240605231017365.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\how-computers-remember-20240605231017365.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item></channel></rss>
