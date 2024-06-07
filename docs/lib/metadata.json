@@ -1,6 +1,6 @@
 {
   "vaultName": "Bracho CPU",
-  "lastExport": 1717627429871,
+  "lastExport": 1717759009225,
   "pluginVersion": "1.8.01",
   "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title",
   "useCustomHeadContent": false,
@@ -11,12 +11,14 @@
     "Bracho-CPU/Components/ALU/Bit shift operations.md",
     "Bracho-CPU/Components/ALU/bitwise operations.md",
     "Bracho-CPU/Components/ALU/The instruction set.md",
+    "Bracho-CPU/Components/latches/latches.excalidraw.md",
+    "Bracho-CPU/Components/RAM.md",
     "Bracho-CPU/Components/Transistors.md",
     "Bracho-CPU/Drawing/ALU.excalidraw.md",
     "Bracho-CPU/Drawing/design.excalidraw.md",
     "Bracho-CPU/Exploring How Computers Work.md",
-    "Bracho-CPU/How Buses Work.md",
     "Bracho-CPU/How computers remember.md",
+    "Bracho-CPU/What is a Bus.md",
     "lib/media/alu_block.gif",
     "lib/media/alu-20240514212757041.webp",
     "lib/media/alu-20240514160244770.webp",
@@ -29,6 +31,13 @@
     "lib/media/exploring-how-computers-work-20240514202034917.webp",
     "lib/media/exploring-how-computers-work-20240605230016790.webp",
     "lib/media/how-computers-remember-20240605231017365.webp",
+    "lib/media/how-computers-remember-20240606120455284.webp",
+    "lib/media/how-computers-remember-20240607105956198.webp",
+    "lib/media/how-computers-remember-20240607111109001.webp",
+    "lib/media/how-computers-remember-20240607112103703.webp",
+    "lib/media/how-computers-remember-20240607112558155.webp",
+    "lib/media/what-is-a-bus-20240606104946650.webp",
+    "lib/media/what-is-a-bus-20240606105302567.webp",
     "lib/scripts/graph-wasm.wasm",
     "lib/fonts/94f2f163d4b698242fef.otf",
     "lib/fonts/72505e6a122c6acd5471.woff2",
@@ -94,7 +103,7 @@
   ],
   "fileInfo": {
     "Bracho-CPU/Components/ALU/ALU.md": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 3709,
       "exportedPath": "bracho-cpu/components/alu/alu.html",
       "dependencies": [
@@ -105,31 +114,43 @@
       ]
     },
     "Bracho-CPU/Components/ALU/arithmetic operations.md": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 0,
       "exportedPath": "bracho-cpu/components/alu/arithmetic-operations.html",
       "dependencies": []
     },
     "Bracho-CPU/Components/ALU/Bit shift operations.md": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 0,
       "exportedPath": "bracho-cpu/components/alu/bit-shift-operations.html",
       "dependencies": []
     },
     "Bracho-CPU/Components/ALU/bitwise operations.md": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 0,
       "exportedPath": "bracho-cpu/components/alu/bitwise-operations.html",
       "dependencies": []
     },
     "Bracho-CPU/Components/ALU/The instruction set.md": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 2299,
       "exportedPath": "bracho-cpu/components/alu/the-instruction-set.html",
       "dependencies": []
     },
+    "Bracho-CPU/Components/latches/latches.excalidraw.md": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 1462486,
+      "exportedPath": "bracho-cpu/components/latches/latches.excalidraw.html",
+      "dependencies": []
+    },
+    "Bracho-CPU/Components/RAM.md": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 0,
+      "exportedPath": "bracho-cpu/components/ram.html",
+      "dependencies": []
+    },
     "Bracho-CPU/Components/Transistors.md": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 3290,
       "exportedPath": "bracho-cpu/components/transistors.html",
       "dependencies": [
@@ -139,20 +160,20 @@
       ]
     },
     "Bracho-CPU/Drawing/ALU.excalidraw.md": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 145327,
       "exportedPath": "bracho-cpu/drawing/alu.excalidraw.html",
       "dependencies": []
     },
     "Bracho-CPU/Drawing/design.excalidraw.md": {
-      "modifiedTime": 1717627429871,
-      "sourceSize": 40659,
+      "modifiedTime": 1717759009225,
+      "sourceSize": 40574,
       "exportedPath": "bracho-cpu/drawing/design.excalidraw.html",
       "dependencies": []
     },
     "Bracho-CPU/Exploring How Computers Work.md": {
-      "modifiedTime": 1717627429871,
-      "sourceSize": 5098,
+      "modifiedTime": 1717759009225,
+      "sourceSize": 5208,
       "exportedPath": "bracho-cpu/exploring-how-computers-work.html",
       "dependencies": [
         "lib/media/exploring-how-computers-work-20240514164522871.webp",
@@ -161,268 +182,318 @@
         "lib/media/exploring-how-computers-work-20240605230016790.webp"
       ]
     },
-    "Bracho-CPU/How Buses Work.md": {
-      "modifiedTime": 1717627429871,
-      "sourceSize": 0,
-      "exportedPath": "bracho-cpu/how-buses-work.html",
-      "dependencies": []
-    },
     "Bracho-CPU/How computers remember.md": {
-      "modifiedTime": 1717627429871,
-      "sourceSize": 820,
+      "modifiedTime": 1717759009225,
+      "sourceSize": 2298,
       "exportedPath": "bracho-cpu/how-computers-remember.html",
       "dependencies": [
-        "lib/media/how-computers-remember-20240605231017365.webp"
+        "lib/media/how-computers-remember-20240605231017365.webp",
+        "lib/media/how-computers-remember-20240606120455284.webp",
+        "lib/media/how-computers-remember-20240607105956198.webp",
+        "lib/media/how-computers-remember-20240607111109001.webp",
+        "lib/media/how-computers-remember-20240607112103703.webp",
+        "lib/media/how-computers-remember-20240607112558155.webp"
+      ]
+    },
+    "Bracho-CPU/What is a Bus.md": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 1699,
+      "exportedPath": "bracho-cpu/what-is-a-bus.html",
+      "dependencies": [
+        "lib/media/what-is-a-bus-20240606104946650.webp",
+        "lib/media/what-is-a-bus-20240606105302567.webp"
       ]
     },
     "lib/media/alu_block.gif": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 24618,
       "exportedPath": "lib/media/alu_block.gif",
       "dependencies": []
     },
     "lib/media/alu-20240514212757041.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 30774,
       "exportedPath": "lib/media/alu-20240514212757041.webp",
       "dependencies": []
     },
     "lib/media/alu-20240514160244770.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 7320,
       "exportedPath": "lib/media/alu-20240514160244770.webp",
       "dependencies": []
     },
     "lib/media/alu-20240514161607685.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 21940,
       "exportedPath": "lib/media/alu-20240514161607685.webp",
       "dependencies": []
     },
     "lib/media/transistor-20240514192225339.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 9198,
       "exportedPath": "lib/media/transistor-20240514192225339.webp",
       "dependencies": []
     },
     "lib/media/npn-vs-pnp-transistor-3614303086.gif": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 122102,
       "exportedPath": "lib/media/npn-vs-pnp-transistor-3614303086.gif",
       "dependencies": []
     },
     "lib/media/transistor-20240514191854998.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 12008,
       "exportedPath": "lib/media/transistor-20240514191854998.webp",
       "dependencies": []
     },
     "lib/media/exploring-how-computers-work-20240514164522871.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 11432,
       "exportedPath": "lib/media/exploring-how-computers-work-20240514164522871.webp",
       "dependencies": []
     },
     "lib/media/exploring-how-computers-work-20240514201240964.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 4736,
       "exportedPath": "lib/media/exploring-how-computers-work-20240514201240964.webp",
       "dependencies": []
     },
     "lib/media/exploring-how-computers-work-20240514202034917.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 6858,
       "exportedPath": "lib/media/exploring-how-computers-work-20240514202034917.webp",
       "dependencies": []
     },
     "lib/media/exploring-how-computers-work-20240605230016790.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 7540,
       "exportedPath": "lib/media/exploring-how-computers-work-20240605230016790.webp",
       "dependencies": []
     },
     "lib/media/how-computers-remember-20240605231017365.webp": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 39336,
       "exportedPath": "lib/media/how-computers-remember-20240605231017365.webp",
       "dependencies": []
     },
+    "lib/media/how-computers-remember-20240606120455284.webp": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 11590,
+      "exportedPath": "lib/media/how-computers-remember-20240606120455284.webp",
+      "dependencies": []
+    },
+    "lib/media/how-computers-remember-20240607105956198.webp": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 6234,
+      "exportedPath": "lib/media/how-computers-remember-20240607105956198.webp",
+      "dependencies": []
+    },
+    "lib/media/how-computers-remember-20240607111109001.webp": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 26134,
+      "exportedPath": "lib/media/how-computers-remember-20240607111109001.webp",
+      "dependencies": []
+    },
+    "lib/media/how-computers-remember-20240607112103703.webp": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 27650,
+      "exportedPath": "lib/media/how-computers-remember-20240607112103703.webp",
+      "dependencies": []
+    },
+    "lib/media/how-computers-remember-20240607112558155.webp": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 6944,
+      "exportedPath": "lib/media/how-computers-remember-20240607112558155.webp",
+      "dependencies": []
+    },
+    "lib/media/what-is-a-bus-20240606104946650.webp": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 17894,
+      "exportedPath": "lib/media/what-is-a-bus-20240606104946650.webp",
+      "dependencies": []
+    },
+    "lib/media/what-is-a-bus-20240606105302567.webp": {
+      "modifiedTime": 1717759009225,
+      "sourceSize": 25910,
+      "exportedPath": "lib/media/what-is-a-bus-20240606105302567.webp",
+      "dependencies": []
+    },
     "lib/scripts/graph-wasm.wasm": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 23377,
       "exportedPath": "lib/scripts/graph-wasm.wasm",
       "dependencies": []
     },
     "lib/fonts/94f2f163d4b698242fef.otf": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 66800,
       "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
       "dependencies": []
     },
     "lib/fonts/72505e6a122c6acd5471.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 104232,
       "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
       "dependencies": []
     },
     "lib/fonts/2d5198822ab091ce4305.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 104332,
       "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
       "dependencies": []
     },
     "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 98868,
       "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
       "dependencies": []
     },
     "lib/fonts/cb10ffd7684cd9836a05.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 106876,
       "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
       "dependencies": []
     },
     "lib/fonts/b5f0f109bc88052d4000.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 105804,
       "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
       "dependencies": []
     },
     "lib/fonts/cbe0ae49c52c920fd563.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 106108,
       "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
       "dependencies": []
     },
     "lib/fonts/535a6cf662596b3bd6a6.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 111708,
       "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
       "dependencies": []
     },
     "lib/fonts/70cc7ff27245e82ad414.ttf": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 192740,
       "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
       "dependencies": []
     },
     "lib/fonts/454577c22304619db035.ttf": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 161376,
       "exportedPath": "lib/fonts/454577c22304619db035.ttf",
       "dependencies": []
     },
     "lib/fonts/52ac8f3034507f1d9e53.ttf": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 191568,
       "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
       "dependencies": []
     },
     "lib/fonts/05b618077343fbbd92b7.ttf": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 155288,
       "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
       "dependencies": []
     },
     "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 7876,
       "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
       "dependencies": []
     },
     "lib/media/874d8b8e340f75575caa.svg": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 317,
       "exportedPath": "lib/media/874d8b8e340f75575caa.svg",
       "dependencies": []
     },
     "lib/html/file-tree.html": {
-      "modifiedTime": 1717627429871,
-      "sourceSize": 13079,
+      "modifiedTime": 1717759009225,
+      "sourceSize": 15634,
       "exportedPath": "lib/html/file-tree.html",
       "dependencies": []
     },
     "lib/scripts/webpage.js": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 47290,
       "exportedPath": "lib/scripts/webpage.js",
       "dependencies": []
     },
     "lib/scripts/graph-view.js": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 15519,
       "exportedPath": "lib/scripts/graph-view.js",
       "dependencies": []
     },
     "lib/scripts/graph-wasm.js": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 14021,
       "exportedPath": "lib/scripts/graph-wasm.js",
       "dependencies": []
     },
     "lib/scripts/graph-render-worker.js": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 5179,
       "exportedPath": "lib/scripts/graph-render-worker.js",
       "dependencies": []
     },
     "lib/scripts/tinycolor.js": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 29832,
       "exportedPath": "lib/scripts/tinycolor.js",
       "dependencies": []
     },
     "lib/scripts/pixi.js": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 449509,
       "exportedPath": "lib/scripts/pixi.js",
       "dependencies": []
     },
     "lib/scripts/minisearch.js": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 29422,
       "exportedPath": "lib/scripts/minisearch.js",
       "dependencies": []
     },
     "lib/media/favicon.png": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 1105,
       "exportedPath": "lib/media/favicon.png",
       "dependencies": []
     },
     "lib/scripts/graph-data.js": {
-      "modifiedTime": 1717627429871,
-      "sourceSize": 1024,
+      "modifiedTime": 1717759009225,
+      "sourceSize": 1160,
       "exportedPath": "lib/scripts/graph-data.js",
       "dependencies": []
     },
     "lib/styles/obsidian.css": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 157722,
       "exportedPath": "lib/styles/obsidian.css",
       "dependencies": []
     },
     "lib/styles/other-plugins.css": {
-      "modifiedTime": 1717627429871,
-      "sourceSize": 69787,
+      "modifiedTime": 1717759009225,
+      "sourceSize": 80050,
       "exportedPath": "lib/styles/other-plugins.css",
       "dependencies": []
     },
     "lib/styles/global-variable-styles.css": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 259,
       "exportedPath": "lib/styles/global-variable-styles.css",
       "dependencies": []
     },
     "lib/styles/supported-plugins.css": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 9360,
       "exportedPath": "lib/styles/supported-plugins.css",
       "dependencies": []
     },
     "lib/styles/main-styles.css": {
-      "modifiedTime": 1717627429871,
+      "modifiedTime": 1717759009225,
       "sourceSize": 23130,
       "exportedPath": "lib/styles/main-styles.css",
       "dependencies": []
