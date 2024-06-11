@@ -7,4 +7,4 @@ A personnel project aims to develop a 16-bit CPU by the end of this summer, acco
 # Design
 
 ## Bus
-![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/bus.svg?raw=true)
+![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/bus-bg.svg?raw=true)
