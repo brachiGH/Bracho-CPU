@@ -17,7 +17,7 @@ A personnel project aims to develop a 16-bit CPU by the end of this summer, acco
 # Instruction set
 ```rust
 NOP                     : No Operation
-OUT                     : forward the value stored in A register to display 
+OUT                     : Forward the value stored in A register to display 
 AND                     : REG_A < = REG_B AND REG_C
 OR                      : REG_A < = REG_B OR REG_C
 XOR                     : REG_A < = REG_B XOR REG_C
@@ -31,11 +31,13 @@ SHL <value>             : Left shift the register B value by <value>
 LDB #value              : Load immediate value to REG_B [value should be between 0 and 4095]
 LDC #value              : Load immediate value to REG_C 
 BIN <offset>            : Load data from the given address into register B
-CIN <offset>            :
-STA <offset>            :
+CIN <offset>            : Load data from the given address into register C
+STA <offset>            : Store data to the given address form the A register
 BR <address>            : Branch to <address> (Set the current program counter)
 BRN                     : Branch to <address> if the negative flag is on
 BRZ                     : Branch to <address> if the zero flag is on
 BRV                     : Branch to <address> if the overflow flag is on
+LR                      : Jump back to the address in Link Register
+HALT                    : HALT
 ```
 [The Instruction Set In More Detail](https://brachigh.github.io/Bracho-CPU/bracho-cpu/components/alu/the-instruction-set.html)
