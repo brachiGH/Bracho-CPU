@@ -15,7 +15,7 @@ A personnel project aims to develop a 16-bit CPU by the end of this summer, acco
 ![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/ALU.svg?raw=true)
 
 ## Control Unit
-![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/Control-unit.svg?raw=true)
+![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/Control-Unit.svg?raw=true)
 
 ## All Togther
 ![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/CPU.svg?raw=true)
