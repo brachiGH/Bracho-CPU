@@ -506,7 +506,7 @@
       <a name="label" val="CR"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="0" loc="(3560,720)" name="Splitter">
+    <comp lib="0" loc="(3590,1030)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="bit1" val="0"/>
       <a name="bit10" val="2"/>
@@ -528,53 +528,57 @@
       <a name="incoming" val="16"/>
       <a name="spacing" val="4"/>
     </comp>
-    <comp lib="0" loc="(3570,880)" name="Splitter">
-      <a name="appear" val="right"/>
-      <a name="bit1" val="0"/>
-      <a name="bit10" val="2"/>
-      <a name="bit11" val="2"/>
-      <a name="bit12" val="3"/>
-      <a name="bit13" val="3"/>
-      <a name="bit14" val="3"/>
-      <a name="bit15" val="3"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="1"/>
-      <a name="bit5" val="1"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="1"/>
-      <a name="bit8" val="2"/>
-      <a name="bit9" val="2"/>
-      <a name="facing" val="north"/>
-      <a name="fanout" val="4"/>
-      <a name="incoming" val="16"/>
-      <a name="spacing" val="4"/>
-    </comp>
-    <comp lib="0" loc="(3580,1030)" name="Splitter">
-      <a name="appear" val="right"/>
-      <a name="bit1" val="0"/>
-      <a name="bit10" val="2"/>
-      <a name="bit11" val="2"/>
-      <a name="bit12" val="3"/>
-      <a name="bit13" val="3"/>
-      <a name="bit14" val="3"/>
-      <a name="bit15" val="3"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="1"/>
-      <a name="bit5" val="1"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="1"/>
-      <a name="bit8" val="2"/>
-      <a name="bit9" val="2"/>
-      <a name="facing" val="north"/>
-      <a name="fanout" val="4"/>
-      <a name="incoming" val="16"/>
-      <a name="spacing" val="4"/>
-    </comp>
-    <comp lib="0" loc="(3610,380)" name="Probe">
+    <comp lib="0" loc="(3590,390)" name="Probe">
       <a name="appearance" val="NewPins"/>
-      <a name="facing" val="south"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(3590,470)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(3590,720)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="bit1" val="0"/>
+      <a name="bit10" val="2"/>
+      <a name="bit11" val="2"/>
+      <a name="bit12" val="3"/>
+      <a name="bit13" val="3"/>
+      <a name="bit14" val="3"/>
+      <a name="bit15" val="3"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="2"/>
+      <a name="bit9" val="2"/>
+      <a name="facing" val="north"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="16"/>
+      <a name="spacing" val="4"/>
+    </comp>
+    <comp lib="0" loc="(3590,880)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="bit1" val="0"/>
+      <a name="bit10" val="2"/>
+      <a name="bit11" val="2"/>
+      <a name="bit12" val="3"/>
+      <a name="bit13" val="3"/>
+      <a name="bit14" val="3"/>
+      <a name="bit15" val="3"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="2"/>
+      <a name="bit9" val="2"/>
+      <a name="facing" val="north"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="16"/>
+      <a name="spacing" val="4"/>
     </comp>
     <comp lib="0" loc="(610,560)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -690,40 +694,40 @@
     <comp lib="5" loc="(3400,420)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3570,700)" name="Hex Digit Display">
+    <comp lib="5" loc="(3600,1010)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3580,860)" name="Hex Digit Display">
+    <comp lib="5" loc="(3600,700)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3590,1010)" name="Hex Digit Display">
+    <comp lib="5" loc="(3600,860)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3610,700)" name="Hex Digit Display">
+    <comp lib="5" loc="(3640,1010)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3620,860)" name="Hex Digit Display">
+    <comp lib="5" loc="(3640,700)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3630,1010)" name="Hex Digit Display">
+    <comp lib="5" loc="(3640,860)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3650,700)" name="Hex Digit Display">
+    <comp lib="5" loc="(3680,1010)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3660,860)" name="Hex Digit Display">
+    <comp lib="5" loc="(3680,700)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3670,1010)" name="Hex Digit Display">
+    <comp lib="5" loc="(3680,860)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3690,700)" name="Hex Digit Display">
+    <comp lib="5" loc="(3720,1010)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3700,860)" name="Hex Digit Display">
+    <comp lib="5" loc="(3720,700)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
-    <comp lib="5" loc="(3710,1010)" name="Hex Digit Display">
+    <comp lib="5" loc="(3720,860)" name="Hex Digit Display">
       <a name="labelvisible" val="true"/>
     </comp>
     <comp lib="8" loc="(1440,885)" name="Text">
@@ -750,17 +754,17 @@
       <a name="font" val="SansSerif bold 29"/>
       <a name="text" val="Program Counter"/>
     </comp>
-    <comp lib="8" loc="(3630,605)" name="Text">
-      <a name="font" val="SansSerif bold 29"/>
-      <a name="text" val="A Register"/>
-    </comp>
-    <comp lib="8" loc="(3630,770)" name="Text">
+    <comp lib="8" loc="(3650,770)" name="Text">
       <a name="font" val="SansSerif bold 29"/>
       <a name="text" val="B Register"/>
     </comp>
-    <comp lib="8" loc="(3637,929)" name="Text">
+    <comp lib="8" loc="(3655,922)" name="Text">
       <a name="font" val="SansSerif bold 29"/>
       <a name="text" val="C Register"/>
+    </comp>
+    <comp lib="8" loc="(3660,605)" name="Text">
+      <a name="font" val="SansSerif bold 29"/>
+      <a name="text" val="A Register"/>
     </comp>
     <comp loc="(1510,1050)" name="ALU"/>
     <comp loc="(1850,1430)" name="FlagsRegister"/>
@@ -981,10 +985,12 @@
     <wire from="(3530,720)" to="(3560,720)"/>
     <wire from="(3530,880)" to="(3540,880)"/>
     <wire from="(3540,390)" to="(3540,880)"/>
-    <wire from="(3540,390)" to="(3610,390)"/>
-    <wire from="(3540,880)" to="(3570,880)"/>
-    <wire from="(3550,1030)" to="(3580,1030)"/>
-    <wire from="(3610,380)" to="(3610,390)"/>
+    <wire from="(3540,390)" to="(3590,390)"/>
+    <wire from="(3540,880)" to="(3590,880)"/>
+    <wire from="(3550,1030)" to="(3590,1030)"/>
+    <wire from="(3560,470)" to="(3560,720)"/>
+    <wire from="(3560,470)" to="(3590,470)"/>
+    <wire from="(3560,720)" to="(3590,720)"/>
     <wire from="(550,1600)" to="(3410,1600)"/>
     <wire from="(550,840)" to="(550,1600)"/>
     <wire from="(550,840)" to="(790,840)"/>
@@ -1069,7 +1075,6 @@
     <comp lib="0" loc="(200,670)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="IRout"/>
-      <a name="radix" val="16"/>
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(290,140)" name="Pin">
