@@ -77,6 +77,7 @@ def assemble(code, addresses):
         
         print("[assembled instruction]:"+asm[-4:])
         asm += " "
+        opcodehex = "" #rest the opcode
     return asm
 
 

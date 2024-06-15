@@ -65,7 +65,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="cpu"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="1.0"/>
+    <a name="simulationFrequency" val="2048000.0"/>
     <comp lib="0" loc="(1150,1060)" name="Splitter">
       <a name="bit0" val="none"/>
       <a name="bit1" val="none"/>
@@ -281,6 +281,7 @@
     </comp>
     <comp lib="0" loc="(2990,700)" name="Probe">
       <a name="appearance" val="NewPins"/>
+      <a name="label" val="DataBus"/>
     </comp>
     <comp lib="0" loc="(3020,430)" name="Splitter">
       <a name="appear" val="right"/>
@@ -475,16 +476,16 @@
     <comp lib="0" loc="(3290,1080)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
-      <a name="label" val="HALT"/>
+      <a name="label" val="Frozen"/>
     </comp>
     <comp lib="0" loc="(3370,1040)" name="Clock">
       <a name="facing" val="south"/>
-      <a name="label" val="MAINCLOCK"/>
+      <a name="label" val="CLK"/>
     </comp>
     <comp lib="0" loc="(3410,1060)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
-      <a name="label" val="UnHALT"/>
+      <a name="label" val="unfreeze"/>
     </comp>
     <comp lib="0" loc="(3490,1010)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -582,12 +583,12 @@
     </comp>
     <comp lib="0" loc="(610,560)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="AddressBus"/>
+      <a name="label" val="AddressBusIn"/>
       <a name="width" val="12"/>
     </comp>
     <comp lib="0" loc="(610,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="DataBus"/>
+      <a name="label" val="DataBusIn"/>
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(700,380)" name="Pin">
@@ -758,7 +759,7 @@
       <a name="font" val="SansSerif bold 29"/>
       <a name="text" val="B Register"/>
     </comp>
-    <comp lib="8" loc="(3655,922)" name="Text">
+    <comp lib="8" loc="(3655,920)" name="Text">
       <a name="font" val="SansSerif bold 29"/>
       <a name="text" val="C Register"/>
     </comp>
@@ -982,15 +983,15 @@
     <wire from="(3430,630)" to="(3480,630)"/>
     <wire from="(3480,490)" to="(3480,630)"/>
     <wire from="(3490,30)" to="(3490,1010)"/>
-    <wire from="(3530,720)" to="(3560,720)"/>
-    <wire from="(3530,880)" to="(3540,880)"/>
-    <wire from="(3540,390)" to="(3540,880)"/>
+    <wire from="(3530,720)" to="(3540,720)"/>
+    <wire from="(3530,880)" to="(3560,880)"/>
+    <wire from="(3540,390)" to="(3540,720)"/>
     <wire from="(3540,390)" to="(3590,390)"/>
-    <wire from="(3540,880)" to="(3590,880)"/>
+    <wire from="(3540,720)" to="(3590,720)"/>
     <wire from="(3550,1030)" to="(3590,1030)"/>
-    <wire from="(3560,470)" to="(3560,720)"/>
+    <wire from="(3560,470)" to="(3560,880)"/>
     <wire from="(3560,470)" to="(3590,470)"/>
-    <wire from="(3560,720)" to="(3590,720)"/>
+    <wire from="(3560,880)" to="(3590,880)"/>
     <wire from="(550,1600)" to="(3410,1600)"/>
     <wire from="(550,840)" to="(550,1600)"/>
     <wire from="(550,840)" to="(790,840)"/>
