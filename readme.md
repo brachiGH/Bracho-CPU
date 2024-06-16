@@ -37,17 +37,3 @@ Information about the license.
 [Badge License]: https://img.shields.io/badge/License-MIT-blue.svg
 [License]: https://opensource.org/licenses/MIT
 
-
-Dear Network,
-
-I am utterly pleased to announce the completion of our latest project, the Bracho-4, a 16-bit CPU design! 🎉 Last week, I successfully desined a fully functional Logisim Evolution circuit, which marks a significant milestone in my journey into computer architecture and digital design.
-
-
-For those interested, detailed demos and comprehensive documentation of the Bracho-4 can be found here:
-
-    Demos: https://github.com/brachiGH/Bracho-CPU/tree/main?tab=readme-ov-file#demos
-    Usage & Documentation: https://github.com/brachiGH/Bracho-CPU/tree/main?tab=readme-ov-file#usage--documentation
-
-Looking forward to the next adventure and to applying these learnings in future projects!
-
-#CPUs #LogisimEvolution #DigitalDesign #HardwareDescriptionLanguages #Simulation #CircuitOptimization #Innovation #LearningJourney
