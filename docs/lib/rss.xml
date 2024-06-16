@@ -1,9 +1,40 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 13 Jun 2024 04:39:02 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 13 Jun 2024 04:39:01 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[Instruction Table]]></title><description><![CDATA[ 
- <br><br><br><br><br><br>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 16 Jun 2024 02:37:59 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 16 Jun 2024 02:37:55 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[ALU]]></title><description><![CDATA[ 
+ <br><br><br>An arithmetic-logic unit is the part of a central processing unit that carries out arithmetic and bitwise operations (logic operations using <a data-tooltip-position="top" aria-label="Exploring How Computers Work > Logic gates" data-href="Exploring How Computers Work#Logic gates" href="bracho-cpu\exploring-how-computers-work.html#Logic_gates" class="internal-link" target="_self" rel="noopener">logic gates</a> ) on the operands in computer instruction words.<br>The inputs of an ALU are:<br>
+<br>Operands: Which are the data to be operated on.
+<br>Opcode: A code indicating the operation to be performed.
+<br>status (in): Information about a previous operation.<br>
+The outputs of an ALU are:
+<br>Result: The result of the operation.
+<br>Status (out): Information about the operation.
+<br><img alt="ALU_block.gif" src="lib\media\alu_block.gif"><br>
+A symbolic representation of an ALU and its input and output signals, indicated by arrows pointing into or out of the ALU, respectively. Each arrow represents one or more signals. Control signals enter from the left and status signals exit on the right; data flows from top to bottom. | <a rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit" target="_blank">https://en.wikipedia.org/wiki/Arithmetic_logic_unit</a>
+<br>e.g. The famous 74S181 4-bit ALU<br>
+<img alt="ALU-20240514212757041.webp" src="lib\media\alu-20240514212757041.webp"><br>
+The combinational logic circuitry of the 74181 integrated circuit, an early four-bit ALU, with logic gates | <a rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/74181" target="_blank">https://en.wikipedia.org/wiki/74181</a>
+<br><br>Typically, the ALU has direct input and output access to RAM and the Registers through the data bus. BUT first, We have to make something clear The ALU does not work on it own (e.i. it does not know how to get the data from any register let only get it from RAM, And it does know what operation it should do.), The ALU requires some kind of control unit to tell it what operation to do and the data it should do it on.<br>The control unit or CU for short, Interprets instruction words, sometimes called a machine instruction words, that contains an operation code or "opcode," one or more operands and sometimes a format code.  The CU decodes the operation code and tells the ALU what operation to perform and the operands are used in the operation.<br>The output of the ALU is connected to ACC. ACC receives, and temporarily stores, the result of the most recent ALU operation. The output of ACC is then connected to the bus, so its contents can be sent somewhere else as needed.<br><img alt="ALU-20240514160244770.webp" src="lib\media\alu-20240514160244770.webp" style="width: 693px; max-width: 100%;"><br><br>note:<a rel="noopener" class="external-link" href="https://www.tutorialandexample.com/cpu-registers" target="_blank">https://www.tutorialandexample.com/cpu-registers</a><br>
+Accumulator (AC)<br>Accumulator register is used to store the result of ALU (arithmetic logic unit) operations and sometimes store one of ALU inputs.<br>&nbsp;General Architecture -During operation, ALU generally required two inputs (it can be one) called operands.&nbsp; ALU performs operations ( like addition, subtraction, division, multiplication etc.) on the input operand, and after performing operations, ALU generates results. In basic Storage design, these results are generated firstly in Accumulator, and then further it is copied or transferred to the user requirement, it may be memory or register.<br>Accumulator based architecture - A specific architecture/ design of CPU says that when CPU takes two inputs, and both the inputs should be going for ALU, one of the inputs should be taken from Accumulator, and the other input can be taken from anywhere. The result of the performed operation is stored in Accumulator, and this specific design is called Accumulator based architecture.<br><br><br>The ALU that we are going to design <a data-tooltip-position="top" aria-label="ALU.excalidraw" data-href="ALU.excalidraw" href="ALU.excalidraw" class="internal-link" target="_self" rel="noopener">ALU Drawing</a><br><img alt="ALU-20240611211641386.webp" src="lib\media\alu-20240611211641386.webp"><br><br>
+<br>NOT
+<br>AND
+<br>OR
+<br>XOR
+<br><br>
+<br>addition
+<br>substruction
+<br>multiplication
+<br>division
+<br><br>
+<br>shift left
+<br>shift right
+<br><br><a data-href="Usage &amp; Documentation" href="bracho-cpu\components\alu\usage-&amp;-documentation.html" class="internal-link" target="_self" rel="noopener">Usage &amp; Documentation</a>]]></description><link>bracho-cpu\components\alu\alu.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/ALU.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 16 Jun 2024 01:29:50 GMT</pubDate><enclosure url="lib\media\alu_block.gif" length="0" type="image/gif"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\alu_block.gif&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[arithmetic operations]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\components\alu\arithmetic-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/arithmetic operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:26 GMT</pubDate></item><item><title><![CDATA[Bit shift operations]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\components\alu\bit-shift-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Bit shift operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:39 GMT</pubDate></item><item><title><![CDATA[bitwise operations]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\components\alu\bitwise-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/bitwise operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:13 GMT</pubDate></item><item><title><![CDATA[Usage]]></title><description><![CDATA[ 
+ <br><br>generate binary code using the assembler.<br>python3 assembler.py file.asm
+Copy<br>file.asm is your assembly file<br><br><br><br><br><br><br>
 Addition instruction does the sum of the B register and C register, Stores the the value in the A register
 REGISTER_A &lt;= REGISTER_B + REGISTER_C
 <br><br>
- 0000 0000 xxxx xxxx<br>
+ 1110 0000 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
@@ -17,7 +48,7 @@ Copy<br><br><br><br>
 The subtraction instruction subtracts the value of the C register from the value of the B register and stores the result in the A register.
 REGISTER_A &lt;= REGISTER_B - REGISTER_C
 <br><br>
-0000 0001 xxxx xxxx<br>
+1110 0001 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
@@ -28,7 +59,7 @@ Copy<br><br><br><br>
 The multiplication instruction multiplies the value of the B register and the value of the C register and stores the result in the A register.
 REGISTER_A &lt;= REGISTER_B * REGISTER_C
 <br><br>
-0000 0010 xxxx xxxx<br>
+1110 0010 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
@@ -39,7 +70,7 @@ Copy<br><br><br><br>
 The division instruction divides the value of the B register by the value of the C register and stores the result in the A register.
 REGISTER_A &lt;= REGISTER_B / REGISTER_C
 <br><br>
-0000 0011 xxxx xxxx<br>
+1110 0011 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
@@ -50,7 +81,7 @@ Copy<br><br><br><br>
 Bitwise NOT of the B register and stores the result in the A register
 REGISTER_A &lt;= NOT(REGISTER_B)
 <br><br>
- 0000 0100 xxxx xxxx<br>
+ 1110 0100 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
@@ -58,7 +89,7 @@ cycle 1: ACO AI
 Bitwise AND of the B register and the C register, stores the result in the A register
 REGISTER_A &lt;= REGISTER_B AND REGISTER_C
 <br><br>
-0000 0101 xxxx xxxx<br>
+1110 0101 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
@@ -66,7 +97,7 @@ cycle 1: ACO AI
 Bitwise OR of the B register and the C register, stores the result in the A register
 REGISTER_A &lt;= REGISTER_B OR REGISTER_C
 <br><br>
-0000 0110 xxxx xxxx<br>
+1110 0110 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
@@ -74,14 +105,14 @@ cycle 1: ACO AI
 Bitwise XOR of the B register and the C register, stores the result in the A register
 REGISTER_A &lt;= REGISTER_B XOR REGISTER_C
 <br><br>
-0000 0111 xxxx xxxx<br>
+1110 0111 xxxx xxxx<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
 <br><br><br><br>
 Left shift the B register value by &lt;value&gt;, stores the result in the A register
 <br><br>
-0000 1000 xxxx &lt;****&gt;<br>
+1110 1000 xxxx &lt;****&gt;<br>
 SHL  &lt;value&gt;<br>
 x : any bit
 <br><br>
@@ -90,19 +121,21 @@ cycle 1: ACO AI
 Copy<br><br><br><br>
 Right shift the B register value by &lt;value&gt;, stores the result in the A register
 <br><br>
-0000 1001 xxxx &lt;****&gt;<br>
+1110 1001 xxxx &lt;****&gt;<br>
 SHR  &lt;value&gt;<br>
 x : any bit
 <br><br>
 cycle 1: ACO AI
 <br><br>0 &lt;= value &lt;=15 (value is 4 bits length)
 Copy<br><br><br><br>
-Jump back to the address in Link Register (Set the Program counter to the address in Link Register)
+Loads into the A register the value stored at a specified address in RAM located at &lt;address&gt;
 <br><br>
 1010 xxxx xxxx xxxx<br>
-x : any bit
+x : any bit<br>
+1011 xxxx xxxx xxxx reserved for the second cycle
 <br><br>
-cycle 1: LO PI
+cycle 1: IOA RO LI<br>
+cycle 2: LO RO AI
 <br><br><br><br>
 forward the value stored in A register to display 
 <br><br>
@@ -153,7 +186,7 @@ Store data to the given address form the A register
 0101 &lt;**** **** ****&gt;<br>
 STA &lt;address&gt;
 <br><br>
-cycle 1: IOA 1O RI
+cycle 1: IOA AO RI
 <br><br>&lt;address&gt; Should be between 0 and 4095
 &lt;address&gt; Is represented on 12 bits
 Copy<br><br><br><br>
@@ -192,39 +225,192 @@ BRN &lt;address&gt;
 cycle 1: IOA PI
 <br><br>&lt;address&gt; Should be between 0 and 4095
 &lt;address&gt; Is represented on 12 bits
-Copy]]></description><link>bracho-cpu\components\alu\the-instruction-set.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/The instruction set.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Thu, 13 Jun 2024 04:33:49 GMT</pubDate></item><item><title><![CDATA[ALU]]></title><description><![CDATA[ 
- <br><br><br>An arithmetic-logic unit is the part of a central processing unit that carries out arithmetic and bitwise operations (logic operations using <a data-tooltip-position="top" aria-label="Exploring How Computers Work > Logic gates" data-href="Exploring How Computers Work#Logic gates" href="bracho-cpu\exploring-how-computers-work.html#Logic_gates" class="internal-link" target="_self" rel="noopener">logic gates</a> ) on the operands in computer instruction words.<br>The inputs of an ALU are:<br>
-<br>Operands: Which are the data to be operated on.
-<br>Opcode: A code indicating the operation to be performed.
-<br>status (in): Information about a previous operation.<br>
-The outputs of an ALU are:
-<br>Result: The result of the operation.
-<br>Status (out): Information about the operation.
-<br><img alt="ALU_block.gif" src="lib\media\alu_block.gif"><br>
-A symbolic representation of an ALU and its input and output signals, indicated by arrows pointing into or out of the ALU, respectively. Each arrow represents one or more signals. Control signals enter from the left and status signals exit on the right; data flows from top to bottom. | <a rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit" target="_blank">https://en.wikipedia.org/wiki/Arithmetic_logic_unit</a>
-<br>e.g. The famous 74S181 4-bit ALU<br>
-<img alt="ALU-20240514212757041.webp" src="lib\media\alu-20240514212757041.webp"><br>
-The combinational logic circuitry of the 74181 integrated circuit, an early four-bit ALU, with logic gates | <a rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/74181" target="_blank">https://en.wikipedia.org/wiki/74181</a>
-<br><br>Typically, the ALU has direct input and output access to RAM and the Registers through the data bus. BUT first, We have to make something clear The ALU does not work on it own (e.i. it does not know how to get the data from any register let only get it from RAM, And it does know what operation it should do.), The ALU requires some kind of control unit to tell it what operation to do and the data it should do it on.<br>The control unit or CU for short, Interprets instruction words, sometimes called a machine instruction words, that contains an operation code or "opcode," one or more operands and sometimes a format code.  The CU decodes the operation code and tells the ALU what operation to perform and the operands are used in the operation.<br>The output of the ALU is connected to ACC. ACC receives, and temporarily stores, the result of the most recent ALU operation. The output of ACC is then connected to the bus, so its contents can be sent somewhere else as needed.<br><img alt="ALU-20240514160244770.webp" src="lib\media\alu-20240514160244770.webp" style="width: 693px; max-width: 100%;"><br><br>note:<a rel="noopener" class="external-link" href="https://www.tutorialandexample.com/cpu-registers" target="_blank">https://www.tutorialandexample.com/cpu-registers</a><br>
-Accumulator (AC)<br>Accumulator register is used to store the result of ALU (arithmetic logic unit) operations and sometimes store one of ALU inputs.<br>&nbsp;General Architecture -During operation, ALU generally required two inputs (it can be one) called operands.&nbsp; ALU performs operations ( like addition, subtraction, division, multiplication etc.) on the input operand, and after performing operations, ALU generates results. In basic Storage design, these results are generated firstly in Accumulator, and then further it is copied or transferred to the user requirement, it may be memory or register.<br>Accumulator based architecture - A specific architecture/ design of CPU says that when CPU takes two inputs, and both the inputs should be going for ALU, one of the inputs should be taken from Accumulator, and the other input can be taken from anywhere. The result of the performed operation is stored in Accumulator, and this specific design is called Accumulator based architecture.<br><br><br>The ALU that we are going to design <a data-tooltip-position="top" aria-label="ALU.excalidraw" data-href="ALU.excalidraw" href="ALU.excalidraw" class="internal-link" target="_self" rel="noopener">ALU Drawing</a><br><img alt="ALU-20240611211641386.webp" src="lib\media\alu-20240611211641386.webp"><br><br>
-<br>NOT
-<br>AND
-<br>OR
-<br>XOR
-<br><br>
-<br>addition
-<br>substruction
-<br>multiplication
-<br>division
-<br><br>
-<br>shift left
-<br>shift right
-<br><br><a data-href="The instruction set" href="bracho-cpu\components\alu\the-instruction-set.html" class="internal-link" target="_self" rel="noopener">The instruction set</a>]]></description><link>bracho-cpu\components\alu\alu.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/ALU.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 11 Jun 2024 20:16:43 GMT</pubDate><enclosure url="lib\media\alu_block.gif" length="0" type="image/gif"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\alu_block.gif"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[What is a Bus]]></title><description><![CDATA[ 
+Copy<br><br>sample1: Adding 2 number<br>BIN @PointerToFirstNumber # @PointerToFirstNumber is the address of the the first number
+CIN @PointerToSecondNumber
+ADD
+
+@PointerToFirstNumber 32
+@PointerToSecondNumber 0xfe # use 0x as a prefix to indicate that a number is in hexadecimal format
+Copy<br>sample2: loop<br><br>The Control Unit (CU) logic is responsible for interpreting and executing each instruction in a computer's processor. It operates through a series of micro-instructions, which are detailed, low-level commands that control the various components of the CPU. These micro-instructions dictate the sequence of operations needed to fetch, decode, and execute machine-level instructions. By orchestrating tasks such as moving data between registers, controlling the arithmetic logic unit (ALU), and managing the flow of data within the CPU.<br># Generates the Control Unit Logic 
+ControlUnit_Logic = []
+
+for i in range(2**5):
+	ControlUnit_Logic.append("0000")
+
+
+Fetch = ["PO", "RO", "II"]
+Increment_PC = ["INC"]
+Instructions = {"ALUoperations":["ACO", "AI"],"LDB":["IOD", "BI"],"LDC":["IOD", "CI"],"BIN":["IOA", "RO", "BI"],"CIN":["IOA", "RO", "CI"],"STA":["IOA", "AO", "RI"], "BR":["IOA", "PI"],"LR":["IOA", "RO", "LI"],"LR2":["LO", "RO", "AI"],"NOP":[]}
+Opcodes = {'0000': 'NOP', '0001': 'LDB', '0010': 'LDC', '0011': 'BIN', '0100': 'CIN', '0101': 'STA', '0110': 'BR', '1010': 'LR', '1011': 'LR2', '1110': 'ALUoperations'}
+MicroInstructionBitCoefficient = {"AO":0, "BO":1, "CO":2, "ACO":3,"IOD":4, "PO":5, "LO":6, "IOA":7, "AI":8, "BI":9, "CI":10, "II":11, "PI":12, "LI":13, "PID":14, "INC":15, "RESET":16, "CinALU":17, "RI":18, "RO":19}
+
+def Generate_Mirco_Code(ListOfMicroInstructions):
+	codeInDecimal = 0
+	for M in ListOfMicroInstructions:
+		codeInDecimal += 2**MicroInstructionBitCoefficient[M]
+	CodeInHex = f"{codeInDecimal:04x}"
+	return CodeInHex
+
+ControlUnit_Logic[0] = Generate_Mirco_Code(Fetch)
+ControlUnit_Logic[1] = Generate_Mirco_Code(Increment_PC)
+
+for address in range(2**4, 2**5):
+	opcode = address - 2**4
+	opcodebinary = f"{opcode:04b}"
+	if opcodebinary in Opcodes:
+		ControlUnit_Logic[address] = Generate_Mirco_Code(Instructions[Opcodes[opcodebinary]])
+
+ControlUnit_Logic_string = ""
+for code in ControlUnit_Logic:
+	ControlUnit_Logic_string += code + " "
+	
+print(ControlUnit_Logic_string)
+Copy<br><br>#!/usr/bin/python3
+
+Opcodes = {'NOP': '0', 'LDB': '0001', 'LDC': '0010', 'BIN': '0011', 'CIN': '0100', 'STA': '0101', 'BR': '0110', 'LR': '1010', 'LR2': '1011000000000000', 'ADD': '1110000000000000', 'SUB': '1110000100000000', 'MULT': '1110001000000000', 'DIV': '1110001100000000', 'NOT': '1110010000000000', 'AND': '1110010100000000', 'OR': '1110011000000000', 'XOR': '1110011100000000', 'SHL': '111010000000', 'SHR': '111010010000', 'OUT': '1101000000000000', 'HALT': '1111000000000000', 'BRN': '0111', 'BRZ': '1000', 'BRV': '1001'}
+
+
+def binary_to_hex(binary_num):
+    decimal_num = int(binary_num, 2)
+    hex_num = hex(decimal_num)
+    return hex_num[2:]
+
+def convert_to_hex(string, length):
+    if (string[0:2] == "0x"):
+        hex_number = string[2:]
+    else:
+        if not string.isdigit():
+            raise ValueError(":The input ["+string+"] contains non-numeric characters.")
+        
+        number = int(string)
+        hex_number = hex(number)[2:]  # Convert to hex and remove the '0x' prefix
+
+    if len(hex_number) &gt; length:
+        raise ValueError(":The input ["+string+"] is Bigger then 0x"+"F"*length)
+    
+    # Pad with leading zeros to the specified length
+    padded_hex = hex_number.zfill(length)
+    
+    return padded_hex
+
+def store_addresses(code):
+    addresses = {}
+
+    lines = []
+    for line in code.split('\n'):
+        if line and line[0] != "#" and line[0] != " ":
+            lines.append(line)
+    
+    for line_number, line in enumerate(lines, start=1):
+        words = line.split()
+        if words and words[0].startswith('@'):
+            word = words.pop(0)
+            if word in addresses:
+                addresses[word].append(line_number)
+            else:
+                addresses[word] = str(line_number)
+        
+        # Reconstruct the line without the removed word
+        lines[line_number - 1] = ' '.join(words)
+    
+    return addresses, "\n".join(lines)
+
+
+def printInstructions(code, asm):
+    i = 0
+    codeInstructions = code.strip().split("\n")
+    for instruction in asm.split(' ')[1:len(codeInstructions)+1]:
+        print("[@"+convert_to_hex(str(i+1), 4)+"]: "+instruction+" "+codeInstructions[i])
+        i += 1
+
+
+
+def assemble(code, addresses):
+    asm="0 "
+    opcodehex = ""
+    for line in code.strip().split("\n"):
+        print("[assembling instruction]:"+line)
+        for opcode in line.split():
+            if (opcode[0] == '#'):
+                break
+            elif (opcode[0] == '@'):
+                asm += convert_to_hex(addresses[opcode], 4-len(opcodehex))
+                continue
+            if opcode in Opcodes:
+                opcodehex = binary_to_hex(Opcodes[opcode])
+                asm += opcodehex
+            else:
+                asm += convert_to_hex(opcode, 4-len(opcodehex))
+        
+        print("[assembled instruction]:"+asm[-4:])
+        asm += " "
+        opcodehex = "" #rest the opcode
+    return asm
+
+
+
+if __name__ == '__main__':
+    from sys import argv
+
+    if len(argv) == 2:
+        codePath = argv[1]
+
+        f = open(codePath,'r')
+        code = f.read()
+        f.close()
+
+
+        addresses, code = store_addresses(code)
+        print(addresses)
+        asm = assemble(code, addresses)
+        printInstructions(code, asm)
+        
+        
+        f = open(codePath+".bin",'w')
+        f.write(asm)
+        f.close()
+
+        print("\n\n[Binary file]: "+ codePath+".bin")
+    else:
+        print("wrong number of arguments")
+Copy<br><br>XTerm 16 color palette with the 4-bit color codes:<br>]]></description><link>bracho-cpu\components\alu\usage-&amp;-documentation.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Usage &amp; Documentation.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 16 Jun 2024 01:57:06 GMT</pubDate></item><item><title><![CDATA[Transistors]]></title><description><![CDATA[ 
+ <br><br>**Transistor** consists of **three layers of semiconductor** materials or terminals which helps to make a connection to any external circuit and all the layers do carry the current. Here voltage or current applied at any one pair of the terminals controls the current or voltage through the other pair of terminals.<br>There are three terminals for transistor as mentioned below:<br>
+<br>**Base:** To activate the transistor
+<br>**Collector:** Positive lead of transistor
+<br>**Emitter:** Negative lead of transistor
+<br><img alt="Transistor-20240514192225339.webp" src="lib\media\transistor-20240514192225339.webp">
+
+NPN Transistor Tutorial - The Bipolar NPN Transistor | electronics-tutorials.ws
+
+
+<br><br>A Transistor can be classified into various categories, however other types of transistors are there but we are going to discuss two main types as mentioned below:<br>
+<br>**Bipolar Junction Transistor**
+<br>**Field effect transistor**
+<br><br>This type of Transistor is considered one of the most common types of transistors. BJT transistor consists of three terminals that is **emitter, base, and collector**. It can able to amplify the electrical signal by joining all three layers into one. In current flow, there are two types of electrical charges involved i.e., electrons and holes.<br>The BJT can be further classified as PNP and NPN Transistor<br>
+<br>**P-N-P Transistor:** In P-N-P configuration the Holes are the majority charge carrier. When emitter injects holes into the transistor when the emitter-base junction is forward biased. These flow into base region which controls the current passing from emitter to the collector. The base control this flow and the collector collects the holes. By reverse biasing the collector base junction the flow is controlled which enables modulation of the collector current by the base current.
+<br>**N-P-N Transistor:** In N-P-N configuration electrons are the majority charge carriers. Electrons flow from emitter to collector when the emitter-base junction is forward biased. The base controls this flow and the collector collects the electrons. By reverse biasing the collector-base junction the flow is controlled by regulating the collector current.
+<br><img alt="npn-vs-pnp-transistor-3614303086.gif" src="lib\media\npn-vs-pnp-transistor-3614303086.gif"><br>
+NPN VS PNP Transistor Understanding the Difference | <a data-tooltip-position="top" aria-label="https://www.componentsinfo.com/npn-vs-pnp-transistor/" rel="noopener" class="external-link" href="https://www.componentsinfo.com/npn-vs-pnp-transistor/" target="_blank">componentsinfo.com</a>
+<br><br>This type of transistor is a **three-terminal semiconductor** device. Its operation is based on a controlled input voltage. It uses an electric field to control the field of electric current in a semiconductor. They are also known as **unipolar transistors** since they **contain single-carrier-type operations**. FET uses either electrons or holes as charge carriers for the operation but does not use both electrons and holes. They display high input impedance at low frequencies.<br>There are **two types of FET** as mentioned below:<br>
+<br>**JFET** – Junction-gate FET
+<br>**MOSFET** – Metal-oxide semiconductor FET
+<br><img alt="Transistor-20240514191854998.webp" src="lib\media\transistor-20240514191854998.webp"><br>
+MOSFET VS JFET | The Main Differences - ETechnoG | <a data-tooltip-position="top" aria-label="https://www.etechnog.com/2019/07/mosfet-vs-jfet-differences.html" rel="noopener" class="external-link" href="https://www.etechnog.com/2019/07/mosfet-vs-jfet-differences.html" target="_blank">etechnog.com</a>
+]]></description><link>bracho-cpu\components\transistors.html</link><guid isPermaLink="false">Bracho-CPU/Components/Transistors.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:26:03 GMT</pubDate><enclosure url="lib\media\transistor-20240514192225339.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\transistor-20240514192225339.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[What is a Bus]]></title><description><![CDATA[ 
  <br>In computer architecture, a bus (also called data highway or databus) is a communication system that transfers data between components inside a computer.<br><br>A bus is either a parallel or serial bus, and either an internal bus (local bus) or an external bus (expansion bus). E.g. address bus, data bus or control bus <br><img alt="What is a Bus-20240606104946650.webp" src="lib\media\what-is-a-bus-20240606104946650.webp"><br>
 Computer Bus | Functions Of Data Bus , Address Bus , Control Bus | <a data-tooltip-position="top" aria-label="https://www.learncomputerscienceonline.com/computer-bus/" rel="noopener" class="external-link" href="https://www.learncomputerscienceonline.com/computer-bus/" target="_blank">learncomputerscienceonline.com</a>
 <br><br>An internal bus enables the communication between internal components, such as a video card and memory. An external bus can communicating with external peripherals, such as a USB or SCSI device.<br><br>A computer bus can transmit its data using a parallel or serial method of communication. With a parallel bus, data is transmitted several bits at a time. However, with a serial bus, the data is transferred one bit at a time.<br><img alt="What is a Bus-20240606105302567.webp" src="lib\media\what-is-a-bus-20240606105302567.webp"><br>
 What is Serial Communications? | <a data-tooltip-position="top" aria-label="https://learn.adafruit.com/circuit-playground-express-serial-communications/what-is-serial-communications" rel="noopener" class="external-link" href="https://learn.adafruit.com/circuit-playground-express-serial-communications/what-is-serial-communications" target="_blank">learn.adafruit.com</a>
-<br><br>With computer memory, a computer address bus is the bus containing the memory location (memory address) of where data is located in the computer memory. Once the computer understands where to get the information, the data bus is used to transfer that data. The control bus communicates with the computer's devices, sending commands and receiving status signals.<br><br><img alt="What is a Bus-20240612004232182.webp" src="lib\media\what-is-a-bus-20240612004232182.webp">]]></description><link>bracho-cpu\components\what-is-a-bus.html</link><guid isPermaLink="false">Bracho-CPU/Components/What is a Bus.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 11 Jun 2024 23:42:32 GMT</pubDate><enclosure url="lib\media\what-is-a-bus-20240606104946650.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\what-is-a-bus-20240606104946650.webp"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Exploring How Computers Work]]></title><description><![CDATA[ 
+<br><br>With computer memory, a computer address bus is the bus containing the memory location (memory address) of where data is located in the computer memory. Once the computer understands where to get the information, the data bus is used to transfer that data. The control bus communicates with the computer's devices, sending commands and receiving status signals.<br><br><img alt="What is a Bus-20240612004232182.webp" src="lib\media\what-is-a-bus-20240612004232182.webp">]]></description><link>bracho-cpu\components\what-is-a-bus.html</link><guid isPermaLink="false">Bracho-CPU/Components/What is a Bus.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 11 Jun 2024 23:42:32 GMT</pubDate><enclosure url="lib\media\what-is-a-bus-20240606104946650.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\what-is-a-bus-20240606104946650.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[CPU]]></title><description><![CDATA[ 
+ <br><img alt="Architecture-20240616022501430.webp" src="lib\media\architecture-20240616022501430.webp"><br><br><img alt="Architecture-20240616022622197.webp" src="lib\media\architecture-20240616022622197.webp"><br><br><img alt="Architecture-20240616022628849.webp" src="lib\media\architecture-20240616022628849.webp"><br><br><img alt="Architecture-20240616022649114.webp" src="lib\media\architecture-20240616022649114.webp"><br><br>
+<br>Work in progress design in <a data-tooltip-position="top" aria-label="https://github.com/logisim-evolution/logisim-evolution" rel="noopener" class="external-link" href="https://github.com/logisim-evolution/logisim-evolution" target="_blank">Logisim Evolution</a>
+<br>64x64 pixel resolution
+<br>16 different colors
+<br>16kb RAM
+]]></description><link>bracho-cpu\architecture.html</link><guid isPermaLink="false">Bracho-CPU/Architecture.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 16 Jun 2024 01:28:29 GMT</pubDate><enclosure url="lib\media\architecture-20240616022501430.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\architecture-20240616022501430.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Demos]]></title><description><![CDATA[ 
+ <br><br><br><br>The B register should show (2AC2)h = 10946 the 19th Fibonacci sequence<br>
+The C register should show (452F)h = 17711 the 20th Fibonacci sequence<br>
+]]></description><link>bracho-cpu\demos.html</link><guid isPermaLink="false">Bracho-CPU/Demos.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 16 Jun 2024 02:37:09 GMT</pubDate></item><item><title><![CDATA[Exploring How Computers Work]]></title><description><![CDATA[ 
  <br><br><br><br>They is one component that rises above all other component in it importance in making computers do STUFF, and that component is the humble transistor. <br>
 A transistor is a <a data-tooltip-position="top" aria-label="https://en.wikipedia.org/wiki/Semiconductor" rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Semiconductor" target="_blank">semiconductor</a> device used to amplify or switch electrical signals and power. It is one of the basic building blocks of modern electronics.
 <br><br><br><img alt="Exploring How Computers Work-20240514164522871.webp" src="lib\media\exploring-how-computers-work-20240514164522871.webp" style="width: 554px; max-width: 100%;"><br>
@@ -260,33 +446,7 @@ Copy<br>So our binary executable is:<br>0001000001010000
 0011000100000111
 Copy<br>
 note: this over simplification for the process of turning code to binary executable.
-<br>Next <a data-tooltip-position="top" aria-label="How computers remember" data-href="How computers remember" href="bracho-cpu\how-computers-remember.html" class="internal-link" target="_self" rel="noopener">how registers store data</a>  Or <a data-tooltip-position="top" aria-label="components/What is a Bus" data-href="components/What is a Bus" href="bracho-cpu\components\what-is-a-bus.html" class="internal-link" target="_self" rel="noopener">how data moves inside a computer</a>]]></description><link>bracho-cpu\exploring-how-computers-work.html</link><guid isPermaLink="false">Bracho-CPU/Exploring How Computers Work.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 11 Jun 2024 18:55:00 GMT</pubDate><enclosure url="lib\media\exploring-how-computers-work-20240514164522871.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\exploring-how-computers-work-20240514164522871.webp"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[arithmetic operations]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\components\alu\arithmetic-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/arithmetic operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:26 GMT</pubDate></item><item><title><![CDATA[Bit shift operations]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\components\alu\bit-shift-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Bit shift operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:39 GMT</pubDate></item><item><title><![CDATA[bitwise operations]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\components\alu\bitwise-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/bitwise operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:13 GMT</pubDate></item><item><title><![CDATA[Transistors]]></title><description><![CDATA[ 
- <br><br>**Transistor** consists of **three layers of semiconductor** materials or terminals which helps to make a connection to any external circuit and all the layers do carry the current. Here voltage or current applied at any one pair of the terminals controls the current or voltage through the other pair of terminals.<br>There are three terminals for transistor as mentioned below:<br>
-<br>**Base:** To activate the transistor
-<br>**Collector:** Positive lead of transistor
-<br>**Emitter:** Negative lead of transistor
-<br><img alt="Transistor-20240514192225339.webp" src="lib\media\transistor-20240514192225339.webp">
-
-NPN Transistor Tutorial - The Bipolar NPN Transistor | electronics-tutorials.ws
-
-
-<br><br>A Transistor can be classified into various categories, however other types of transistors are there but we are going to discuss two main types as mentioned below:<br>
-<br>**Bipolar Junction Transistor**
-<br>**Field effect transistor**
-<br><br>This type of Transistor is considered one of the most common types of transistors. BJT transistor consists of three terminals that is **emitter, base, and collector**. It can able to amplify the electrical signal by joining all three layers into one. In current flow, there are two types of electrical charges involved i.e., electrons and holes.<br>The BJT can be further classified as PNP and NPN Transistor<br>
-<br>**P-N-P Transistor:** In P-N-P configuration the Holes are the majority charge carrier. When emitter injects holes into the transistor when the emitter-base junction is forward biased. These flow into base region which controls the current passing from emitter to the collector. The base control this flow and the collector collects the holes. By reverse biasing the collector base junction the flow is controlled which enables modulation of the collector current by the base current.
-<br>**N-P-N Transistor:** In N-P-N configuration electrons are the majority charge carriers. Electrons flow from emitter to collector when the emitter-base junction is forward biased. The base controls this flow and the collector collects the electrons. By reverse biasing the collector-base junction the flow is controlled by regulating the collector current.
-<br><img alt="npn-vs-pnp-transistor-3614303086.gif" src="lib\media\npn-vs-pnp-transistor-3614303086.gif"><br>
-NPN VS PNP Transistor Understanding the Difference | <a data-tooltip-position="top" aria-label="https://www.componentsinfo.com/npn-vs-pnp-transistor/" rel="noopener" class="external-link" href="https://www.componentsinfo.com/npn-vs-pnp-transistor/" target="_blank">componentsinfo.com</a>
-<br><br>This type of transistor is a **three-terminal semiconductor** device. Its operation is based on a controlled input voltage. It uses an electric field to control the field of electric current in a semiconductor. They are also known as **unipolar transistors** since they **contain single-carrier-type operations**. FET uses either electrons or holes as charge carriers for the operation but does not use both electrons and holes. They display high input impedance at low frequencies.<br>There are **two types of FET** as mentioned below:<br>
-<br>**JFET** – Junction-gate FET
-<br>**MOSFET** – Metal-oxide semiconductor FET
-<br><img alt="Transistor-20240514191854998.webp" src="lib\media\transistor-20240514191854998.webp"><br>
-MOSFET VS JFET | The Main Differences - ETechnoG | <a data-tooltip-position="top" aria-label="https://www.etechnog.com/2019/07/mosfet-vs-jfet-differences.html" rel="noopener" class="external-link" href="https://www.etechnog.com/2019/07/mosfet-vs-jfet-differences.html" target="_blank">etechnog.com</a>
-]]></description><link>bracho-cpu\components\transistors.html</link><guid isPermaLink="false">Bracho-CPU/Components/Transistors.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:26:03 GMT</pubDate><enclosure url="lib\media\transistor-20240514192225339.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\transistor-20240514192225339.webp"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[How computers remember]]></title><description><![CDATA[ 
+<br>Next <a data-tooltip-position="top" aria-label="How computers remember" data-href="How computers remember" href="bracho-cpu\how-computers-remember.html" class="internal-link" target="_self" rel="noopener">how registers store data</a>  Or <a data-tooltip-position="top" aria-label="components/What is a Bus" data-href="components/What is a Bus" href="bracho-cpu\components\what-is-a-bus.html" class="internal-link" target="_self" rel="noopener">how data moves inside a computer</a>]]></description><link>bracho-cpu\exploring-how-computers-work.html</link><guid isPermaLink="false">Bracho-CPU/Exploring How Computers Work.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 11 Jun 2024 18:55:00 GMT</pubDate><enclosure url="lib\media\exploring-how-computers-work-20240514164522871.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\exploring-how-computers-work-20240514164522871.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[How computers remember]]></title><description><![CDATA[ 
  <br>There are many types of electronic memory used in computers, each with its own advantages and disadvantages.<br>
 <img alt="How computers remember-20240605231017365.webp" src="lib\media\how-computers-remember-20240605231017365.webp"><br>
 Memory hierarchy | <a data-tooltip-position="top" aria-label="https://en.wikipedia.org/wiki/Memory_hierarchy" rel="noopener" class="external-link" href="https://en.wikipedia.org/wiki/Memory_hierarchy" target="_blank">Wikipedia</a>
@@ -296,5 +456,5 @@ So we are going to add a load pin to tell the register when to store<br><img alt
 E.g. tells say register A outputs are all ones  and register C outputs are all zeros.  when what value the bus is gonna hold? Yes zeros! because the courant is gonna flow from A to C<br>
 <img alt="How computers remember-20240607112103703.webp" src="lib\media\how-computers-remember-20240607112103703.webp"><br>So we need an enable pin that tells a register when to output!<br>
 <img alt="How computers remember-20240607112558155.webp" src="lib\media\how-computers-remember-20240607112558155.webp"><br><br>In the high-impedance state, the output of the buffer is disconnected from the output bus, allowing other devices to drive the bus without interference from the tri-state buffer.<br>
-notes:<img style="max-width:400px; " class="excalidraw-svg excalidraw-embedded-img excalidraw-canvas-immersive" src="blob:\\469cd22f-ea02-4928-b820-bc7b89ce187b" filesource="Bracho-CPU/Components/latches/latches.excalidraw.md" w="400" draggable="false" oncanvas="false">
-]]></description><link>bracho-cpu\how-computers-remember.html</link><guid isPermaLink="false">Bracho-CPU/How computers remember.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Fri, 07 Jun 2024 11:00:06 GMT</pubDate><enclosure url="lib\media\how-computers-remember-20240605231017365.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\how-computers-remember-20240605231017365.webp"&gt;&lt;/figure&gt;</content:encoded></item></channel></rss>
+notes:<img style="max-width:400px; " class="excalidraw-svg excalidraw-embedded-img excalidraw-canvas-immersive" src="blob:\\a2d47116-6a6b-4f0d-bf3c-d98710e38b70" filesource="Bracho-CPU/Components/latches/latches.excalidraw.md" w="400" draggable="false" oncanvas="false">
+]]></description><link>bracho-cpu\how-computers-remember.html</link><guid isPermaLink="false">Bracho-CPU/How computers remember.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Fri, 07 Jun 2024 11:00:06 GMT</pubDate><enclosure url="lib\media\how-computers-remember-20240605231017365.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;lib\media\how-computers-remember-20240605231017365.webp&quot;&gt;&lt;/figure&gt;</content:encoded></item></channel></rss>

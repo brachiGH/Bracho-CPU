@@ -97,7 +97,13 @@ if __name__ == '__main__':
         print(addresses)
         asm = assemble(code, addresses)
         printInstructions(code, asm)
-        print(asm)
+        
+        
+        f = open(codePath+".bin",'w')
+        f.write(asm)
+        f.close()
+
+        print("\n\n[Binary file]: "+ codePath+".bin")
     else:
         print("wrong number of arguments")
 
