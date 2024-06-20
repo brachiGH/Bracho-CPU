@@ -65,7 +65,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="cpu"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="1.0"/>
+    <a name="simulationFrequency" val="4.0"/>
     <comp lib="0" loc="(1150,1060)" name="Splitter">
       <a name="bit0" val="none"/>
       <a name="bit1" val="none"/>
@@ -2385,8 +2385,8 @@
       <a name="addrWidth" val="5"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 5 20
-80820 8000 15*0 210 410 80280 80480 40081
-1080 0 0 0 82080 80140 0 0
+80820 8000 15*0 80280 80480 210 410 40081
+1080 0 0 0 82080 80140 80180 0
 108
 </a>
       <a name="dataWidth" val="20"/>
