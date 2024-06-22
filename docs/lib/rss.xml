@@ -1,4 +1,251 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 16 Jun 2024 18:30:58 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 16 Jun 2024 18:30:57 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[Demos]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 20 Jun 2024 11:47:55 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 20 Jun 2024 11:47:54 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[Usage]]></title><description><![CDATA[ 
+ <br><br>generate binary code using the assembler.<br>python3 assembler.py file.asm
+Copy<br>file.asm is your assembly file<br><br><br><br>The Control Unit (CU) logic is responsible for interpreting and executing each instruction in a computer's processor. It operates through a series of micro-instructions, which are detailed, low-level commands that control the various components of the CPU. These micro-instructions dictate the sequence of operations needed to fetch, decode, and execute machine-level instructions. By orchestrating tasks such as moving data between registers, controlling the arithmetic logic unit (ALU), and managing the flow of data within the CPU.<br># Generates the Control Unit Logic 
+ControlUnit_Logic = []
+
+for i in range(2**5):
+	ControlUnit_Logic.append("0000")
+
+
+Fetch = ["PO", "RO", "II"]
+Increment_PC = ["INC"]
+Instructions = {"ALUoperations":["ACO", "AI"],"BIN":["IOD", "BI"],"CIN":["IOD", "CI"],"LDA":["IOA", "RO", "AI"],"LDB":["IOA", "RO", "BI"],"LDC":["IOA", "RO", "CI"],"STA":["IOA", "AO", "RI"], "BR":["IOA", "PI"],"LR":["IOA", "RO", "LI"],"LR2":["LO", "RO", "AI"],"NOP":[]}
+Opcodes = {'0000': 'NOP', '1100': 'LDA', '0001': 'LDB', '0010': 'LDC', '0011': 'BIN', '0100': 'CIN', '0101': 'STA', '0110': 'BR', '1010': 'LR', '1011': 'LR2', '1110': 'ALUoperations'}
+MicroInstructionBitCoefficient = {"AO":0, "BO":1, "CO":2, "ACO":3,"IOD":4, "PO":5, "LO":6, "IOA":7, "AI":8, "BI":9, "CI":10, "II":11, "PI":12, "LI":13, "PID":14, "INC":15, "RESET":16, "CinALU":17, "RI":18, "RO":19}
+
+def Generate_Mirco_Code(ListOfMicroInstructions):
+	codeInDecimal = 0
+	for M in ListOfMicroInstructions:
+		codeInDecimal += 2**MicroInstructionBitCoefficient[M]
+	CodeInHex = f"{codeInDecimal:04x}"
+	return CodeInHex
+
+ControlUnit_Logic[0] = Generate_Mirco_Code(Fetch)
+ControlUnit_Logic[1] = Generate_Mirco_Code(Increment_PC)
+
+for address in range(2**4, 2**5):
+	opcode = address - 2**4
+	opcodebinary = f"{opcode:04b}"
+	if opcodebinary in Opcodes:
+		ControlUnit_Logic[address] = Generate_Mirco_Code(Instructions[Opcodes[opcodebinary]])
+
+ControlUnit_Logic_string = ""
+for code in ControlUnit_Logic:
+	ControlUnit_Logic_string += code + " "
+	
+print(ControlUnit_Logic_string)
+Copy<br>00: 80820 08000 00000 00000 00000 00000 00000 00000
+08: 00000 00000 00000 00000 00000 00000 00000 00000
+10: 00000 80280 80480 00210 00410 40081 01080 00000
+18: 00000 00000 82080 80140 80180 00000 00108 00000
+Copy<br><br><br><br>
+Addition instruction does the sum of the B register and C register, Stores the the value in the A register
+REGISTER_A &lt;= REGISTER_B + REGISTER_C
+<br><br>
+ 1110 0000 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br> if ((REGISTER_B + REGISTER_C) &gt; FFFF ) {
+	 OverflowFlag &lt; = 1
+ }
+ if (REGISTER_B == 0000 &amp;&amp; REGISTER_C == 0000) {
+	 ZeroFlag &lt; = 1
+ }
+Copy<br><br><br><br>
+The subtraction instruction subtracts the value of the C register from the value of the B register and stores the result in the A register.
+REGISTER_A &lt;= REGISTER_B - REGISTER_C
+<br><br>
+1110 0001 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br> if ((REGISTER_B == 0000 &amp;&amp; REGISTER_C == 0000)  OR (REGISTER_B == REGISTER_C)) {
+	 ZeroFlag &lt; = 1
+ }
+Copy<br><br><br><br>
+The multiplication instruction multiplies the value of the B register and the value of the C register and stores the result in the A register.
+REGISTER_A &lt;= REGISTER_B * REGISTER_C
+<br><br>
+1110 0010 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br> if (REGISTER_B == 0000 OR REGISTER_C == 0000) {
+	 ZeroFlag &lt; = 1
+ }
+Copy<br><br><br><br>
+The division instruction divides the value of the B register by the value of the C register and stores the result in the A register.
+REGISTER_A &lt;= REGISTER_B / REGISTER_C
+<br><br>
+1110 0011 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br> if (REGISTER_B == 0000 OR REGISTER_C == 0000) {
+	 ZeroFlag &lt; = 1
+ }
+Copy<br><br><br><br>
+Bitwise NOT of the B register and stores the result in the A register
+REGISTER_A &lt;= NOT(REGISTER_B)
+<br><br>
+ 1110 0100 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br><br><br>
+Bitwise AND of the B register and the C register, stores the result in the A register
+REGISTER_A &lt;= REGISTER_B AND REGISTER_C
+<br><br>
+1110 0101 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br><br><br>
+Bitwise OR of the B register and the C register, stores the result in the A register
+REGISTER_A &lt;= REGISTER_B OR REGISTER_C
+<br><br>
+1110 0110 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br><br><br>
+Bitwise XOR of the B register and the C register, stores the result in the A register
+REGISTER_A &lt;= REGISTER_B XOR REGISTER_C
+<br><br>
+1110 0111 xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br><br><br>
+Left shift the B register value by &lt;value&gt;, stores the result in the A register
+<br><br>
+1110 1000 xxxx &lt;****&gt;<br>
+SHL  &lt;value&gt;<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br>0 &lt;= value &lt;=15 (value is 4 bits length)
+Copy<br><br><br><br>
+Right shift the B register value by &lt;value&gt;, stores the result in the A register
+<br><br>
+1110 1001 xxxx &lt;****&gt;<br>
+SHR  &lt;value&gt;<br>
+x : any bit
+<br><br>
+execute cycle: ACO AI
+<br><br>0 &lt;= value &lt;=15 (value is 4 bits length)
+Copy<br><br><br><br>
+Loads into the A register the value stored at a specified address in RAM located at &lt;address&gt;
+<br><br>
+1010 xxxx xxxx xxxx<br>
+x : any bit<br>
+1011 xxxx xxxx xxxx reserved for the second cycle
+<br><br>
+execute cycle: IOA RO LI<br>
+cycle 2: LO RO AI
+<br><br><br><br>
+forward the value stored in A register to display 
+<br><br>
+1101 xxxx xxxx xxxx<br>
+x : any bit
+<br><br>
+execute cycle: OUT
+<br><br><br><br>
+Do nothing, No Operation
+<br><br>
+1110 xxxx xxxx xxxx<br>
+x : any bit
+<br><br><br><br>
+Stop the Clock
+<br><br>
+1111 xxxx xxxx xxxx<br>
+x : any bit
+<br><br><br><br>
+Load data from the given address stored into the B register or the C register
+<br><br>
+1100 &lt;**** **** ****&gt;<br>
+LDA &lt;address&gt;<br>
+or<br>
+0011 &lt;**** **** ****&gt;<br>
+LDB &lt;address&gt;<br>
+or<br>
+0100 &lt;**** **** ****&gt;<br>
+LDC &lt;address&gt;
+<br><br>
+execute cycle: IOA RO AI<br>
+or<br>
+execute cycle: IOA RO BI<br>
+or<br>
+execute cycle: IOA RO CI
+<br><br>&lt;address&gt; should be between 0 and 4095
+&lt;address&gt; Is represented on 12 bits
+Copy<br><br><br><br>
+Load immediate value to B register or the C register
+<br><br>
+0001 &lt;**** **** ****&gt;<br>
+BIN &lt;value&gt;<br>
+or<br>
+0010 &lt;**** **** ****&gt;<br>
+CIN &lt;value&gt;
+<br><br>
+execute cycle: IOD BI<br>
+or<br>
+execute cycle: IOD CI
+<br><br>&lt;value&gt; should be between 0 and 4095
+&lt;value&gt; Is represented on 12 bits
+Copy<br><br><br><br>
+Store data to the given address form the A register
+<br><br>
+0101 &lt;**** **** ****&gt;<br>
+STA &lt;address&gt;
+<br><br>
+execute cycle: IOA AO RI
+<br><br>&lt;address&gt; Should be between 0 and 4095
+&lt;address&gt; Is represented on 12 bits
+Copy<br><br><br><br>
+Branch to &lt;address&gt; (Set program counter to that address and save the old program counter address link register)
+<br><br>
+0110 &lt;**** **** ****&gt;<br>
+BR &lt;address&gt;
+<br><br>
+execute cycle: IOA PI
+<br><br>&lt;address&gt; Should be between 0 and 4095
+&lt;address&gt; Is represented on 12 bits
+Copy<br><br><br><br>
+Branch to &lt;address&gt; if the negative flag is on (the negative flag of the last instruction done by the ALU)
+<br><br>
+0111 &lt;**** **** ****&gt;<br>
+BRN &lt;address&gt;
+<br><br>
+execute cycle: IOA PI
+<br><br>&lt;address&gt; Should be between 0 and 4095
+&lt;address&gt; Is represented on 12 bits
+Copy<br><br><br><br>
+Branch to &lt;address&gt; if the zero flag is on (the zero flag of the last instruction done by the ALU)
+<br><br>
+1000 &lt;**** **** ****&gt;<br>
+BRN &lt;address&gt;
+<br><br>
+execute cycle: IOA PI
+<br><br>&lt;address&gt; Should be between 0 and 4095
+&lt;address&gt; Is represented on 12 bits
+Copy<br><br><br><br>
+Branch to &lt;address&gt; if the overflow flag is on (the overflow flag of the last instruction done by the ALU)
+<br><br>
+1001 &lt;**** **** ****&gt;<br>
+BRN &lt;address&gt;
+<br><br>
+execute cycle: IOA PI
+<br><br>&lt;address&gt; Should be between 0 and 4095
+&lt;address&gt; Is represented on 12 bits
+Copy<br><br>sample1: Adding 2 number<br>LDB @PointerToFirstNumber # @PointerToFirstNumber is the address of the the first number
+LBC @PointerToSecondNumber
+ADD
+
+@PointerToFirstNumber 32
+@PointerToSecondNumber 0xfe # use 0x as a prefix to indicate that a number is in hexadecimal format
+Copy<br>sample2: loop<br><br>XTerm 16 color palette with the 4-bit color codes:<br>]]></description><link>bracho-cpu\components\alu\usage-&amp;-documentation.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Usage &amp; Documentation.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Thu, 20 Jun 2024 11:47:11 GMT</pubDate></item><item><title><![CDATA[Demos]]></title><description><![CDATA[ 
  <br><br><br>
 <a data-tooltip-position="top" aria-label="https://github.com/brachiGH/Bracho-CPU/blob/main/compiler/tests/flag.asm" rel="noopener" class="external-link" href="https://github.com/brachiGH/Bracho-CPU/blob/main/compiler/tests/flag.asm" target="_blank">code</a><br><br>The B register should show (2AC2)h = 10946 the 19th Fibonacci sequence<br>
 The C register should show (452F)h = 17711 the 20th Fibonacci sequence<br>
@@ -32,352 +279,7 @@ Accumulator (AC)<br>Accumulator register is used to store the result of ALU (ari
 <br><br><a data-href="Usage &amp; Documentation" href="bracho-cpu\components\alu\usage-&amp;-documentation.html" class="internal-link" target="_self" rel="noopener">Usage &amp; Documentation</a>]]></description><link>bracho-cpu\components\alu\alu.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/ALU.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 16 Jun 2024 01:29:50 GMT</pubDate><enclosure url="lib\media\alu_block.gif" length="0" type="image/gif"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\alu_block.gif"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[arithmetic operations]]></title><description><![CDATA[ 
  ]]></description><link>bracho-cpu\components\alu\arithmetic-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/arithmetic operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:26 GMT</pubDate></item><item><title><![CDATA[Bit shift operations]]></title><description><![CDATA[ 
  ]]></description><link>bracho-cpu\components\alu\bit-shift-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Bit shift operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:39 GMT</pubDate></item><item><title><![CDATA[bitwise operations]]></title><description><![CDATA[ 
- ]]></description><link>bracho-cpu\components\alu\bitwise-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/bitwise operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:13 GMT</pubDate></item><item><title><![CDATA[Usage]]></title><description><![CDATA[ 
- <br><br>generate binary code using the assembler.<br>python3 assembler.py file.asm
-Copy<br>file.asm is your assembly file<br><br><br><br><br><br><br>
-Addition instruction does the sum of the B register and C register, Stores the the value in the A register
-REGISTER_A &lt;= REGISTER_B + REGISTER_C
-<br><br>
- 1110 0000 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br> if ((REGISTER_B + REGISTER_C) &gt; FFFF ) {
-	 OverflowFlag &lt; = 1
- }
- if (REGISTER_B == 0000 &amp;&amp; REGISTER_C == 0000) {
-	 ZeroFlag &lt; = 1
- }
-Copy<br><br><br><br>
-The subtraction instruction subtracts the value of the C register from the value of the B register and stores the result in the A register.
-REGISTER_A &lt;= REGISTER_B - REGISTER_C
-<br><br>
-1110 0001 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br> if ((REGISTER_B == 0000 &amp;&amp; REGISTER_C == 0000)  OR (REGISTER_B == REGISTER_C)) {
-	 ZeroFlag &lt; = 1
- }
-Copy<br><br><br><br>
-The multiplication instruction multiplies the value of the B register and the value of the C register and stores the result in the A register.
-REGISTER_A &lt;= REGISTER_B * REGISTER_C
-<br><br>
-1110 0010 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br> if (REGISTER_B == 0000 OR REGISTER_C == 0000) {
-	 ZeroFlag &lt; = 1
- }
-Copy<br><br><br><br>
-The division instruction divides the value of the B register by the value of the C register and stores the result in the A register.
-REGISTER_A &lt;= REGISTER_B / REGISTER_C
-<br><br>
-1110 0011 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br> if (REGISTER_B == 0000 OR REGISTER_C == 0000) {
-	 ZeroFlag &lt; = 1
- }
-Copy<br><br><br><br>
-Bitwise NOT of the B register and stores the result in the A register
-REGISTER_A &lt;= NOT(REGISTER_B)
-<br><br>
- 1110 0100 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br><br><br>
-Bitwise AND of the B register and the C register, stores the result in the A register
-REGISTER_A &lt;= REGISTER_B AND REGISTER_C
-<br><br>
-1110 0101 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br><br><br>
-Bitwise OR of the B register and the C register, stores the result in the A register
-REGISTER_A &lt;= REGISTER_B OR REGISTER_C
-<br><br>
-1110 0110 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br><br><br>
-Bitwise XOR of the B register and the C register, stores the result in the A register
-REGISTER_A &lt;= REGISTER_B XOR REGISTER_C
-<br><br>
-1110 0111 xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br><br><br>
-Left shift the B register value by &lt;value&gt;, stores the result in the A register
-<br><br>
-1110 1000 xxxx &lt;****&gt;<br>
-SHL  &lt;value&gt;<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br>0 &lt;= value &lt;=15 (value is 4 bits length)
-Copy<br><br><br><br>
-Right shift the B register value by &lt;value&gt;, stores the result in the A register
-<br><br>
-1110 1001 xxxx &lt;****&gt;<br>
-SHR  &lt;value&gt;<br>
-x : any bit
-<br><br>
-cycle 1: ACO AI
-<br><br>0 &lt;= value &lt;=15 (value is 4 bits length)
-Copy<br><br><br><br>
-Loads into the A register the value stored at a specified address in RAM located at &lt;address&gt;
-<br><br>
-1010 xxxx xxxx xxxx<br>
-x : any bit<br>
-1011 xxxx xxxx xxxx reserved for the second cycle
-<br><br>
-cycle 1: IOA RO LI<br>
-cycle 2: LO RO AI
-<br><br><br><br>
-forward the value stored in A register to display 
-<br><br>
-1101 xxxx xxxx xxxx<br>
-x : any bit
-<br><br>
-cycle 1: OUT
-<br><br><br><br>
-Do nothing, No Operation
-<br><br>
-1110 xxxx xxxx xxxx<br>
-x : any bit
-<br><br><br><br>
-Stop the Clock
-<br><br>
-1111 xxxx xxxx xxxx 
-<br><br><br><br>
-Load immediate value to B register or the C register
-<br><br>
-0001 &lt;**** **** ****&gt;<br>
-LDB &lt;value&gt;<br>
-or<br>
-0010 &lt;**** **** ****&gt;<br>
-LDC &lt;value&gt;
-<br><br>
-cycle 1: IOD BI<br>
-or<br>
-cycle 1: IOD CI
-<br><br>&lt;value&gt; should be between 0 and 4095
-&lt;value&gt; Is represented on 12 bits
-Copy<br><br><br><br>
-Load data from the given address stored into the B register or the C register
-<br><br>
-0011 &lt;**** **** ****&gt;<br>
-BIN &lt;address&gt;<br>
-or<br>
-0100 &lt;**** **** ****&gt;<br>
-CIN &lt;address&gt;
-<br><br>
-cycle 1: IOA RO BI<br>
-or<br>
-cycle 1: IOA RO CI
-<br><br>&lt;address&gt; should be between 0 and 4095
-&lt;address&gt; Is represented on 12 bits
-Copy<br><br><br><br>
-Store data to the given address form the A register
-<br><br>
-0101 &lt;**** **** ****&gt;<br>
-STA &lt;address&gt;
-<br><br>
-cycle 1: IOA AO RI
-<br><br>&lt;address&gt; Should be between 0 and 4095
-&lt;address&gt; Is represented on 12 bits
-Copy<br><br><br><br>
-Branch to &lt;address&gt; (Set program counter to that address and save the old program counter address link register)
-<br><br>
-0110 &lt;**** **** ****&gt;<br>
-BR &lt;address&gt;
-<br><br>
-cycle 1: IOA PI
-<br><br>&lt;address&gt; Should be between 0 and 4095
-&lt;address&gt; Is represented on 12 bits
-Copy<br><br><br><br>
-Branch to &lt;address&gt; if the negative flag is on (the negative flag of the last instruction done by the ALU)
-<br><br>
-0111 &lt;**** **** ****&gt;<br>
-BRN &lt;address&gt;
-<br><br>
-cycle 1: IOA PI
-<br><br>&lt;address&gt; Should be between 0 and 4095
-&lt;address&gt; Is represented on 12 bits
-Copy<br><br><br><br>
-Branch to &lt;address&gt; if the zero flag is on (the zero flag of the last instruction done by the ALU)
-<br><br>
-1000 &lt;**** **** ****&gt;<br>
-BRN &lt;address&gt;
-<br><br>
-cycle 1: IOA PI
-<br><br>&lt;address&gt; Should be between 0 and 4095
-&lt;address&gt; Is represented on 12 bits
-Copy<br><br><br><br>
-Branch to &lt;address&gt; if the overflow flag is on (the overflow flag of the last instruction done by the ALU)
-<br><br>
-1001 &lt;**** **** ****&gt;<br>
-BRN &lt;address&gt;
-<br><br>
-cycle 1: IOA PI
-<br><br>&lt;address&gt; Should be between 0 and 4095
-&lt;address&gt; Is represented on 12 bits
-Copy<br><br>sample1: Adding 2 number<br>BIN @PointerToFirstNumber # @PointerToFirstNumber is the address of the the first number
-CIN @PointerToSecondNumber
-ADD
-
-@PointerToFirstNumber 32
-@PointerToSecondNumber 0xfe # use 0x as a prefix to indicate that a number is in hexadecimal format
-Copy<br>sample2: loop<br><br>The Control Unit (CU) logic is responsible for interpreting and executing each instruction in a computer's processor. It operates through a series of micro-instructions, which are detailed, low-level commands that control the various components of the CPU. These micro-instructions dictate the sequence of operations needed to fetch, decode, and execute machine-level instructions. By orchestrating tasks such as moving data between registers, controlling the arithmetic logic unit (ALU), and managing the flow of data within the CPU.<br># Generates the Control Unit Logic 
-ControlUnit_Logic = []
-
-for i in range(2**5):
-	ControlUnit_Logic.append("0000")
-
-
-Fetch = ["PO", "RO", "II"]
-Increment_PC = ["INC"]
-Instructions = {"ALUoperations":["ACO", "AI"],"LDB":["IOD", "BI"],"LDC":["IOD", "CI"],"BIN":["IOA", "RO", "BI"],"CIN":["IOA", "RO", "CI"],"STA":["IOA", "AO", "RI"], "BR":["IOA", "PI"],"LR":["IOA", "RO", "LI"],"LR2":["LO", "RO", "AI"],"NOP":[]}
-Opcodes = {'0000': 'NOP', '0001': 'LDB', '0010': 'LDC', '0011': 'BIN', '0100': 'CIN', '0101': 'STA', '0110': 'BR', '1010': 'LR', '1011': 'LR2', '1110': 'ALUoperations'}
-MicroInstructionBitCoefficient = {"AO":0, "BO":1, "CO":2, "ACO":3,"IOD":4, "PO":5, "LO":6, "IOA":7, "AI":8, "BI":9, "CI":10, "II":11, "PI":12, "LI":13, "PID":14, "INC":15, "RESET":16, "CinALU":17, "RI":18, "RO":19}
-
-def Generate_Mirco_Code(ListOfMicroInstructions):
-	codeInDecimal = 0
-	for M in ListOfMicroInstructions:
-		codeInDecimal += 2**MicroInstructionBitCoefficient[M]
-	CodeInHex = f"{codeInDecimal:04x}"
-	return CodeInHex
-
-ControlUnit_Logic[0] = Generate_Mirco_Code(Fetch)
-ControlUnit_Logic[1] = Generate_Mirco_Code(Increment_PC)
-
-for address in range(2**4, 2**5):
-	opcode = address - 2**4
-	opcodebinary = f"{opcode:04b}"
-	if opcodebinary in Opcodes:
-		ControlUnit_Logic[address] = Generate_Mirco_Code(Instructions[Opcodes[opcodebinary]])
-
-ControlUnit_Logic_string = ""
-for code in ControlUnit_Logic:
-	ControlUnit_Logic_string += code + " "
-	
-print(ControlUnit_Logic_string)
-Copy<br><br>#!/usr/bin/python3
-
-Opcodes = {'NOP': '0', 'LDB': '0001', 'LDC': '0010', 'BIN': '0011', 'CIN': '0100', 'STA': '0101', 'BR': '0110', 'LR': '1010', 'LR2': '1011000000000000', 'ADD': '1110000000000000', 'SUB': '1110000100000000', 'MULT': '1110001000000000', 'DIV': '1110001100000000', 'NOT': '1110010000000000', 'AND': '1110010100000000', 'OR': '1110011000000000', 'XOR': '1110011100000000', 'SHL': '111010000000', 'SHR': '111010010000', 'OUT': '1101000000000000', 'HALT': '1111000000000000', 'BRN': '0111', 'BRZ': '1000', 'BRV': '1001'}
-
-
-def binary_to_hex(binary_num):
-    decimal_num = int(binary_num, 2)
-    hex_num = hex(decimal_num)
-    return hex_num[2:]
-
-def convert_to_hex(string, length):
-    if (string[0:2] == "0x"):
-        hex_number = string[2:]
-    else:
-        if not string.isdigit():
-            raise ValueError(":The input ["+string+"] contains non-numeric characters.")
-        
-        number = int(string)
-        hex_number = hex(number)[2:]  # Convert to hex and remove the '0x' prefix
-
-    if len(hex_number) &gt; length:
-        raise ValueError(":The input ["+string+"] is Bigger then 0x"+"F"*length)
-    
-    # Pad with leading zeros to the specified length
-    padded_hex = hex_number.zfill(length)
-    
-    return padded_hex
-
-def store_addresses(code):
-    addresses = {}
-
-    lines = []
-    for line in code.split('\n'):
-        if line and line[0] != "#" and line[0] != " ":
-            lines.append(line)
-    
-    for line_number, line in enumerate(lines, start=1):
-        words = line.split()
-        if words and words[0].startswith('@'):
-            word = words.pop(0)
-            if word in addresses:
-                addresses[word].append(line_number)
-            else:
-                addresses[word] = str(line_number)
-        
-        # Reconstruct the line without the removed word
-        lines[line_number - 1] = ' '.join(words)
-    
-    return addresses, "\n".join(lines)
-
-
-def printInstructions(code, asm):
-    i = 0
-    codeInstructions = code.strip().split("\n")
-    for instruction in asm.split(' ')[1:len(codeInstructions)+1]:
-        print("[@"+convert_to_hex(str(i+1), 4)+"]: "+instruction+" "+codeInstructions[i])
-        i += 1
-
-
-
-def assemble(code, addresses):
-    asm="0 "
-    opcodehex = ""
-    for line in code.strip().split("\n"):
-        print("[assembling instruction]:"+line)
-        for opcode in line.split():
-            if (opcode[0] == '#'):
-                break
-            elif (opcode[0] == '@'):
-                asm += convert_to_hex(addresses[opcode], 4-len(opcodehex))
-                continue
-            if opcode in Opcodes:
-                opcodehex = binary_to_hex(Opcodes[opcode])
-                asm += opcodehex
-            else:
-                asm += convert_to_hex(opcode, 4-len(opcodehex))
-        
-        print("[assembled instruction]:"+asm[-4:])
-        asm += " "
-        opcodehex = "" #rest the opcode
-    return asm
-
-
-
-if __name__ == '__main__':
-    from sys import argv
-
-    if len(argv) == 2:
-        codePath = argv[1]
-
-        f = open(codePath,'r')
-        code = f.read()
-        f.close()
-
-
-        addresses, code = store_addresses(code)
-        print(addresses)
-        asm = assemble(code, addresses)
-        printInstructions(code, asm)
-        
-        
-        f = open(codePath+".bin",'w')
-        f.write(asm)
-        f.close()
-
-        print("\n\n[Binary file]: "+ codePath+".bin")
-    else:
-        print("wrong number of arguments")
-Copy<br><br>XTerm 16 color palette with the 4-bit color codes:<br>]]></description><link>bracho-cpu\components\alu\usage-&amp;-documentation.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Usage &amp; Documentation.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 16 Jun 2024 01:57:06 GMT</pubDate></item><item><title><![CDATA[Transistors]]></title><description><![CDATA[ 
+ ]]></description><link>bracho-cpu\components\alu\bitwise-operations.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/bitwise operations.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 14 May 2024 20:35:13 GMT</pubDate></item><item><title><![CDATA[Transistors]]></title><description><![CDATA[ 
  <br><br>**Transistor** consists of **three layers of semiconductor** materials or terminals which helps to make a connection to any external circuit and all the layers do carry the current. Here voltage or current applied at any one pair of the terminals controls the current or voltage through the other pair of terminals.<br>There are three terminals for transistor as mentioned below:<br>
 <br>**Base:** To activate the transistor
 <br>**Collector:** Positive lead of transistor
