@@ -31,6 +31,33 @@ enum OPCODE {
     InvalideOpcode = 0xFFFFF // a number lager than what the data bus can support
 };
 
+enum OPCODE_OPRAND_NUMBER {
+    NOP_ON = 1,
+    LDA_ON = 1,
+    LDB_ON = 1,
+    LDC_ON = 1,
+    BIN_ON = 1,
+    CIN_ON = 1,
+    STA_ON = 1,
+    BR_ON  = 1,
+    BRN_ON = 1,
+    BRZ_ON = 1,
+    BRV_ON = 1,
+    LR_ON  = 1,
+    ADD_ON = 0,
+    SUB_ON = 0,
+    MULT_ON = 0,
+    DIV_ON = 0,
+    NOT_ON = 0,
+    AND_ON = 0,
+    OR_ON  = 0,
+    XOR_ON = 0,
+    SHL_ON = 1,
+    SHR_ON = 1,
+    OUT_ON = 0,
+    HALT_ON = 0
+};
+
 // check if the Opcode is valid and return it hex code if true else return InvalideOpcode
 enum OPCODE get_opcode(char* str);
 
@@ -40,5 +67,7 @@ const char* get_opcode_name(enum OPCODE opcode);
 // Convert opcode to hexadecimal string with bounds checking
 char* OPCODE_to_hex_string(enum OPCODE opcode);
 
+
+enum OPCODE_OPRAND_NUMBER opcode_number_of_required_oprand(char* str);
 
 #endif 

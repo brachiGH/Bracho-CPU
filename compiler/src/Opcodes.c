@@ -117,7 +117,7 @@ const char* get_opcode_name(enum OPCODE opcode) {
 // Convert opcode to hexadecimal string with bounds checking
 char* OPCODE_to_hex_string(enum OPCODE opcode) {
     switch (opcode) {
-        case NOP: return "0000";
+        case NOP: return "0FFF";
         case LDA: return "C";
         case LDB: return "1";
         case LDC: return "2";
@@ -142,5 +142,83 @@ char* OPCODE_to_hex_string(enum OPCODE opcode) {
         case OUT: return "DFFF";
         case HALT: return "FFFF";
         default: return "NULL";
+    }
+}
+
+// opcode_number_of_required_oprand
+enum OPCODE_OPRAND_NUMBER opcode_number_of_required_oprand(char* str) {
+    
+    to_uppercase(str);
+    if (strcmp(str, "NOP") == 0) {
+        return NOP_ON;
+    }
+    else if (strcmp(str, "LDA") == 0) {
+        return LDA_ON;
+    }
+    else if (strcmp(str, "LDB") == 0) {
+        return LDB_ON;
+    }
+    else if (strcmp(str, "LDC") == 0) {
+        return LDC_ON;
+    }
+    else if (strcmp(str, "BIN") == 0) {
+        return BIN_ON;
+    }
+    else if (strcmp(str, "CIN") == 0) {
+        return CIN_ON;
+    }
+    else if (strcmp(str, "STA") == 0) {
+        return STA_ON;
+    }
+    else if (strcmp(str, "BR") == 0) {
+        return BR_ON;
+    }
+    else if (strcmp(str, "BRN") == 0) {
+        return BRN_ON;
+    }
+    else if (strcmp(str, "BRZ") == 0) {
+        return BRZ_ON;
+    }
+    else if (strcmp(str, "BRV") == 0) {
+        return BRV_ON;
+    }
+    else if (strcmp(str, "LR") == 0) {
+        return LR_ON;
+    }
+    else if (strcmp(str, "ADD") == 0) {
+        return ADD_ON;
+    }
+    else if (strcmp(str, "SUB") == 0) {
+        return SUB_ON;
+    }
+    else if (strcmp(str, "MULT") == 0) {
+        return MULT_ON;
+    }
+    else if (strcmp(str, "DIV") == 0) {
+        return DIV_ON;
+    }
+    else if (strcmp(str, "NOT") == 0) {
+        return NOT_ON;
+    }
+    else if (strcmp(str, "AND") == 0) {
+        return AND_ON;
+    }
+    else if (strcmp(str, "OR") == 0) {
+        return OR_ON;
+    }
+    else if (strcmp(str, "XOR") == 0) {
+        return XOR_ON;
+    }
+    else if (strcmp(str, "SHL") == 0) {
+        return SHL_ON;
+    }
+    else if (strcmp(str, "SHR") == 0) {
+        return SHR_ON;
+    }
+    else if (strcmp(str, "OUT") == 0) {
+        return OUT_ON;
+    }
+    else if (strcmp(str, "HALT") == 0) {
+        return HALT_ON;
     }
 }

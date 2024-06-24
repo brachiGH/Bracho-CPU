@@ -65,6 +65,10 @@ void remove_new_line_if_it_exist_at_the_end(char *token) {
     if (size > 0 && token[size-1] == '\n') {
         // Replace the newline character with a null terminator
         token[size-1] = '\0';
+    } 
+    else if (size > 0 && token[size-1] == '\r') {
+        // Replace the Carriage Return character with a null terminator
+        token[size-1] = '\0';
     }
 
     // Check if the last character is a Carriage Return
@@ -138,4 +142,60 @@ void prepend_zeros(char *hex_operand, size_t target_length) {
 
     // Free the temporary buffer
     free(result);
+}
+
+
+void  read_the_whole_file(char *filename, char *assembly_file_content, unsigned long long MAX_FILE_SIZE) {
+    FILE *fd = fopen(filename, "r");
+    if (fd == NULL) {
+        fprintf(stderr, "Error: Could not open file %s\n", filename);
+        exit(EXIT_FAILURE);
+    }
+
+    size_t file_size = fread(assembly_file_content, 1, MAX_FILE_SIZE - 1, fd);
+    assembly_file_content[file_size] = '\0';
+    fclose(fd);
+}
+
+// Function to get a line from a buffer and retuen the length of the line
+long int get_line_from_buffer(char** lineptr, size_t* n, const char* buffer, size_t* offset) {
+    if (buffer == NULL || lineptr == NULL || n == NULL || offset == NULL) {
+        return -1; // Error handling
+    }
+
+    size_t buf_len = strlen(buffer);
+    if (*offset >= buf_len) {
+        return -1; // No more lines to read
+    }
+
+    size_t line_len = 0;
+    const char* start = buffer + *offset;
+    const char* end = start;
+
+    // Find the end of the line or buffer
+    while (*end != '\0' && *end != '\n') {
+        end++;
+        line_len++;
+    }
+
+    // Allocate memory for the line if necessary
+    if (*lineptr == NULL || *n < line_len + 1) {
+        *n = line_len + 1;
+        *lineptr = realloc(*lineptr, *n);
+        if (*lineptr == NULL) {
+            return -1; // Memory allocation failed
+        }
+    }
+
+    // Copy the line to the output buffer
+    strncpy(*lineptr, start, line_len);
+    (*lineptr)[line_len] = '\0';
+
+    // Update the offset
+    *offset += line_len;
+    if (buffer[*offset] == '\n') {
+        (*offset)++;
+    }
+
+    return line_len;
 }

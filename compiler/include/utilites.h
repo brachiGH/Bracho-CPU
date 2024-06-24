@@ -1,5 +1,6 @@
 #ifndef UTILITES_H
 #define UTILITES_H
+#include <stddef.h>
 
 // check if a file exists
 int file_exists(const char* filename);
@@ -20,5 +21,10 @@ void remove_Tabs_if_they_exist_at_the_beginning(char *token);
 void printAsciiCodes(const char *arr);
 
 void to_uppercase(char *str);
+
+void  read_the_whole_file(char *filename, char *assembly_file_content, unsigned long long MAX_FILE_SIZE);
+
+// Function to get a line from a buffer and retuen the length of the line
+long int get_line_from_buffer(char** lineptr, size_t* n, const char* buffer, size_t* offset);
 
 #endif

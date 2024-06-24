@@ -1,3 +1,5 @@
 LR 0xFFF
 
        NOP
+LR 
+LR # tes
