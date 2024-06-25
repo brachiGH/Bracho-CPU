@@ -22,7 +22,7 @@ static OpcodeHashMap* map;
 
 
 // hash function that converts a string key into an index for the hash table.
-unsigned int hash(char* opcode) {
+unsigned int hash(const char* opcode) {
     unsigned int hash = 0;
     while (*opcode) {
         hash = (hash << 5) + *opcode++;
@@ -34,8 +34,8 @@ unsigned int hash(char* opcode) {
 void insertOpcode(const char* key, const char* HEX_value, unsigned int number, unsigned int max) {
     unsigned int index = hash(key);
     Opcode* newOpcode = (Opcode*)malloc(sizeof(Opcode));
-    newOpcode->opcode = _strdup(key);
-    newOpcode->opcode_in_hex = _strdup(HEX_value);
+    newOpcode->opcode = strdup(key);
+    newOpcode->opcode_in_hex = strdup(HEX_value);
     newOpcode->number_of_required_oprand = number;
     newOpcode->oprand_max_size = max;
     newOpcode->next = map->table[index];
@@ -78,7 +78,7 @@ const char* getOpcodeInHex(const char* key) {
     return NULL;
 }
 
-unsigned int getNumberOfRequiredOprand(const char* key) {
+int getNumberOfRequiredOprand(const char* key) {
     Opcode* opcode = findOpcode(key);
     if (opcode != NULL) {
         return opcode->number_of_required_oprand;
@@ -86,12 +86,12 @@ unsigned int getNumberOfRequiredOprand(const char* key) {
     return -1; // Indicates not found or error
 }
 
-unsigned int getOprandMaxSize(const char* key) {
+int getOprandMaxSize(const char* key) {
     Opcode* opcode = findOpcode(key);
     if (opcode != NULL) {
         return opcode->oprand_max_size;
     }
-    return NULL;
+    return -1;
 }
 
 void freeOpcodeHashMap() {

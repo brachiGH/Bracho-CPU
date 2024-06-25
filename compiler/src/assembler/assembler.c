@@ -19,7 +19,7 @@ The assembler translates assembly code into binary instructions by following the
 
 #define MAX_LINE_LENGTH 1024
 #define MAX_RAM_SIZE 16384 // in bytes
-#define MAX_FILE_SIZE 10240
+#define MAX_FILE_SIZE 36384
 
 
 // returns True if the charater is a digits (0-9), lowercase letters (a-z), uppercase letters (A-Z), '#', ' ', '@', ':' or '\n'.
@@ -62,11 +62,13 @@ void clean_assmebly_code(char* str) {
 }
 
 
-// void generate_symbol_table();
+void generate_symbol_table(char* assembly_code) {
+
+}
 
 // cut the first oprand from line (note: if line does not contain an oprand the input oprand become null)
 void get_oprand(char** line, char** oprand) {
-    if (*line == '\0' || *line == NULL) {
+    if ((*line)[0] == '\0' || *line == NULL) {
         *oprand = NULL;
         return;
     }
@@ -123,7 +125,7 @@ bool is_number(char* oprand) {
 }
 
 
-void ParseCode(char* filename) {
+void ParseCode(char* assembly_file_content) {
     char AssemblyCode[MAX_RAM_SIZE + 1] = "0 "; // The first instruction should be always a NOP instruction
 
     unsigned int linenumber = 0;
@@ -131,10 +133,6 @@ void ParseCode(char* filename) {
     char hex_oprand[6] = "";
     char* oprand;
 
-
-    // Read the entire file into a buffer
-    char assembly_file_content[MAX_FILE_SIZE];
-    read_the_whole_file(filename, assembly_file_content, MAX_FILE_SIZE);
 
     // cleaning
     clean_assmebly_code(assembly_file_content);
@@ -147,11 +145,11 @@ void ParseCode(char* filename) {
 
     while ((linelen = get_line_from_buffer(&line, &len, assembly_file_content, &offset)) != -1) {
         linenumber++;
-        char* linecpy_for_logging = _strdup(line);
+        char* linecpy_for_logging = strdup(line);
         get_oprand(&line, &oprand);
 
         // checking if the first oprand is an opcode
-        char* Opcode = getOpcode(oprand);
+        const char* Opcode = getOpcode(oprand);
 
         if (Opcode != NULL) {
             // Convert opcode to hexadecimal string
@@ -181,7 +179,7 @@ void ParseCode(char* filename) {
                     }
 
                     // checking if the operand is of a valid size
-                    size_t size_hex_oprand = strlen(hex_oprand);
+                    int size_hex_oprand = strlen(hex_oprand);
                     if (size_hex_oprand > getOprandMaxSize(Opcode)) {
                         fprintf(stderr, "[ERROR][LINE %d: %s] the value 0x%s is greater than what the instruction %s can support\n", linenumber, linecpy_for_logging, hex_oprand, Opcode);
                         exit(EXIT_FAILURE);
@@ -214,16 +212,16 @@ void ParseCode(char* filename) {
                 exit(EXIT_FAILURE);
             }
 
-            if (Opcode == "LR") { // executing LR2 if the instruction is LR
+            if (strcmp(Opcode, "LR")) { // executing LR2 if the instruction is LR
                 strcat(AssemblyCode, "BFFF ");
             }
 
             // for checking if their an extra oprand
             get_oprand(&line, &oprand);
         }
-        else
+        else if (oprand != NULL)
         {
-            while (is_number(oprand) == true || oprand[0] == '@')
+            while ((oprand != NULL)?(is_number(oprand) == true || oprand[0] == '@'):false)
             {
                 if (oprand[1] >= '0' && oprand[1] <= '9') {
                     // Convert number to hexadecimal string with bounds checking
@@ -232,7 +230,7 @@ void ParseCode(char* filename) {
                 else if (oprand[1] == 'x' || oprand[1] == 'X') {
                     remove_0x_from_hex_string(oprand);
                     strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 1); // only copy (sizeof(hex_oprand) - 1) chars from the oprand char array
-                    hex_oprand[sizeof(hex_oprand)-1] = '\0'; // making sure hex_oprand is zero-terminated
+                    hex_oprand[sizeof(hex_oprand) - 1] = '\0'; // making sure hex_oprand is zero-terminated
                 }
                 else if (oprand[0] == '@') {
                     // oprand is a symbol
@@ -276,11 +274,16 @@ int main(int argc, char** argv) {
     }
 
     char *filename = argv[1];
+    
 
     // Check if the file exists
     if (file_exists(filename)) {
         generate_OpcodeHashMap();  //loading into memory opcodes and their information
-        ParseCode(filename);
+
+        // Read the entire file into a buffer
+        char assembly_file_content[MAX_FILE_SIZE];
+        read_the_whole_file(filename, assembly_file_content, MAX_FILE_SIZE);
+        ParseCode(assembly_file_content);
     }
     else {
         printf("The file '%s' does not exist.\n", filename);
