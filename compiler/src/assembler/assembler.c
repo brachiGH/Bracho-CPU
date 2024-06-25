@@ -1,10 +1,14 @@
 /*
+The assembler translates assembly code into binary instructions by following these steps:
 
-the assembler
-
+    1.Clean the assembly code: Only keep the following characters: digits (0-9), lowercase letters (a-z), uppercase letters (A-Z), '#', ' ', '@', ':', or '\n'.
+    2.Generate the symbol table: Create a table of addresses.
+    3.Read the code line by line:
+        - If the first word is an opcode, check if it requires any operands and verify their validity.
+        - If the first word is a number, pass it as is. Then, check if the subsequent words are also numbers (in hexadecimal or decimal). Continue adding numbers until the end of the line.
+        Note: Symbols are treated like numbers.
 
 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,7 +47,8 @@ void clean_assmebly_code(char* str) {
         // Reset the new_line flag if a non-space character is encountered
         if (*src == '\n') {
             new_line = true;
-        } else if (*src != ' ') {
+        }
+        else if (*src != ' ') {
             new_line = false;
         }
 
@@ -61,48 +66,70 @@ void clean_assmebly_code(char* str) {
 
 // cut the first oprand from line (note: if line does not contain an oprand the input oprand become null)
 void get_oprand(char** line, char** oprand) {
-    if (*line == NULL) {
+    if (*line == '\0' || *line == NULL) {
         *oprand = NULL;
         return;
     }
 
-    *oprand = *line;
-    int i;
-    for (i = 0; (*line)[i] != '\0' && (*line)[i] != ' ' && (*line)[i] != '\n'; i++);
-    while ((*line)[i+1] == ' ')
+    int i = 0;
+    while ((*line)[i] == ' ')
     {
         i++;
     }
-    
-
-    if ((*line)[i] == '\0') {
-        *line = NULL;
+    *oprand = (*line) + i;
+    while ((*line)[i] != '\0' && (*line)[i] != ' ' && (*line)[i] != '\n')
+    {
+        i++;
     }
-    else {
+
+
+
+    if ((*line)[i] != '\0') {
         (*line)[i] = '\0';
         *line = *line + 1 + i;
     }
+    else {
+        *line = *line + i;
+    }
 
-    printf("%s\n%s\n\n", *oprand, *line);
     return;
 }
 
-bool is_number(char *oprand) {
-    if (oprand[0] >= '0' && oprand[0] <= '9' && (oprand[1] == 'x' || oprand[1] == 'X')) {
-        return true;
+
+// checks if the oprand is a valid dec or hex number
+bool is_number(char* oprand) {
+    if (oprand == NULL || *oprand == '\0') {
+        return false;
     }
 
-    return false;
+    if (strlen(oprand) > 2 && (oprand[0] == '0') && (oprand[1] == 'x' || oprand[1] == 'X')) {
+        // Hexadecimal number
+        for (int i = 2; oprand[i] != '\0'; i++) {
+            if (!(isdigit(oprand[i]) || (oprand[i] >= 'A' && oprand[i] <= 'F') || (oprand[i] >= 'a' && oprand[i] <= 'f'))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    else {
+        // Decimal number
+        for (int i = 0; oprand[i] != '\0'; i++) {
+            if (!isdigit(oprand[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 
 void ParseCode(char* filename) {
-    char AssemblyCode[MAX_RAM_SIZE + 1] = "0"; // The first instruction should be always a NOP instruction
+    char AssemblyCode[MAX_RAM_SIZE + 1] = "0 "; // The first instruction should be always a NOP instruction
 
     unsigned int linenumber = 0;
     char hex_instruction[5] = ""; // is the instruction in hex
     char hex_oprand[6] = "";
-    char *oprand;
+    char* oprand;
 
 
     // Read the entire file into a buffer
@@ -111,30 +138,32 @@ void ParseCode(char* filename) {
 
     // cleaning
     clean_assmebly_code(assembly_file_content);
-// generate_symbol_table();
+    // generate_symbol_table();
 
     char* line = NULL;
     size_t len = 0;
     size_t offset = 0;
+    long int linelen = 0;
 
-    while (get_line_from_buffer(&line, &len, assembly_file_content, &offset) != -1) {
+    while ((linelen = get_line_from_buffer(&line, &len, assembly_file_content, &offset)) != -1) {
         linenumber++;
+        char* linecpy_for_logging = _strdup(line);
         get_oprand(&line, &oprand);
 
         // checking if the first oprand is an opcode
-        enum OPCODE Opcode = get_opcode(oprand);
+        char* Opcode = getOpcode(oprand);
 
-        if (Opcode != InvalideOpcode) {
+        if (Opcode != NULL) {
             // Convert opcode to hexadecimal string
-            strcpy(hex_instruction, OPCODE_to_hex_string(Opcode));
+            strcpy(hex_instruction, getOpcodeInHex(Opcode));
 
-            if (opcode_number_of_required_oprand(hex_instruction) == 1)
+            if (getNumberOfRequiredOprand(Opcode) == 1)
             {
                 get_oprand(&line, &oprand);
 
                 // checking if there is an oprand
                 if (oprand == NULL || oprand[0] == '\0' || oprand[0] == '#') {
-                    fprintf(stderr, "[ERROR][LINE %d: %s] the requires an oprand\n", linenumber, line, oprand);
+                    fprintf(stderr, "[ERROR][LINE %d: %s] the requires an oprand\n", linenumber, linecpy_for_logging);
                     exit(EXIT_FAILURE);
                 }
 
@@ -143,45 +172,50 @@ void ParseCode(char* filename) {
                     // checking the number is in hex
                     if (oprand[1] == 'x' || oprand[1] == 'X') {
                         remove_0x_from_hex_string(oprand);
-                        strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 1); // only copy (sizeof(hex_oprand) - 1) chars from the token char array
-                    } else {
+                        strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 2); // only copy (sizeof(hex_oprand) - 2) chars from the oprand char array
+                        hex_oprand[sizeof(hex_oprand) - 1] = '\0'; // making sure hex_oprand is zero-terminated because strncpy does not that
+                    }
+                    else {
                         // Convert number to hexadecimal string with bounds checking
                         snprintf(hex_oprand, sizeof(hex_oprand), "%x", atoi(oprand));
                     }
 
                     // checking if the operand is of a valid size
-                    size_t size_hex_instruction = strlen(hex_instruction);
                     size_t size_hex_oprand = strlen(hex_oprand);
-                    if (size_hex_oprand > 4 - size_hex_instruction) {
-                        fprintf(stderr, "[ERROR][LINE %d: %s] the value 0x%s is greater than what the instruction %s can support\n", linenumber, line, hex_oprand, get_opcode_name(Opcode));
+                    if (size_hex_oprand > getOprandMaxSize(Opcode)) {
+                        fprintf(stderr, "[ERROR][LINE %d: %s] the value 0x%s is greater than what the instruction %s can support\n", linenumber, linecpy_for_logging, hex_oprand, Opcode);
                         exit(EXIT_FAILURE);
                         break;
-                    } else if (size_hex_oprand < 4 - size_hex_instruction) {
+                    }
+                    else if (size_hex_oprand < getOprandMaxSize(Opcode)) {
                         // formatting the hex_oprand in little-endian
-                        prepend_zeros(hex_oprand, 4 - size_hex_instruction);
+                        prepend_zeros(hex_oprand, getOprandMaxSize(Opcode));
                     }
 
                     strcat(hex_instruction, hex_oprand);
 
-                    if (strlen(hex_instruction) == 4) {
-                        printf("[LINE %d: %s] => %s\n", linenumber, line, hex_instruction);
-                        strcat(AssemblyCode, hex_instruction);
-                        strcat(AssemblyCode, " "); // a space between each instruction
-                    } else {
-                        fprintf(stderr, "[ERROR][LINE %d: %s] the instruction assembly 0x%s is UNKONW\n", linenumber, line, hex_instruction);
-                        exit(EXIT_FAILURE);
-                    }
-
-                } else if (oprand[0] == '@') {
+                }
+                else if (oprand[0] == '@') {
                     // symbol
-                } else {
-                    fprintf(stderr, "[ERROR][LINE %d: %s] the oprand \"%s\" is invalid\n", linenumber, line, oprand);
+                }
+                else {
+                    fprintf(stderr, "[ERROR][LINE %d: %s] the oprand \"%s\" is invalid\n", linenumber, linecpy_for_logging, oprand);
                     exit(EXIT_FAILURE);
                 }
+            }
 
-                if (Opcode == LR) { // executing LR2 if the instruction is LR
-                    strcat(AssemblyCode, "BFFF ");
-                }   
+            if (strlen(hex_instruction) == 4) {
+                printf("[LINE %d: %s] => %s\n", linenumber, linecpy_for_logging, hex_instruction);
+                strcat(AssemblyCode, hex_instruction);
+                strcat(AssemblyCode, " "); // a space between each instruction
+            }
+            else {
+                fprintf(stderr, "[ERROR][LINE %d: %s] the instruction assembly '%s' is UNKONW\n", linenumber, linecpy_for_logging, hex_instruction);
+                exit(EXIT_FAILURE);
+            }
+
+            if (Opcode == "LR") { // executing LR2 if the instruction is LR
+                strcat(AssemblyCode, "BFFF ");
             }
 
             // for checking if their an extra oprand
@@ -194,15 +228,18 @@ void ParseCode(char* filename) {
                 if (oprand[1] >= '0' && oprand[1] <= '9') {
                     // Convert number to hexadecimal string with bounds checking
                     snprintf(hex_oprand, sizeof(hex_oprand), "%x", atoi(oprand));
-                } else if (oprand[0] == 'x' && oprand[0] == 'X') {
+                }
+                else if (oprand[1] == 'x' || oprand[1] == 'X') {
                     remove_0x_from_hex_string(oprand);
-                    strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 1); // only copy (sizeof(hex_oprand) - 1) chars from the token char array
-                } else if (oprand[0] == '@') {
+                    strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 1); // only copy (sizeof(hex_oprand) - 1) chars from the oprand char array
+                    hex_oprand[sizeof(hex_oprand)-1] = '\0'; // making sure hex_oprand is zero-terminated
+                }
+                else if (oprand[0] == '@') {
                     // oprand is a symbol
                 }
-                
+
                 if (strlen(hex_oprand) == 5) {
-                    fprintf(stderr, "[ERROR][LINE %d: %s] the value (0x)%s is large and can't represented by 16 bits (e.i. the value shouldènt be larger then 0xFFFF) \n", linenumber, line, oprand);
+                    fprintf(stderr, "[ERROR][LINE %d: %s] the value (0x)%s is large and can't represented by 16 bits (e.i. the value shouldènt be larger then 0xFFFF) \n", linenumber, linecpy_for_logging, oprand);
                     exit(EXIT_FAILURE);
                 }
 
@@ -216,10 +253,16 @@ void ParseCode(char* filename) {
         }
 
         // check if there is an unused oprand, it is invalid.
-        if (oprand != NULL || oprand[0] != '\0' || oprand[0] != '#') {
-            fprintf(stderr, "[ERROR][LINE %d: %s] the oprand \"%s\" is invalid\n", linenumber, line, oprand);
-            exit(EXIT_FAILURE);
+        if (oprand != NULL) {
+            if (oprand[0] != '\0' && oprand[0] != '#') {
+                fprintf(stderr, "[ERROR][LINE %d: %s] the oprand \"%s\" is invalid\n", linenumber, linecpy_for_logging, oprand);
+                exit(EXIT_FAILURE);
+            }
         }
+
+        free(linecpy_for_logging);
+
+        line = line - (linelen - strlen(line)); // reseting the line to it initial position
     }
 
     printf("\n%s\n", AssemblyCode);
@@ -236,6 +279,7 @@ int main(int argc, char** argv) {
 
     // Check if the file exists
     if (file_exists(filename)) {
+        generate_OpcodeHashMap();  //loading into memory opcodes and their information
         ParseCode(filename);
     }
     else {

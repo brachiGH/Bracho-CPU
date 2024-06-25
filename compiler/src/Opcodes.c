@@ -1,224 +1,165 @@
 #include "Opcodes.h"
 #include "utilites.h"
+#include <string.h>
+#include <stdlib.h>
+#define OPCODE_TABLE_SIZE 32
+
+typedef struct Opcode {
+    char* opcode;
+    char* opcode_in_hex;
+    unsigned int number_of_required_oprand;
+    unsigned int oprand_max_size;  // is Nibbles
+    struct Opcode* next;
+} Opcode;
+
+typedef struct OpcodeHashMap {
+    Opcode** table;
+} OpcodeHashMap;
+
+
+static OpcodeHashMap* map;
 
 
 
-// check if the Opcode is valid and return it hex code if true else return InvalideOpcode
-enum OPCODE get_opcode(char* str) {
-    to_uppercase(str);
-    if (strcmp(str, "NOP") == 0) {
-        return NOP;
+// hash function that converts a string key into an index for the hash table.
+unsigned int hash(char* opcode) {
+    unsigned int hash = 0;
+    while (*opcode) {
+        hash = (hash << 5) + *opcode++;
     }
-    else if (strcmp(str, "LDA") == 0) {
-        return LDA;
-    }
-    else if (strcmp(str, "LDB") == 0) {
-        return LDB;
-    }
-    else if (strcmp(str, "LDC") == 0) {
-        return LDC;
-    }
-    else if (strcmp(str, "BIN") == 0) {
-        return BIN;
-    }
-    else if (strcmp(str, "CIN") == 0) {
-        return CIN;
-    }
-    else if (strcmp(str, "STA") == 0) {
-        return STA;
-    }
-    else if (strcmp(str, "BR") == 0) {
-        return BR;
-    }
-    else if (strcmp(str, "BRN") == 0) {
-        return BRN;
-    }
-    else if (strcmp(str, "BRZ") == 0) {
-        return BRZ;
-    }
-    else if (strcmp(str, "BRV") == 0) {
-        return BRV;
-    }
-    else if (strcmp(str, "LR") == 0) {
-        return LR;
-    }
-    else if (strcmp(str, "ADD") == 0) {
-        return ADD;
-    }
-    else if (strcmp(str, "SUB") == 0) {
-        return SUB;
-    }
-    else if (strcmp(str, "MULT") == 0) {
-        return MULT;
-    }
-    else if (strcmp(str, "DIV") == 0) {
-        return DIV;
-    }
-    else if (strcmp(str, "NOT") == 0) {
-        return NOT;
-    }
-    else if (strcmp(str, "AND") == 0) {
-        return AND;
-    }
-    else if (strcmp(str, "OR") == 0) {
-        return OR;
-    }
-    else if (strcmp(str, "XOR") == 0) {
-        return XOR;
-    }
-    else if (strcmp(str, "SHL") == 0) {
-        return SHL;
-    }
-    else if (strcmp(str, "SHR") == 0) {
-        return SHR;
-    }
-    else if (strcmp(str, "OUT") == 0) {
-        return OUT;
-    }
-    else if (strcmp(str, "HALT") == 0) {
-        return HALT;
-    }
-    else {
-        return InvalideOpcode;
-    }
+    return hash % OPCODE_TABLE_SIZE;
 }
 
-// get string name of enum OPCODE
-const char* get_opcode_name(enum OPCODE opcode) {
-    switch (opcode) {
-        case NOP: return "NOP";
-        case LDA: return "LDA";
-        case LDB: return "LDB";
-        case LDC: return "LDC";
-        case BIN: return "BIN";
-        case CIN: return "CIN";
-        case STA: return "STA";
-        case BR:  return "BR";
-        case BRN: return "BRN";
-        case BRZ: return "BRZ";
-        case BRV: return "BRV";
-        case LR:  return "LR";
-        case ADD: return "ADD";
-        case SUB: return "SUB";
-        case MULT: return "MULT";
-        case DIV: return "DIV";
-        case NOT: return "NOT";
-        case AND: return "AND";
-        case OR:  return "OR";
-        case XOR: return "XOR";
-        case SHL: return "SHL";
-        case SHR: return "SHR";
-        case OUT: return "OUT";
-        case HALT: return "HALT";
-        default: return "UnknownOpcode";
-    }
+// Adds a key-value pair to the hash table. It hashes the key to find the index and inserts the pair at the beginning of the linked list at that index.
+void insertOpcode(const char* key, const char* HEX_value, unsigned int number, unsigned int max) {
+    unsigned int index = hash(key);
+    Opcode* newOpcode = (Opcode*)malloc(sizeof(Opcode));
+    newOpcode->opcode = _strdup(key);
+    newOpcode->opcode_in_hex = _strdup(HEX_value);
+    newOpcode->number_of_required_oprand = number;
+    newOpcode->oprand_max_size = max;
+    newOpcode->next = map->table[index];
+    map->table[index] = newOpcode;
 }
 
-// Convert opcode to hexadecimal string with bounds checking
-char* OPCODE_to_hex_string(enum OPCODE opcode) {
-    switch (opcode) {
-        case NOP: return "0FFF";
-        case LDA: return "C";
-        case LDB: return "1";
-        case LDC: return "2";
-        case BIN: return "3";
-        case CIN: return "4";
-        case STA: return "5";
-        case BR:  return "6";
-        case BRN: return "7";
-        case BRZ: return "8";
-        case BRV: return "9";
-        case LR:  return "A";
-        case ADD: return "E0FF";
-        case SUB: return "E1FF";
-        case MULT: return "E2FF";
-        case DIV: return "E3FF";
-        case NOT: return "E4FF";
-        case AND: return "E5FF";
-        case OR:  return "E6FF";
-        case XOR: return "E7FF";
-        case SHL: return "E8FF";
-        case SHR: return "E9FF";
-        case OUT: return "DFFF";
-        case HALT: return "FFFF";
-        default: return "NULL";
+
+// Function to find an Opcode by its key
+Opcode* findOpcode(const char* key) {
+    if (map == NULL || key == NULL) {
+        return NULL;
     }
+
+    unsigned int index = hash(key);
+    Opcode* current = map->table[index];
+
+    while (current != NULL) {
+        if (strcmp(current->opcode, key) == 0) {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
 }
 
-// opcode_number_of_required_oprand
-enum OPCODE_OPRAND_NUMBER opcode_number_of_required_oprand(char* str) {
-    
-    to_uppercase(str);
-    if (strcmp(str, "NOP") == 0) {
-        return NOP_ON;
+// Getter functions
+const char* getOpcode(const char* key) {
+    Opcode* opcode = findOpcode(key);
+    if (opcode != NULL) {
+        return opcode->opcode;
     }
-    else if (strcmp(str, "LDA") == 0) {
-        return LDA_ON;
+    return NULL;
+}
+
+const char* getOpcodeInHex(const char* key) {
+    Opcode* opcode = findOpcode(key);
+    if (opcode != NULL) {
+        return opcode->opcode_in_hex;
     }
-    else if (strcmp(str, "LDB") == 0) {
-        return LDB_ON;
+    return NULL;
+}
+
+unsigned int getNumberOfRequiredOprand(const char* key) {
+    Opcode* opcode = findOpcode(key);
+    if (opcode != NULL) {
+        return opcode->number_of_required_oprand;
     }
-    else if (strcmp(str, "LDC") == 0) {
-        return LDC_ON;
+    return -1; // Indicates not found or error
+}
+
+unsigned int getOprandMaxSize(const char* key) {
+    Opcode* opcode = findOpcode(key);
+    if (opcode != NULL) {
+        return opcode->oprand_max_size;
     }
-    else if (strcmp(str, "BIN") == 0) {
-        return BIN_ON;
+    return NULL;
+}
+
+void freeOpcodeHashMap() {
+    if (map == NULL) {
+        return;
     }
-    else if (strcmp(str, "CIN") == 0) {
-        return CIN_ON;
+
+    // Iterate through each bucket in the hash table
+    for (int i = 0; i < OPCODE_TABLE_SIZE; i++) {
+        Opcode* current = map->table[i];
+
+        // Traverse the linked list in the current bucket
+        while (current != NULL) {
+            Opcode* temp = current;
+            current = current->next;
+
+            // Free the allocated strings
+            free(temp->opcode);
+            free(temp->opcode_in_hex);
+
+            // Free the Opcode structure itself
+            free(temp);
+        }
     }
-    else if (strcmp(str, "STA") == 0) {
-        return STA_ON;
+
+    // Free the table array
+    free(map->table);
+    // Free the OpcodeHashMap structure
+    free(map);
+}
+
+
+OpcodeHashMap* createHashMap() {
+    OpcodeHashMap* _map = (OpcodeHashMap*)malloc(sizeof(OpcodeHashMap));
+    _map->table = (Opcode**)malloc(sizeof(Opcode*) * OPCODE_TABLE_SIZE);
+    for (int i = 0; i < OPCODE_TABLE_SIZE; i++) {
+        _map->table[i] = NULL;
     }
-    else if (strcmp(str, "BR") == 0) {
-        return BR_ON;
-    }
-    else if (strcmp(str, "BRN") == 0) {
-        return BRN_ON;
-    }
-    else if (strcmp(str, "BRZ") == 0) {
-        return BRZ_ON;
-    }
-    else if (strcmp(str, "BRV") == 0) {
-        return BRV_ON;
-    }
-    else if (strcmp(str, "LR") == 0) {
-        return LR_ON;
-    }
-    else if (strcmp(str, "ADD") == 0) {
-        return ADD_ON;
-    }
-    else if (strcmp(str, "SUB") == 0) {
-        return SUB_ON;
-    }
-    else if (strcmp(str, "MULT") == 0) {
-        return MULT_ON;
-    }
-    else if (strcmp(str, "DIV") == 0) {
-        return DIV_ON;
-    }
-    else if (strcmp(str, "NOT") == 0) {
-        return NOT_ON;
-    }
-    else if (strcmp(str, "AND") == 0) {
-        return AND_ON;
-    }
-    else if (strcmp(str, "OR") == 0) {
-        return OR_ON;
-    }
-    else if (strcmp(str, "XOR") == 0) {
-        return XOR_ON;
-    }
-    else if (strcmp(str, "SHL") == 0) {
-        return SHL_ON;
-    }
-    else if (strcmp(str, "SHR") == 0) {
-        return SHR_ON;
-    }
-    else if (strcmp(str, "OUT") == 0) {
-        return OUT_ON;
-    }
-    else if (strcmp(str, "HALT") == 0) {
-        return HALT_ON;
-    }
+    return _map;
+}
+
+void generate_OpcodeHashMap() {
+    map = createHashMap();
+
+
+    // Insert Opcodes
+    insertOpcode("NOP", "0FFF", 0, 0);
+    insertOpcode("LDA", "C", 1, 3);
+    insertOpcode("LDB", "1", 1, 3);
+    insertOpcode("LDC", "2", 1, 3);
+    insertOpcode("BIN", "3", 1, 3);
+    insertOpcode("CIN", "4", 1, 3);
+    insertOpcode("STA", "5", 1, 3);
+    insertOpcode("BR", "6", 1, 3);
+    insertOpcode("BRN", "7", 1, 3);
+    insertOpcode("BRZ", "8", 1, 3);
+    insertOpcode("BRV", "9", 1, 3);
+    insertOpcode("LR", "A", 1, 3);
+    insertOpcode("ADD", "E0FF", 0, 0);
+    insertOpcode("SUB", "E1FF", 0, 0);
+    insertOpcode("MULT", "E2FF", 0, 0);
+    insertOpcode("DIV", "E3FF", 0, 0);
+    insertOpcode("NOT", "E4FF", 0, 0);
+    insertOpcode("AND", "E5FF", 0, 0);
+    insertOpcode("OR", "E6FF", 0, 0);
+    insertOpcode("XOR", "E7FF", 0, 0);
+    insertOpcode("SHL", "E8F", 1, 1);
+    insertOpcode("SHR", "E9F", 1, 1);
+    insertOpcode("OUT", "DFFF", 0, 0);
+    insertOpcode("HALT", "FFFF", 0, 0);
 }
