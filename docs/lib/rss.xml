@@ -1,5 +1,6 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 20 Jun 2024 11:47:55 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 20 Jun 2024 11:47:54 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[Usage]]></title><description><![CDATA[ 
- <br><br>generate binary code using the assembler.<br>python3 assembler.py file.asm
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Wed, 26 Jun 2024 11:14:06 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 26 Jun 2024 11:14:05 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[build]]></title><description><![CDATA[ 
+ <br><br>make p=assembler
+Copy<br><br>generate binary code using the assembler.<br>./assembler file.asm
 Copy<br>file.asm is your assembly file<br><br><br><br>The Control Unit (CU) logic is responsible for interpreting and executing each instruction in a computer's processor. It operates through a series of micro-instructions, which are detailed, low-level commands that control the various components of the CPU. These micro-instructions dictate the sequence of operations needed to fetch, decode, and execute machine-level instructions. By orchestrating tasks such as moving data between registers, controlling the arithmetic logic unit (ALU), and managing the flow of data within the CPU.<br># Generates the Control Unit Logic 
 ControlUnit_Logic = []
 
@@ -42,8 +43,7 @@ Copy<br><br><br><br>
 Addition instruction does the sum of the B register and C register, Stores the the value in the A register
 REGISTER_A &lt;= REGISTER_B + REGISTER_C
 <br><br>
- 1110 0000 xxxx xxxx<br>
-x : any bit
+ 1110 0000 0000 0000 
 <br><br>
 execute cycle: ACO AI
 <br><br> if ((REGISTER_B + REGISTER_C) &gt; FFFF ) {
@@ -56,8 +56,7 @@ Copy<br><br><br><br>
 The subtraction instruction subtracts the value of the C register from the value of the B register and stores the result in the A register.
 REGISTER_A &lt;= REGISTER_B - REGISTER_C
 <br><br>
-1110 0001 xxxx xxxx<br>
-x : any bit
+`1110 0001 0000 0000 
 <br><br>
 execute cycle: ACO AI
 <br><br> if ((REGISTER_B == 0000 &amp;&amp; REGISTER_C == 0000)  OR (REGISTER_B == REGISTER_C)) {
@@ -67,7 +66,7 @@ Copy<br><br><br><br>
 The multiplication instruction multiplies the value of the B register and the value of the C register and stores the result in the A register.
 REGISTER_A &lt;= REGISTER_B * REGISTER_C
 <br><br>
-1110 0010 xxxx xxxx<br>
+1110 0010 0000 0000<br>
 x : any bit
 <br><br>
 execute cycle: ACO AI
@@ -78,7 +77,7 @@ Copy<br><br><br><br>
 The division instruction divides the value of the B register by the value of the C register and stores the result in the A register.
 REGISTER_A &lt;= REGISTER_B / REGISTER_C
 <br><br>
-1110 0011 xxxx xxxx<br>
+1110 0011 0000 0000<br>
 x : any bit
 <br><br>
 execute cycle: ACO AI
@@ -89,7 +88,7 @@ Copy<br><br><br><br>
 Bitwise NOT of the B register and stores the result in the A register
 REGISTER_A &lt;= NOT(REGISTER_B)
 <br><br>
- 1110 0100 xxxx xxxx<br>
+ 1110 0100 0000 0000<br>
 x : any bit
 <br><br>
 execute cycle: ACO AI
@@ -97,7 +96,7 @@ execute cycle: ACO AI
 Bitwise AND of the B register and the C register, stores the result in the A register
 REGISTER_A &lt;= REGISTER_B AND REGISTER_C
 <br><br>
-1110 0101 xxxx xxxx<br>
+1110 0101 0000 0000<br>
 x : any bit
 <br><br>
 execute cycle: ACO AI
@@ -105,7 +104,7 @@ execute cycle: ACO AI
 Bitwise OR of the B register and the C register, stores the result in the A register
 REGISTER_A &lt;= REGISTER_B OR REGISTER_C
 <br><br>
-1110 0110 xxxx xxxx<br>
+1110 0110 0000 0000<br>
 x : any bit
 <br><br>
 execute cycle: ACO AI
@@ -113,14 +112,14 @@ execute cycle: ACO AI
 Bitwise XOR of the B register and the C register, stores the result in the A register
 REGISTER_A &lt;= REGISTER_B XOR REGISTER_C
 <br><br>
-1110 0111 xxxx xxxx<br>
+1110 0111 0000 0000<br>
 x : any bit
 <br><br>
 execute cycle: ACO AI
 <br><br><br><br>
 Left shift the B register value by &lt;value&gt;, stores the result in the A register
 <br><br>
-1110 1000 xxxx &lt;****&gt;<br>
+1110 1000 0000 &lt;****&gt;<br>
 SHL  &lt;value&gt;<br>
 x : any bit
 <br><br>
@@ -129,7 +128,7 @@ execute cycle: ACO AI
 Copy<br><br><br><br>
 Right shift the B register value by &lt;value&gt;, stores the result in the A register
 <br><br>
-1110 1001 xxxx &lt;****&gt;<br>
+1110 1001 0000 &lt;****&gt;<br>
 SHR  &lt;value&gt;<br>
 x : any bit
 <br><br>
@@ -138,9 +137,9 @@ execute cycle: ACO AI
 Copy<br><br><br><br>
 Loads into the A register the value stored at a specified address in RAM located at &lt;address&gt;
 <br><br>
-1010 xxxx xxxx xxxx<br>
+1010 &lt;xxxx xxxx xxxx&gt;<br>
 x : any bit<br>
-1011 xxxx xxxx xxxx reserved for the second cycle
+1011 0000 0000 0000 reserved for the second cycle
 <br><br>
 execute cycle: IOA RO LI<br>
 cycle 2: LO RO AI
@@ -243,9 +242,13 @@ Copy<br><br>sample1: Adding 2 number<br>LDB @PointerToFirstNumber # @PointerToFi
 LBC @PointerToSecondNumber
 ADD
 
-@PointerToFirstNumber 32
-@PointerToSecondNumber 0xfe # use 0x as a prefix to indicate that a number is in hexadecimal format
-Copy<br>sample2: loop<br><br>XTerm 16 color palette with the 4-bit color codes:<br>]]></description><link>bracho-cpu\components\alu\usage-&amp;-documentation.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Usage &amp; Documentation.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Thu, 20 Jun 2024 11:47:11 GMT</pubDate></item><item><title><![CDATA[Demos]]></title><description><![CDATA[ 
+@PointerToFirstNumber:
+32
+@PointerToSecondNumber:
+0xfe # use 0x as a prefix to indicate that a number is in hexadecimal format
+Copy<br>sample2: array<br>[1337 0x000E 4113 @address]
+Copy<br><br>XTerm 16 color palette with the 4-bit color codes:<br>]]></description><link>bracho-cpu\components\alu\usage-&amp;-documentation.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Usage &amp; Documentation.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Wed, 26 Jun 2024 10:51:03 GMT</pubDate></item><item><title><![CDATA[cpu]]></title><description><![CDATA[ 
+ <br><img alt="cpu-20240623082152484.webp" src="lib\media\cpu-20240623082152484.webp"><br>a cpu also contains a debugger, specialy on embedded systems]]></description><link>bracho-cpu\components\cpu.html</link><guid isPermaLink="false">Bracho-CPU/Components/cpu.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 23 Jun 2024 09:31:21 GMT</pubDate><enclosure url="lib\media\cpu-20240623082152484.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\cpu-20240623082152484.webp"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Demos]]></title><description><![CDATA[ 
  <br><br><br>
 <a data-tooltip-position="top" aria-label="https://github.com/brachiGH/Bracho-CPU/blob/main/compiler/tests/flag.asm" rel="noopener" class="external-link" href="https://github.com/brachiGH/Bracho-CPU/blob/main/compiler/tests/flag.asm" target="_blank">code</a><br><br>The B register should show (2AC2)h = 10946 the 19th Fibonacci sequence<br>
 The C register should show (452F)h = 17711 the 20th Fibonacci sequence<br>

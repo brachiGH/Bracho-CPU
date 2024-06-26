@@ -451,17 +451,19 @@ int main(int argc, char** argv) {
         // cleaning
         clean_assmebly_code(assembly_file_content);
 
+        // generating the symbols map
         char * assembly_file_content_cpy = strdup(assembly_file_content);
         handle_arrays(assembly_file_content_cpy);
-        printf("%s\n", assembly_file_content_cpy);
         remove_empty_lines(assembly_file_content_cpy);
         SymbolMap map[MAX_SYMBOLS];
         int mapSize = 0;
         generate_symbol_table(assembly_file_content_cpy, map, &mapSize);
         free(assembly_file_content_cpy);
 
+        // more cleaning
         remove_arrays_brackets(assembly_file_content);
         remove_symbols(assembly_file_content);
+        
         ParseCode(assembly_file_content, map, mapSize);
     }
     else {
