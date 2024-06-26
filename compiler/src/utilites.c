@@ -202,3 +202,51 @@ long int get_line_from_buffer(char** lineptr, size_t* n, const char* buffer, siz
 
     return line_len;
 }
+
+void removeSubstring(char *str, int start, int length) {
+    int strLength = strlen(str);
+
+    // Ensure the start and length are within the bounds of the string
+    if (start < 0 || start >= strLength || length <= 0 || start + length > strLength) {
+        return;
+    }
+
+    // Use memmove to shift the contents of the string
+    memmove(&str[start], &str[start + length], strLength - start - length + 1);
+}
+
+size_t len_of_line(char *line) {
+    size_t i;
+    for (i = 0; line[i] != '\n'; i++);
+
+    return ++i;
+}
+
+// a function that removes empty lines and lines that only contain a comment
+void remove_empty_lines(char* str) {
+    size_t i = 0, j;
+
+    if (str == NULL) {
+        return;
+    }
+
+    while (str[i] != '\0') {
+        if (str[i] == '\n') {
+            i++;
+            j = 0;
+
+            if (str[i] == '\n') {
+                removeSubstring(str, i, 1);
+                i = 0;
+            }
+            else if (str[i] == '#') {
+                j = len_of_line(str + i);
+
+                removeSubstring(str, i, j);
+                i = 0;
+            }
+        }
+        i++;
+    }
+}
+

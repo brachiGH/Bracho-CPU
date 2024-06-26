@@ -4,3 +4,4 @@
 *.exe
 compiler/.vs
 compiler/program
+compiler/assembler

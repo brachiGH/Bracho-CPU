@@ -58,7 +58,8 @@ def draw(i, j, colorinbinare):
 
     code = f"""
 BIN @{r}
-@{r} 0x{binary_little_endian_to_hex_little_endian(b)}
+@{r}:
+0x{binary_little_endian_to_hex_little_endian(b)}
 ADD
 OUT"""
     print(code)

@@ -27,4 +27,13 @@ void  read_the_whole_file(char* filename, char* assembly_file_content, unsigned 
 // Function to get a line from a buffer and retuen the length of the line
 long int get_line_from_buffer(char** lineptr, size_t* n, const char* buffer, size_t* offset);
 
+
+void removeSubstring(char *str, int start, int length);
+
+
+size_t len_of_line(char *line);
+
+// a function that removes empty lines and lines that only contain a comment
+void remove_empty_lines(char* str);
+
 #endif

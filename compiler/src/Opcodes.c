@@ -138,7 +138,7 @@ void generate_OpcodeHashMap() {
 
 
     // Insert Opcodes
-    insertOpcode("NOP", "0FFF", 0, 0);
+    insertOpcode("NOP", "0000", 0, 0);
     insertOpcode("LDA", "C", 1, 3);
     insertOpcode("LDB", "1", 1, 3);
     insertOpcode("LDC", "2", 1, 3);
@@ -150,16 +150,16 @@ void generate_OpcodeHashMap() {
     insertOpcode("BRZ", "8", 1, 3);
     insertOpcode("BRV", "9", 1, 3);
     insertOpcode("LR", "A", 1, 3);
-    insertOpcode("ADD", "E0FF", 0, 0);
-    insertOpcode("SUB", "E1FF", 0, 0);
-    insertOpcode("MULT", "E2FF", 0, 0);
-    insertOpcode("DIV", "E3FF", 0, 0);
-    insertOpcode("NOT", "E4FF", 0, 0);
-    insertOpcode("AND", "E5FF", 0, 0);
-    insertOpcode("OR", "E6FF", 0, 0);
-    insertOpcode("XOR", "E7FF", 0, 0);
-    insertOpcode("SHL", "E8F", 1, 1);
-    insertOpcode("SHR", "E9F", 1, 1);
-    insertOpcode("OUT", "DFFF", 0, 0);
-    insertOpcode("HALT", "FFFF", 0, 0);
+    insertOpcode("ADD", "E000", 0, 0);
+    insertOpcode("SUB", "E100", 0, 0);
+    insertOpcode("MULT", "E200", 0, 0);
+    insertOpcode("DIV", "E300", 0, 0);
+    insertOpcode("NOT", "E400", 0, 0);
+    insertOpcode("AND", "E500", 0, 0);
+    insertOpcode("OR", "E600", 0, 0);
+    insertOpcode("XOR", "E700", 0, 0);
+    insertOpcode("SHL", "E80", 1, 1);
+    insertOpcode("SHR", "E90", 1, 1);
+    insertOpcode("OUT", "D000", 0, 0);
+    insertOpcode("HALT", "F000", 0, 0);
 }
