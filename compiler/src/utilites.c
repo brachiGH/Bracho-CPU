@@ -217,9 +217,14 @@ void removeSubstring(char *str, int start, int length) {
 
 size_t len_of_line(char *line) {
     size_t i;
-    for (i = 0; line[i] != '\n'; i++);
+        for (i = 0; line[i] != '\n' && line[i] != '\0'; i++) {
+        printf("%c", line[i]);
+    };
 
-    return ++i;
+    if (line[i] != '\0') {
+        ++i;
+    }
+    return i;
 }
 
 // a function that removes empty lines and lines that only contain a comment
