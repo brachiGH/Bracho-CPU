@@ -382,14 +382,13 @@ void ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) 
         {
             while ((oprand != NULL)?(is_number(oprand) == true || oprand[0] == '@'):false)
             {
-                if (oprand[1] >= '0' && oprand[1] <= '9') {
-                    // Convert number to hexadecimal string with bounds checking
-                    snprintf(hex_oprand, sizeof(hex_oprand), "%x", atoi(oprand));
-                }
-                else if (oprand[1] == 'x' || oprand[1] == 'X') {
+                if ((strlen(oprand) > 2)?(oprand[1] == 'x' || oprand[1] == 'X'):false) {
                     remove_0x_from_hex_string(oprand);
                     strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 1); // only copy (sizeof(hex_oprand) - 1) chars from the oprand char array
                     hex_oprand[sizeof(hex_oprand) - 1] = '\0'; // making sure hex_oprand is zero-terminated
+                } else if (oprand[0] >= '0' && oprand[0] <= '9') {
+                    // Convert number to hexadecimal string with bounds checking
+                    snprintf(hex_oprand, sizeof(hex_oprand), "%x", atoi(oprand));
                 }
                 else if (oprand[0] == '@') {
                     int lineNumber = getSymbolLineNumber(symbol_map, mapSize, oprand);
