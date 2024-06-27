@@ -2,45 +2,49 @@
 20
 @nthsequence:
 1
-@n-1thsequence:
+@n1thsequence:
 1
-@n-1thsequencetemp:
+@n1thsequencetemp:
 0
 @i:
 1
 
 @startofloop:
-    BIN @nbofsequence
-    CIN @i
+    HALT
+    LDB @nbofsequence
+    LDC @i
     SUB
+    HALT
     BRN @returnsequence
 
-    BIN @nthsequence
-    LDC 0
+    LDB @nthsequence
+    CIN 0
     ADD
-    STA @n-1thsequencetemp
+    STA @n1thsequencetemp
 
-    BIN @nthsequence
-    CIN @n-1thsequence
+    LDB @nthsequence
+    LDC @n1thsequence
     ADD
     STA @nthsequence
 
-    BIN @n-1thsequencetemp
-    LDC 0
+    LDB @n1thsequencetemp
+    CIN 0
     ADD
-    STA @n-1thsequence
+    STA @n1thsequence
 
-    BIN @i
-    LDC 1
+    HALT
+    LDB @i
+    CIN 1
     ADD
     STA @i
 
+    HALT
     BR @startofloop
 
 
 @returnsequence:
-    BIN @n-1thsequence
-    CIN @nthsequence
+    LDB @n1thsequence
+    LDC @nthsequence
     HALT
 
 
