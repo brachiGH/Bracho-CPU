@@ -462,6 +462,12 @@ ADD
 @PointerToSecondNumber:
 0xfe # use 0x as a prefix to indicate that a number is in hexadecimal format
 </code><button class="copy-code-button">Copy</button></pre></div><div><p>sample2: array</p></div><div><pre class="language-asm" tabindex="0"><code class="language-asm is-loaded">[1337 0x000E 4113 @address]
+</code><button class="copy-code-button">Copy</button></pre></div><div><p>sample3: variable</p></div><div><pre class="language-asm" tabindex="0"><code class="language-asm is-loaded">@v1:
+0 # !Every Variable should be initialed.
+</code><button class="copy-code-button">Copy</button></pre></div><div><p>all this variables point on the same instruction <code>HALT</code></p></div><div><pre class="language-asm" tabindex="0"><code class="language-asm is-loaded">@v1:
+@v2:
+@v3:
+HALT
 </code><button class="copy-code-button">Copy</button></pre></div></div></div></div></div><div class="heading-wrapper"><h1 data-heading="Display" class="heading" id="Display">Display</h1><div class="heading-children"><div><p>XTerm 16 color palette with the 4-bit color codes:</p></div><div style="overflow-x: auto;"><table>
 <thead>
 <tr>
