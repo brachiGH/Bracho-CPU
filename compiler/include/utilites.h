@@ -12,7 +12,7 @@ unsigned int hex_string_to_number(const char* hex_str);
 void remove_0x_from_hex_string(char* token);
 
 
-void remove_new_line_if_it_exist_at_the_end(char* token);
+void remove_line_feeder_and_carriage_if_it_exist_at_the_end(char* token);
 
 
 void remove_Tabs_if_they_exist_at_the_beginning(char* token);

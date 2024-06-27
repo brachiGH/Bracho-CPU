@@ -60,7 +60,7 @@ void remove_0x_from_hex_string(char* token) {
 
 
 // removes the "Line Feed" and "Carriage Return" if it exist
-void remove_new_line_if_it_exist_at_the_end(char* token) {
+void remove_line_feeder_and_carriage_if_it_exist_at_the_end(char* token) {
     // Get length of the token
     size_t size = strlen(token);
 
