@@ -18,6 +18,13 @@ The assembler translates assembly code into binary instructions by following the
 #include "Opcodes.h"
 #include "utilites.h"
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#define EMSCRIPTEN_KEEPALIVE_FUNC EMSCRIPTEN_KEEPALIVE
+#else
+#define EMSCRIPTEN_KEEPALIVE_FUNC
+#endif
+
 #define MAX_LINE_LENGTH 1024
 #define MAX_RAM_SIZE 16384 // in bytes
 #define MAX_FILE_SIZE 36384
@@ -283,7 +290,7 @@ bool is_number(char* oprand) {
 
 
 void ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) {
-    char AssemblyCode[MAX_RAM_SIZE + 1] = "0 "; // The first instruction should be always a NOP instruction
+    char AssemblyCode[MAX_RAM_SIZE + 1] = "0000 "; // The first instruction should be always a NOP instruction
 
     unsigned int linenumber = 1;
     char hex_instruction[5] = ""; // is the instruction in hex
@@ -429,45 +436,58 @@ void ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) 
     printf("\n%s\n", AssemblyCode);
 }
 
-int main(int argc, char** argv) {
-    // Check if the number of arguments is correct
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <file>\n", argv[0]);
-        return 1;
-    }
+void start(char* assembly_file_content) {
+    // cleaning
+    clean_assmebly_code(assembly_file_content);
 
-    char *filename = argv[1];
+    // generating the symbols map
+    char * assembly_file_content_cpy = strdup(assembly_file_content);
+    handle_arrays(assembly_file_content_cpy);
+    remove_empty_lines(assembly_file_content_cpy);
+    SymbolMap map[MAX_SYMBOLS];
+    int mapSize = 0;
+    generate_symbol_table(assembly_file_content_cpy, map, &mapSize);
+    free(assembly_file_content_cpy);
+
+    // more cleaning
+    remove_arrays_brackets(assembly_file_content);
+    remove_symbols(assembly_file_content);
     
-
-    // Check if the file exists
-    if (file_exists(filename)) {
-        generate_OpcodeHashMap();  //loading into memory opcodes and their information
-
-        // Read the entire file into a buffer
-        char assembly_file_content[MAX_FILE_SIZE];
-        read_the_whole_file(filename, assembly_file_content, MAX_FILE_SIZE);
-
-        // cleaning
-        clean_assmebly_code(assembly_file_content);
-
-        // generating the symbols map
-        char * assembly_file_content_cpy = strdup(assembly_file_content);
-        handle_arrays(assembly_file_content_cpy);
-        remove_empty_lines(assembly_file_content_cpy);
-        SymbolMap map[MAX_SYMBOLS];
-        int mapSize = 0;
-        generate_symbol_table(assembly_file_content_cpy, map, &mapSize);
-        free(assembly_file_content_cpy);
-
-        // more cleaning
-        remove_arrays_brackets(assembly_file_content);
-        remove_symbols(assembly_file_content);
-        
-        ParseCode(assembly_file_content, map, mapSize);
-    }
-    else {
-        printf("The file '%s' does not exist.\n", filename);
-    }
-
-    return 0;
+    ParseCode(assembly_file_content, map, mapSize);
 }
+
+
+#ifdef __EMSCRIPTEN__
+    EMSCRIPTEN_KEEPALIVE_FUNC void webmain(char* assembly_file_content) {
+        start(assembly_file_content);
+    }
+#else
+
+    int main(int argc, char** argv) {
+        // Check if the number of arguments is correct
+        if (argc != 2) {
+            fprintf(stderr, "Usage: %s <file>\n", argv[0]);
+            return 1;
+        }
+
+        char *filename = argv[1];
+        
+
+        // Check if the file exists
+        if (file_exists(filename)) {
+            generate_OpcodeHashMap();  //loading into memory opcodes and their information
+
+            // Read the entire file into a buffer
+            char assembly_file_content[MAX_FILE_SIZE];
+            read_the_whole_file(filename, assembly_file_content, MAX_FILE_SIZE);
+
+            start(assembly_file_content);
+        }
+        else {
+            printf("The file '%s' does not exist.\n", filename);
+        }
+
+        return 0;
+    }
+
+#endif
