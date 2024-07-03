@@ -10,7 +10,7 @@ Still In Progress: The creation of an emulator in c/c++, along with a higher lev
 
 # Demos
 
-[Demos](https://brachigh.github.io/Bracho-CPU/bracho-cpu/demos.html)
+[Demos](https://brachigh.github.io/Bracho-CPU/docs/bracho-cpu/demos.html)
 
 # Usage & Documentation
 
