@@ -17,6 +17,7 @@ void remove_line_feeder_and_carriage_if_it_exist_at_the_end(char* token);
 
 void remove_Tabs_if_they_exist_at_the_beginning(char* token);
 
+void prepend_zeros(char* hex_operand, size_t target_length);
 
 void printAsciiCodes(const char* arr);
 

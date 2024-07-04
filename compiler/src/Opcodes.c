@@ -138,6 +138,7 @@ void generate_OpcodeHashMap() {
 
 
     // Insert Opcodes
+    // ("OPcode", "HEX repersentation", "1:means their is an oprand", "the length of the oprand")
     insertOpcode("NOP", "0000", 0, 0);
     insertOpcode("LDA", "C", 1, 3);
     insertOpcode("LDB", "1", 1, 3);

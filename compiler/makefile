@@ -1,7 +1,7 @@
 CC = gcc
 CCWEB = emcc
 CFLAGS = -Iinclude -Wall -Wextra -pedantic -Wno-implicit-function-declaration -g
-WEBFLAGS = -s EXPORTED_FUNCTIONS='["_webmain"]' -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]'
+WEBFLAGS = -s EXPORTED_FUNCTIONS='["_webmain"]' -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -Wnewline-eof
 SRCS = src/assembler/assembler.c src/Opcodes.c src/utilites.c
 OBJS = $(SRCS:.c=.o)
 EXEC = assembler

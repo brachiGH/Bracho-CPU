@@ -382,7 +382,7 @@ void ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) 
                 strcat(AssemblyCode, "BFFF ");
             }
 
-            // for checking if their an extra oprand
+            // for checking if their an extra argument (an extra argument that is not a comment, mean that the instruction is invalid) 
             get_oprand(&line, &oprand);
         }
         else if (oprand != NULL)
@@ -437,6 +437,9 @@ void ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) 
 }
 
 void start(char* assembly_file_content) {
+    //loading into memory opcodes and their information
+    generate_OpcodeHashMap(); // an init function
+
     // cleaning
     clean_assmebly_code(assembly_file_content);
 
@@ -475,8 +478,6 @@ void start(char* assembly_file_content) {
 
         // Check if the file exists
         if (file_exists(filename)) {
-            generate_OpcodeHashMap();  //loading into memory opcodes and their information
-
             // Read the entire file into a buffer
             char assembly_file_content[MAX_FILE_SIZE];
             read_the_whole_file(filename, assembly_file_content, MAX_FILE_SIZE);
