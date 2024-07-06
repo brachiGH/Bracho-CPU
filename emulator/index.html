@@ -6,9 +6,9 @@
     <script src="assembler.js"></script>
     <script>
         function callMyFunction() {
-            Module.ccall(
+            let a = Module.ccall(
               "webmain", // name of C function
-              'void', // return type
+              'string', // return type
               ["string"], // argument types
               [`LDA @value1
 LDB @value2
@@ -21,6 +21,8 @@ LDC @value3
 @value3:
 0x3333`], // arguments
             );
+
+            console.log(a);
         }
 
         Module.onRuntimeInitialized = function() {

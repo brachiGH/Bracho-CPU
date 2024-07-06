@@ -289,7 +289,7 @@ bool is_number(char* oprand) {
 }
 
 
-void ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) {
+char* ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) {
     char AssemblyCode[MAX_RAM_SIZE + 1] = "0000 "; // The first instruction should be always a NOP instruction
 
     unsigned int linenumber = 1;
@@ -434,9 +434,11 @@ void ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) 
     }
 
     printf("\n%s\n", AssemblyCode);
+
+    return AssemblyCode;
 }
 
-void start(char* assembly_file_content) {
+char* start(char* assembly_file_content) {
     //loading into memory opcodes and their information
     generate_OpcodeHashMap(); // an init function
 
@@ -456,13 +458,13 @@ void start(char* assembly_file_content) {
     remove_arrays_brackets(assembly_file_content);
     remove_symbols(assembly_file_content);
     
-    ParseCode(assembly_file_content, map, mapSize);
+    return ParseCode(assembly_file_content, map, mapSize);
 }
 
 
 #ifdef __EMSCRIPTEN__
-    EMSCRIPTEN_KEEPALIVE_FUNC void webmain(char* assembly_file_content) {
-        start(assembly_file_content);
+    EMSCRIPTEN_KEEPALIVE_FUNC char* webmain(char* assembly_file_content) {
+        return start(assembly_file_content);
     }
 #else
 
