@@ -1,1 +1,2 @@
-emulator/assembler.js linguist-vendored
+Bracho-emulator/src/js/assembler.js linguist-vendored
+Bracho-emulator/dist/* linguist-vendored
