@@ -1,7 +1,7 @@
 <!-- src/components/FixedSections.vue -->
 <template>
     <div class="container">
-        <div class="section">
+        <div class="section" style="border-left: 0px solid #ccc;">
         <slot name="section1"></slot>
         </div>
         <div class="section">
@@ -13,13 +13,13 @@
     </div>
 </template>
   
-  <script>
+<script>
   export default {
     name: 'FixedSections',
   };
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .container {
     display: flex;
     width: 100vw;
@@ -29,9 +29,7 @@
   .section {
     flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
     border-left: 1px solid #ccc;
   }
-  </style>
+</style>
   
