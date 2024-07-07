@@ -5,8 +5,8 @@ WEBFLAGS = -s EXPORTED_FUNCTIONS='["_webmain"]' -s EXPORTED_RUNTIME_METHODS='["c
 SRCS = src/assembler/assembler.c src/Opcodes.c src/utilites.c
 OBJS = $(SRCS:.c=.o)
 EXEC = assembler
-EXECWEBJS = ../emulator/assembler.js
-EXECWEBWASM = ../emulator/assembler.wasm
+EXECWEBJS = ../Bracho-emulator/src/js/assembler.js
+EXECWEBWASM = ../Bracho-emulator/src/js/assembler.wasm
 
 
 ifeq ($(p),assembler)
