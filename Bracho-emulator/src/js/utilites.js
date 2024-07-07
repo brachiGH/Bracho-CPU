@@ -1,11 +1,11 @@
-function replaceEvery11thSpaceWithNewline(text) {
+function addNewlineEveryNthWord(text, n) {
   let spaceCount = 0;
   let newText = '';
   
   for (let i = 0; i < text.length; i++) {
     if (text[i] === ' ') {
       spaceCount++;
-      if (spaceCount === 11) {
+      if (spaceCount === n) {
         newText += '\n';
         spaceCount = 0;  // Reset the count after every 12th space
       } else {

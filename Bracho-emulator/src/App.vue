@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import assemblyTextEditor from './components/TextEditor.vue';
+import TextEditor from './components/TextEditor.vue';
 import NumberedTextarea from './components/binaryViewer.vue';
 import FixedSections from './components/FixedSections.vue';
 
@@ -25,7 +25,7 @@ window.updateTextContent = updateTextContent;
   <div id="app">
     <FixedSections class="modal-fullscreen m-0 p-0">
       <template #section1>
-        <assemblyTextEditor />
+        <TextEditor />
       </template>
       <template #section2>
         <NumberedTextarea :content="textContent" />
