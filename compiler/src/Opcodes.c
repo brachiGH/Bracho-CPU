@@ -49,6 +49,13 @@ Opcode* findOpcode(const char* key) {
         return NULL;
     }
 
+    // Convert to upper case
+    char *s = key;
+    while (*s) {
+        *s = toupper((unsigned char) *s);
+        s++;
+    }
+
     unsigned int index = hash(key);
     Opcode* current = map->table[index];
 
