@@ -6,7 +6,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import TextEditor from './components/TextEditor.vue';
 import NumberedTextarea from './components/binaryViewer.vue';
 import FixedSections from './components/FixedSections.vue';
-
+import console from './components/console.vue';
+import { logMessages } from './components/console.vue';
 
 
 const textContent = ref("0000")
@@ -26,6 +27,7 @@ window.updateTextContent = updateTextContent;
     <FixedSections class="modal-fullscreen m-0 p-0">
       <template #section1>
         <TextEditor />
+        <console />
       </template>
       <template #section2>
         <NumberedTextarea :content="textContent" />
@@ -44,6 +46,8 @@ window.updateTextContent = updateTextContent;
       FixedSections,
     },
   }
+
+  window.logMessages = logMessages;
 </script>
 
 <style>

@@ -12,15 +12,25 @@
     <script src="./src/js/utilites.js"></script>
     <script src="./src/js/assembler.js"></script>
     <script>
+      // Setup an error handler for stderr
+      err = function(text) {
+        window.logMessages.value.push({"level": "err","message": text,"time": getCurrentTime()});
+        };
+      
+       // Setup an error handler for stdout
+      out = function(text) {
+        window.logMessages.value.push({"level": "log","message": text,"time": getCurrentTime()});
+      };
+
       function callAssembler() {
-          _arg = document.getElementById('input-assemblycode').value;
-          let binarycode = Module.ccall(
-            "webmain", // name of C function
-            'string', // return type
-            ["string"], // argument types
-            [_arg], // arguments
-          );
-          updateTextContent(addNewlineEveryNthWord(binarycode, 11));
+        _arg = document.getElementById('input-assemblycode').value;
+        let binarycode = Module.ccall(
+          "webmain", // name of C function
+          'string', // return type
+          ["string"], // argument types
+          [_arg], // arguments
+        );
+        updateTextContent(addNewlineEveryNthWord(binarycode, 11));
       }
     
       // Module.onRuntimeInitialized = function() {

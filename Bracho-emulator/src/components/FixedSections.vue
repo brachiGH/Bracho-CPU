@@ -28,7 +28,7 @@
   }
   .section {
     flex: 1;
-    display: flex;
+    display: block;
     border-left: 1px solid #ccc;
   }
 </style>
