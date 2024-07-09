@@ -107,4 +107,8 @@ export default {
     font-size: 1rem;
     resize: none;
   }
+
+  .btn-check:checked + .btn {
+    background-color: #a0a1a2;
+  }
 </style>
