@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 27 Jun 2024 10:59:12 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 27 Jun 2024 10:59:10 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[build]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Bracho CPU]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Bracho CPU</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Wed, 10 Jul 2024 13:36:55 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 10 Jul 2024 13:36:52 GMT</pubDate><copyright><![CDATA[brahim ghouma]]></copyright><ttl>60</ttl><dc:creator>brahim ghouma</dc:creator><item><title><![CDATA[build]]></title><description><![CDATA[ 
  <br><br>make p=assembler
 Copy<br><br>generate binary code using the assembler.<br>./assembler file.asm
 Copy<br>file.asm is your assembly file<br><br><br><br>The Control Unit (CU) logic is responsible for interpreting and executing each instruction in a computer's processor. It operates through a series of micro-instructions, which are detailed, low-level commands that control the various components of the CPU. These micro-instructions dictate the sequence of operations needed to fetch, decode, and execute machine-level instructions. By orchestrating tasks such as moving data between registers, controlling the arithmetic logic unit (ALU), and managing the flow of data within the CPU.<br># Generates the Control Unit Logic 
@@ -203,7 +203,7 @@ execute cycle: IOA AO RI
 <br><br>&lt;address&gt; Should be between 0 and 4095
 &lt;address&gt; Is represented on 12 bits
 Copy<br><br><br><br>
-Branch to &lt;address&gt; (Set program counter to that address and save the old program counter address link register)
+Branch to &lt;address&gt; (Set program counter to that address and to save the old program counter address link register use SPC instruction)
 <br><br>
 0110 &lt;**** **** ****&gt;<br>
 BR &lt;address&gt;
@@ -253,7 +253,7 @@ Copy<br>all this variables point on the same instruction HALT<br>@v1:
 @v2:
 @v3:
 HALT
-Copy<br><br>XTerm 16 color palette with the 4-bit color codes:<br>]]></description><link>bracho-cpu\components\alu\usage-&amp;-documentation.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Usage &amp; Documentation.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Thu, 27 Jun 2024 10:59:00 GMT</pubDate></item><item><title><![CDATA[cpu]]></title><description><![CDATA[ 
+Copy<br><br>XTerm 16 color palette with the 4-bit color codes:<br>]]></description><link>bracho-cpu\components\alu\usage-&amp;-documentation.html</link><guid isPermaLink="false">Bracho-CPU/Components/ALU/Usage &amp; Documentation.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Tue, 09 Jul 2024 23:30:09 GMT</pubDate></item><item><title><![CDATA[cpu]]></title><description><![CDATA[ 
  <br><img alt="cpu-20240623082152484.webp" src="lib\media\cpu-20240623082152484.webp"><br>a cpu also contains a debugger, specialy on embedded systems]]></description><link>bracho-cpu\components\cpu.html</link><guid isPermaLink="false">Bracho-CPU/Components/cpu.md</guid><dc:creator><![CDATA[brahim ghouma]]></dc:creator><pubDate>Sun, 23 Jun 2024 09:31:21 GMT</pubDate><enclosure url="lib\media\cpu-20240623082152484.webp" length="0" type="image/webp"/><content:encoded>&lt;figure&gt;&lt;img src="lib\media\cpu-20240623082152484.webp"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Demos]]></title><description><![CDATA[ 
  <br><br><br>
 <a data-tooltip-position="top" aria-label="https://github.com/brachiGH/Bracho-CPU/blob/main/compiler/tests/flag.asm" rel="noopener" class="external-link" href="https://github.com/brachiGH/Bracho-CPU/blob/main/compiler/tests/flag.asm" target="_blank">code</a><br><br>The B register should show (2AC2)h = 10946 the 19th Fibonacci sequence<br>

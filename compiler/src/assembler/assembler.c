@@ -290,7 +290,8 @@ bool is_number(char* oprand) {
 
 
 char* ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize) {
-    char AssemblyCode[MAX_RAM_SIZE + 1] = "0000 "; // The first instruction should be always a NOP instruction
+    char* AssemblyCode = (char*)malloc(MAX_RAM_SIZE + 1);
+    strcpy(AssemblyCode, "0000 ");
 
     unsigned int linenumber = 0;
     char hex_instruction[5] = ""; // is the instruction in hex

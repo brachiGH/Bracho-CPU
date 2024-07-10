@@ -34,7 +34,7 @@ $(EXECWEBJS): $(OBJS)
 	$(CCWEB) $(OBJS) -o $@ $(WEBFLAGS)
 
 %.o: %.c
-	$(CCWEB) $(CFLAGS) -c $< -o $@
+	$(CCWEB) $(CFLAGS) -Wnewline-eof -c $< -o $@
 
 clean:
 	@echo "Cleaning up $(OBJS) $(EXECWEBWASM)"

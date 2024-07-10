@@ -50,7 +50,7 @@ Opcode* findOpcode(const char* key) {
     }
 
     // Convert to upper case
-    char *s = key;
+    char *s = (char*)key;
     while (*s) {
         *s = toupper((unsigned char) *s);
         s++;
@@ -170,4 +170,5 @@ void generate_OpcodeHashMap() {
     insertOpcode("SHR", "E90", 1, 1);
     insertOpcode("OUT", "D000", 0, 0);
     insertOpcode("HALT", "F000", 0, 0);
+    insertOpcode("SPC", "F100", 0, 0);
 }
