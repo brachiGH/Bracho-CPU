@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bracho-emulator</title>
+    <script type="module" crossorigin src="./assets/index-DPXJsFXA.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C1CkJwow.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./assets/utilites.js"></script>
+    <script src="./assets/Bracho-CPU-core.js"></script>
+    <script src="./assets/assembler.js"></script>
+    <script>
+      // Setup an error handler for stderr
+      err = function(text) {
+        window.logMessages.value.push({"level": "err","message": text,"time": getCurrentTime()});
+        };
+      
+       // Setup an error handler for stdout
+      out = function(text) {
+        window.logMessages.value.push({"level": "log","message": text,"time": getCurrentTime()});
+      };
+
+      function callAssembler() {
+        _arg = document.getElementById('input-assemblycode').value;
+        let binarycode = Module.ccall(
+          "webmain", // name of C function
+          'string', // return type
+          ["string"], // argument types
+          [_arg], // arguments
+        );
+        binarycode = fillmemoryWithBanlk(binarycode);
+        executeBinaryInstructions(binarycode, _arg);
+
+        document.getElementById("vbtn-radio3").click();
+      }
+    
+      // Module.onRuntimeInitialized = function() {
+      //   callAssembler("nop");
+      // };
+    </script>
+  </body>
+</html>
