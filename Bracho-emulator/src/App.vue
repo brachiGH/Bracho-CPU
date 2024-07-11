@@ -53,7 +53,7 @@ window.executeBinaryInstructions = executeBinaryInstructions;
         <console />
       </template>
       <template #section2>
-        <div class="border-bottom border-light p-1" style="background-color: #393E46;position: absolute;">
+        <div class="border-bottom border-light p-1" style="background-color: #393E46;">
           <div class="btn-group" role="group">
             <input class="btn btn-primary" type="button" @click="StartCPU" value="Start">
             <input class="btn btn-primary" type="button" @click="StepCPU" value="Step">
@@ -78,7 +78,7 @@ window.executeBinaryInstructions = executeBinaryInstructions;
           </div>
         </div>
 
-        <NumberedTextarea :content="textContent" :PCregister="PCregister" style="padding-top: 50px;"/>
+        <NumberedTextarea :content="textContent" :PCregister="PCregister"/>
 
 
         <!-- <div v-for="(line, index) in assemblyCodeLines">
