@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from 'vue';
+import { flag_asm } from '@/js/flagtest.js';
 
 
 const langueType = ref("assembly");
-const assemblycode = ref("");
+const assemblycode = ref(flag_asm);
 const bcode = ref("");
 </script>
 
