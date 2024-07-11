@@ -7,8 +7,8 @@
 typedef struct Opcode {
     char* opcode;
     char* opcode_in_hex;
-    unsigned int number_of_required_oprand;
-    unsigned int oprand_max_size;  // is Nibbles
+    unsigned int number_of_required_operand;
+    unsigned int operand_max_size;  // is Nibbles
     struct Opcode* next;
 } Opcode;
 
@@ -36,8 +36,8 @@ void insertOpcode(const char* key, const char* HEX_value, unsigned int number, u
     Opcode* newOpcode = (Opcode*)malloc(sizeof(Opcode));
     newOpcode->opcode = strdup(key);
     newOpcode->opcode_in_hex = strdup(HEX_value);
-    newOpcode->number_of_required_oprand = number;
-    newOpcode->oprand_max_size = max;
+    newOpcode->number_of_required_operand = number;
+    newOpcode->operand_max_size = max;
     newOpcode->next = map->table[index];
     map->table[index] = newOpcode;
 }
@@ -85,18 +85,18 @@ const char* getOpcodeInHex(const char* key) {
     return NULL;
 }
 
-int getNumberOfRequiredOprand(const char* key) {
+int getNumberOfRequiredoperand(const char* key) {
     Opcode* opcode = findOpcode(key);
     if (opcode != NULL) {
-        return opcode->number_of_required_oprand;
+        return opcode->number_of_required_operand;
     }
     return -1; // Indicates not found or error
 }
 
-int getOprandMaxSize(const char* key) {
+int getoperandMaxSize(const char* key) {
     Opcode* opcode = findOpcode(key);
     if (opcode != NULL) {
-        return opcode->oprand_max_size;
+        return opcode->operand_max_size;
     }
     return -1;
 }
@@ -145,7 +145,7 @@ void generate_OpcodeHashMap() {
 
 
     // Insert Opcodes
-    // ("OPcode", "HEX repersentation", "1:means their is an oprand", "the length of the oprand")
+    // ("OPcode", "HEX repersentation", "1:means their is an operand", "the length of the operand")
     insertOpcode("NOP", "0000", 0, 0);
     insertOpcode("LDA", "C", 1, 3);
     insertOpcode("LDB", "1", 1, 3);

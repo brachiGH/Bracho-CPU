@@ -230,10 +230,10 @@ void remove_symbols(char *str) {
     str[writeIndex] = '\0';
 }
 
-// cut the first oprand from line (note: if line does not contain an oprand the input oprand become null)
-void get_oprand(char** line, char** oprand) {
+// cut the first operand from line (note: if line does not contain an operand the input operand become null)
+void get_operand(char** line, char** operand) {
     if ((*line)[0] == '\0' || *line == NULL) {
-        *oprand = NULL;
+        *operand = NULL;
         return;
     }
 
@@ -242,7 +242,7 @@ void get_oprand(char** line, char** oprand) {
     {
         i++;
     }
-    *oprand = (*line) + i;
+    *operand = (*line) + i;
     while ((*line)[i] != '\0' && (*line)[i] != ' ' && (*line)[i] != '\n')
     {
         i++;
@@ -262,16 +262,16 @@ void get_oprand(char** line, char** oprand) {
 }
 
 
-// checks if the oprand is a valid dec or hex number
-bool is_number(char* oprand) {
-    if (oprand == NULL || *oprand == '\0') {
+// checks if the operand is a valid dec or hex number
+bool is_number(char* operand) {
+    if (operand == NULL || *operand == '\0') {
         return false;
     }
 
-    if (strlen(oprand) > 2 && (oprand[0] == '0') && (oprand[1] == 'x' || oprand[1] == 'X')) {
+    if (strlen(operand) > 2 && (operand[0] == '0') && (operand[1] == 'x' || operand[1] == 'X')) {
         // Hexadecimal number
-        for (int i = 2; oprand[i] != '\0'; i++) {
-            if (!(isdigit(oprand[i]) || (oprand[i] >= 'A' && oprand[i] <= 'F') || (oprand[i] >= 'a' && oprand[i] <= 'f'))) {
+        for (int i = 2; operand[i] != '\0'; i++) {
+            if (!(isdigit(operand[i]) || (operand[i] >= 'A' && operand[i] <= 'F') || (operand[i] >= 'a' && operand[i] <= 'f'))) {
                 return false;
             }
         }
@@ -279,8 +279,8 @@ bool is_number(char* oprand) {
     }
     else {
         // Decimal number
-        for (int i = 0; oprand[i] != '\0'; i++) {
-            if (!isdigit(oprand[i])) {
+        for (int i = 0; operand[i] != '\0'; i++) {
+            if (!isdigit(operand[i])) {
                 return false;
             }
         }
@@ -295,8 +295,8 @@ char* ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize)
 
     unsigned int linenumber = 0;
     char hex_instruction[5] = ""; // is the instruction in hex
-    char hex_oprand[6] = "";
-    char* oprand;
+    char hex_operand[6] = "";
+    char* operand;
 
     char* line = NULL;
     size_t len = 0;
@@ -306,65 +306,65 @@ char* ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize)
     while ((linelen = get_line_from_buffer(&line, &len, assembly_file_content, &offset)) != -1) {
         linenumber++;
         char* linecpy_for_logging = strdup(line);
-        get_oprand(&line, &oprand);
+        get_operand(&line, &operand);
 
-        // checking if the first oprand is an opcode
-        const char* Opcode = getOpcode(oprand);
+        // checking if the first operand is an opcode
+        const char* Opcode = getOpcode(operand);
 
         if (Opcode != NULL) {
             // Convert opcode to hexadecimal string
             strcpy(hex_instruction, getOpcodeInHex(Opcode));
 
-            if (getNumberOfRequiredOprand(Opcode) == 1)
+            if (getNumberOfRequiredoperand(Opcode) == 1)
             {
-                get_oprand(&line, &oprand);
+                get_operand(&line, &operand);
 
-                // checking if there is an oprand
-                if (oprand == NULL || oprand[0] == '\0' || oprand[0] == '#') {
-                    fprintf(stderr, "[ERROR][LINE %d: %s] the requires an oprand\n", linenumber, linecpy_for_logging);
+                // checking if there is an operand
+                if (operand == NULL || operand[0] == '\0' || operand[0] == '#') {
+                    fprintf(stderr, "[ERROR][LINE %d: %s] the requires an operand\n", linenumber, linecpy_for_logging);
                     exit(EXIT_FAILURE);
                 }
 
-                if (is_number(oprand) == true)
+                if (is_number(operand) == true)
                 {
                     // checking the number is in hex
-                    if (oprand[1] == 'x' || oprand[1] == 'X') {
-                        remove_0x_from_hex_string(oprand);
-                        strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 2); // only copy (sizeof(hex_oprand) - 2) chars from the oprand char array
-                        hex_oprand[sizeof(hex_oprand) - 1] = '\0'; // making sure hex_oprand is zero-terminated because strncpy does not that
+                    if (operand[1] == 'x' || operand[1] == 'X') {
+                        remove_0x_from_hex_string(operand);
+                        strncpy(hex_operand, operand, sizeof(hex_operand) - 2); // only copy (sizeof(hex_operand) - 2) chars from the operand char array
+                        hex_operand[sizeof(hex_operand) - 1] = '\0'; // making sure hex_operand is zero-terminated because strncpy does not that
                     }
                     else {
                         // Convert number to hexadecimal string with bounds checking
-                        snprintf(hex_oprand, sizeof(hex_oprand), "%x", atoi(oprand));
+                        snprintf(hex_operand, sizeof(hex_operand), "%x", atoi(operand));
                     }
 
                     // checking if the operand is of a valid size
-                    int size_hex_oprand = strlen(hex_oprand);
-                    if (size_hex_oprand > getOprandMaxSize(Opcode)) {
-                        fprintf(stderr, "[ERROR][LINE %d: %s] the value 0x%s is greater than what the instruction %s can support\n", linenumber, linecpy_for_logging, hex_oprand, Opcode);
+                    int size_hex_operand = strlen(hex_operand);
+                    if (size_hex_operand > getoperandMaxSize(Opcode)) {
+                        fprintf(stderr, "[ERROR][LINE %d: %s] the value 0x%s is greater than what the instruction %s can support\n", linenumber, linecpy_for_logging, hex_operand, Opcode);
                         exit(EXIT_FAILURE);
                         break;
                     }
-                    else if (size_hex_oprand < getOprandMaxSize(Opcode)) {
-                        // formatting the hex_oprand in little-endian
-                        prepend_zeros(hex_oprand, getOprandMaxSize(Opcode));
+                    else if (size_hex_operand < getoperandMaxSize(Opcode)) {
+                        // formatting the hex_operand in little-endian
+                        prepend_zeros(hex_operand, getoperandMaxSize(Opcode));
                     }
 
-                    strcat(hex_instruction, hex_oprand);
+                    strcat(hex_instruction, hex_operand);
 
                 }
-                else if (oprand[0] == '@') {
-                    int lineNumber = getSymbolLineNumber(symbol_map, mapSize, oprand);
+                else if (operand[0] == '@') {
+                    int lineNumber = getSymbolLineNumber(symbol_map, mapSize, operand);
                     if (lineNumber == -1) {
-                        fprintf(stderr, "[ERROR][LINE %d: %s] the symbol %s does not exist\n", linenumber, linecpy_for_logging, oprand);
+                        fprintf(stderr, "[ERROR][LINE %d: %s] the symbol %s does not exist\n", linenumber, linecpy_for_logging, operand);
                         exit(EXIT_FAILURE);
                     }
-                    snprintf(hex_oprand, sizeof(hex_oprand), "%x", lineNumber);
-                    prepend_zeros(hex_oprand, 3);
-                    strcat(hex_instruction, hex_oprand);
+                    snprintf(hex_operand, sizeof(hex_operand), "%x", lineNumber);
+                    prepend_zeros(hex_operand, 3);
+                    strcat(hex_instruction, hex_operand);
                 }
                 else {
-                    fprintf(stderr, "[ERROR][LINE %d: %s] the oprand \"%s\" is invalid\n", linenumber, linecpy_for_logging, oprand);
+                    fprintf(stderr, "[ERROR][LINE %d: %s] the operand \"%s\" is invalid\n", linenumber, linecpy_for_logging, operand);
                     exit(EXIT_FAILURE);
                 }
             }
@@ -384,47 +384,47 @@ char* ParseCode(char* assembly_file_content, SymbolMap *symbol_map, int mapSize)
             }
 
             // for checking if their an extra argument (an extra argument that is not a comment, mean that the instruction is invalid) 
-            get_oprand(&line, &oprand);
+            get_operand(&line, &operand);
         }
-        else if (oprand != NULL)
+        else if (operand != NULL)
         {
-            while ((oprand != NULL)?(is_number(oprand) == true || oprand[0] == '@'):false)
+            while ((operand != NULL)?(is_number(operand) == true || operand[0] == '@'):false)
             {
-                if ((strlen(oprand) > 2)?(oprand[1] == 'x' || oprand[1] == 'X'):false) {
-                    remove_0x_from_hex_string(oprand);
-                    strncpy(hex_oprand, oprand, sizeof(hex_oprand) - 1); // only copy (sizeof(hex_oprand) - 1) chars from the oprand char array
-                    hex_oprand[sizeof(hex_oprand) - 1] = '\0'; // making sure hex_oprand is zero-terminated
-                } else if (oprand[0] >= '0' && oprand[0] <= '9') {
+                if ((strlen(operand) > 2)?(operand[1] == 'x' || operand[1] == 'X'):false) {
+                    remove_0x_from_hex_string(operand);
+                    strncpy(hex_operand, operand, sizeof(hex_operand) - 1); // only copy (sizeof(hex_operand) - 1) chars from the operand char array
+                    hex_operand[sizeof(hex_operand) - 1] = '\0'; // making sure hex_operand is zero-terminated
+                } else if (operand[0] >= '0' && operand[0] <= '9') {
                     // Convert number to hexadecimal string with bounds checking
-                    snprintf(hex_oprand, sizeof(hex_oprand), "%x", atoi(oprand));
+                    snprintf(hex_operand, sizeof(hex_operand), "%x", atoi(operand));
                 }
-                else if (oprand[0] == '@') {
-                    int lineNumber = getSymbolLineNumber(symbol_map, mapSize, oprand);
+                else if (operand[0] == '@') {
+                    int lineNumber = getSymbolLineNumber(symbol_map, mapSize, operand);
                     if (lineNumber == -1) {
-                        fprintf(stderr, "[ERROR][LINE %d: %s] the symbol %s does not exist\n", linenumber, linecpy_for_logging, oprand);
+                        fprintf(stderr, "[ERROR][LINE %d: %s] the symbol %s does not exist\n", linenumber, linecpy_for_logging, operand);
                         exit(EXIT_FAILURE);
                     }
-                    snprintf(hex_oprand, sizeof(hex_oprand), "%x", lineNumber);
+                    snprintf(hex_operand, sizeof(hex_operand), "%x", lineNumber);
                 }
 
-                if (strlen(hex_oprand) == 5) {
-                    fprintf(stderr, "[ERROR][LINE %d: %s] the value (0x)%s is large and can't represented by 16 bits (e.i. the value shouldènt be larger then 0xFFFF) \n", linenumber, linecpy_for_logging, hex_oprand);
+                if (strlen(hex_operand) == 5) {
+                    fprintf(stderr, "[ERROR][LINE %d: %s] the value (0x)%s is large and can't represented by 16 bits (e.i. the value shouldènt be larger then 0xFFFF) \n", linenumber, linecpy_for_logging, hex_operand);
                     exit(EXIT_FAILURE);
                 }
 
-                prepend_zeros(hex_oprand, 4);
-                strcat(AssemblyCode, hex_oprand);
+                prepend_zeros(hex_operand, 4);
+                strcat(AssemblyCode, hex_operand);
                 strcat(AssemblyCode, " "); // a space between each instruction
 
-                // get next oprand
-                get_oprand(&line, &oprand);
+                // get next operand
+                get_operand(&line, &operand);
             }
         }
 
-        // check if there is an unused oprand, it is invalid.
-        if (oprand != NULL) {
-            if (oprand[0] != '\0' && oprand[0] != '#') {
-                fprintf(stderr, "[ERROR][LINE %d: %s] the oprand \"%s\" is invalid\n", linenumber, linecpy_for_logging, oprand);
+        // check if there is an unused operand, it is invalid.
+        if (operand != NULL) {
+            if (operand[0] != '\0' && operand[0] != '#') {
+                fprintf(stderr, "[ERROR][LINE %d: %s] the operand \"%s\" is invalid\n", linenumber, linecpy_for_logging, operand);
                 exit(EXIT_FAILURE);
             }
         }
