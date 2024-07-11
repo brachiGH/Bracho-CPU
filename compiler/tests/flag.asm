@@ -147,207 +147,211 @@ BRN @start
 CIN 0
 
 LDB @ANXBgCxpJD
-@ANXBgCxpJD:
-0x9589
 ADD
 OUT
 
 LDB @QsnehmaOsP
-@QsnehmaOsP:
-0x9599
 ADD
 OUT
 
 LDB @IXmaZOTnPJ
-@IXmaZOTnPJ:
-0x99a9
 ADD
 OUT
 
 LDB @qKWvVmjtTr
-@qKWvVmjtTr:
-0x99b9
 ADD
 OUT
 
 LDB @SpLKrzVYsy
-@SpLKrzVYsy:
-0x9999
 ADD
 OUT
 
 LDB @MIYCCabmNY
-@MIYCCabmNY:
-0x9689
 ADD
 OUT
 
 LDB @pGStogjSgg
-@pGStogjSgg:
-0x9679
 ADD
 OUT
 
 LDB @tnmnNlCTPM
-@tnmnNlCTPM:
-0x9a79
 ADD
 OUT
 
 LDB @UYRiSVcCxn
-@UYRiSVcCxn:
-0x9a69
 ADD
 OUT
 
 LDB @PXHVppcQiB
-@PXHVppcQiB:
-0x9a59
 ADD
 OUT
 
 LDB @vTmaDRGIeH
-@vTmaDRGIeH:
-0x8209
 ADD
 OUT
 
 LDB @VHABcQQgnE
-@VHABcQQgnE:
-0x81f9
 ADD
 OUT
 
 LDB @gIBOmpbIoB
-@gIBOmpbIoB:
-0x7e09
 ADD
 OUT
 
 LDB @oSBhPKPkbc
-@oSBhPKPkbc:
-0x8219
 ADD
 OUT
 
 LDB @zLgvbzwbGp
-@zLgvbzwbGp:
-0x8609
 ADD
 OUT
 
 LDB @uSejlWwcKZ
-@uSejlWwcKZ:
-0x7df9
 ADD
 OUT
 
 LDB @UMIrKYPJiz
-@UMIrKYPJiz:
-0x7e19
 ADD
 OUT
 
 LDB @PLwxJfAtRI
-@PLwxJfAtRI:
-0x8619
 ADD
 OUT
 
 LDB @KBnynjkfAK
-@KBnynjkfAK:
-0x85f9
 ADD
 OUT
 
 LDB @ESWmdNhbJF
-@ESWmdNhbJF:
-0x7a09
 ADD
 OUT
 
 LDB @hIttDejUSk
-@hIttDejUSk:
-0x7609
 ADD
 OUT
 
 LDB @yNwiCdNwRR
-@yNwiCdNwRR:
-0x81e9
 ADD
 OUT
 
 LDB @vTWyhIeyVk
-@vTWyhIeyVk:
-0x81d9
 ADD
 OUT
 
 LDB @rheiUlCAnE
-@rheiUlCAnE:
-0x8229
 ADD
 OUT
 
 LDB @TVvZFxLGIA
-@TVvZFxLGIA:
-0x8239
 ADD
 OUT
 
 LDB @lSmXrwamzJ
-@lSmXrwamzJ:
-0x89f9
 ADD
 OUT
 
 LDB @FVbIifGluy
-@FVbIifGluy:
-0x8a09
 ADD
 OUT
 
 LDB @csnPvakbXv
-@csnPvakbXv:
-0x8a19
 ADD
 OUT
 
 LDB @ECpztxCdFK
-@ECpztxCdFK:
-0x89e9
 ADD
 OUT
 
 LDB @LAkCMwwhUK
-@LAkCMwwhUK:
-0x8de9
 ADD
 OUT
 
 LDB @UBaQziykyf
-@UBaQziykyf:
-0x8df9
 ADD
 OUT
 
 LDB @mqcQSrlPTC
-@mqcQSrlPTC:
-0x8a29
 ADD
 OUT
 
 LDB @sVSdUxsLAo
-@sVSdUxsLAo:
-0x8e29
 ADD
 OUT
 
 LDB @YqwjlsRKqn
-@YqwjlsRKqn:
-0x8e19
 ADD
 OUT
+
+
+HALT
+
+@UMIrKYPJiz:
+0x7e19
+@PLwxJfAtRI:
+0x8619
+@zLgvbzwbGp:
+0x8609
+@oSBhPKPkbc:
+0x8219
+@uSejlWwcKZ:
+0x7df9
+@VHABcQQgnE:
+0x81f9
+@KBnynjkfAK:
+0x85f9
+@yNwiCdNwRR:
+0x81e9
+@vTWyhIeyVk:
+0x81d9
+@rheiUlCAnE:
+0x8229
+@TVvZFxLGIA:
+0x8239
+@FVbIifGluy:
+0x8a09
+@ECpztxCdFK:
+0x89e9
+@LAkCMwwhUK:
+0x8de9
+@UBaQziykyf:
+0x8df9
+@mqcQSrlPTC:
+0x8a29
+@sVSdUxsLAo:
+0x8e29
+@ANXBgCxpJD:
+0x9589
+@QsnehmaOsP:
+0x9599
+@IXmaZOTnPJ:
+0x99a9
+@qKWvVmjtTr:
+0x99b9
+@pGStogjSgg:
+0x9679
+@SpLKrzVYsy:
+0x9999
+@MIYCCabmNY:
+0x9689
+@tnmnNlCTPM:
+0x9a79
+@UYRiSVcCxn:
+0x9a69
+@PXHVppcQiB:
+0x9a59
+@ESWmdNhbJF:
+0x7a09
+@csnPvakbXv:
+0x8a19
+@gIBOmpbIoB:
+0x7e09
+@vTmaDRGIeH:
+0x8209
+@YqwjlsRKqn:
+0x8e19
+@hIttDejUSk:
+0x7609
+@lSmXrwamzJ:
+0x89f9
 
 HALT
