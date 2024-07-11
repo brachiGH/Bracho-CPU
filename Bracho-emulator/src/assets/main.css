@@ -63,3 +63,8 @@ html, body {
 .width-fit {
   width: -webkit-fill-available; width: -moz-available;
 }
+
+
+.highlightCell {
+    background-color: #2262f99e;
+}

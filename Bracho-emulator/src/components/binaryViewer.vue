@@ -1,17 +1,19 @@
 <template>
-  <div class="numbered-textarea m-1">
+  <div class="numbered-textarea m-1" style="padding-top: 50px; width: 500px;">
     <div class="line-numbers" ref="line-numbers-dom" @scroll="syncScroll('line-numbers-dom')">
-      <span v-for="(line, index) in lines" :key="index">{{ index + 1 }}</span>
+      <span v-for="(line, index) in lines" :key="index">{{ (index + 1) * 10 }}</span>
     </div>
     <div  class="binary-viwer" ref="binary-viwer-dom" @scroll="syncScroll('binary-viwer-dom')">
       <div v-for="(line, index) in lines" :key="index">
-        <span class="m-1" v-for="(word, wordindex) in words(line)" :id="wordindex+(11*index)">{{ word }}</span>
+        <span :class="{ 'highlightCell': ((PCregister - 1) == wordindex+(11*index))}" v-for="(word, wordindex) in words(line)" :id="'memCell' + (wordindex+(10*index))">{{ word + " "}} </span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { PCregister } from '@/js/Bracho-CPU-core';
+
 export default {
   name: 'NumberedTextarea',
   data() {
@@ -37,6 +39,10 @@ export default {
   props: {
     content: {
       type: String,
+      required: true
+    },
+    PCregister: {
+      type: Number,
       required: true
     }
   },

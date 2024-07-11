@@ -3,30 +3,44 @@
   <head>
     <meta charset="UTF-8">
     <link rel="icon" href="./favicon.ico">
-    <script src="./src/js/utilites.js"></script>
-    <script src="./src/js/assembler.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bracho-emulator</title>
+    <script type="module" crossorigin src="./assets/index-Bk-q0Zf5.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-8UsK6HhL.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./assets/utilites.js"></script>
+    <script src="./assets/Bracho-CPU-core.js"></script>
+    <script src="./assets/assembler.js"></script>
     <script>
+      // Setup an error handler for stderr
+      err = function(text) {
+        window.logMessages.value.push({"level": "err","message": text,"time": getCurrentTime()});
+        };
+      
+       // Setup an error handler for stdout
+      out = function(text) {
+        window.logMessages.value.push({"level": "log","message": text,"time": getCurrentTime()});
+      };
+
       function callAssembler() {
-          _arg = document.getElementById('input-assemblycode').value;
-          let binarycode = Module.ccall(
-            "webmain", // name of C function
-            'string', // return type
-            ["string"], // argument types
-            [_arg], // arguments
-          );
-          updateTextContent(replaceEvery11thSpaceWithNewline(binarycode));
+        _arg = document.getElementById('input-assemblycode').value;
+        let binarycode = Module.ccall(
+          "webmain", // name of C function
+          'string', // return type
+          ["string"], // argument types
+          [_arg], // arguments
+        );
+        binarycode = fillmemoryWithBanlk(binarycode);
+        executeBinaryInstructions(binarycode, _arg);
+
+        document.getElementById("vbtn-radio3").click();
       }
     
       // Module.onRuntimeInitialized = function() {
       //   callAssembler("nop");
       // };
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-    <script type="module" crossorigin src="./assets/index-C3dAdJl-.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CA_cJTFN.css">
-  </head>
-  <body>
-    <div id="app"></div>
   </body>
 </html>

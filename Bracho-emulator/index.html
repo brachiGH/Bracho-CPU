@@ -10,6 +10,7 @@
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <script src="./src/js/utilites.js"></script>
+    <script src="./src/js/Bracho-CPU-core.js"></script>
     <script src="./src/js/assembler.js"></script>
     <script>
       // Setup an error handler for stderr
@@ -30,7 +31,10 @@
           ["string"], // argument types
           [_arg], // arguments
         );
-        updateTextContent(addNewlineEveryNthWord(binarycode, 11));
+        binarycode = fillmemoryWithBanlk(binarycode);
+        executeBinaryInstructions(binarycode, _arg);
+
+        document.getElementById("vbtn-radio3").click();
       }
     
       // Module.onRuntimeInitialized = function() {

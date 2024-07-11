@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 
 
-const langueType = ref("b--");
+const langueType = ref("assembly");
 const assemblycode = ref("");
 const bcode = ref("");
 </script>
@@ -15,6 +15,8 @@ const bcode = ref("");
         <label class="btn btn-light" for="vbtn-radio1">B--</label>
         <input type="radio" id="vbtn-radio2" class="btn-check" name="vbtn-radio" v-model="langueType" value="assembly" autocomplete="off">
         <label class="btn btn-light" for="vbtn-radio2">Assembly</label>
+        <input type="radio" id="vbtn-radio3" class="btn-check" name="vbtn-radio" v-model="langueType" value="assemblyInstructions" autocomplete="off">
+        <label class="btn btn-light" for="vbtn-radio3">Instructions</label>
       </div>
       
       <button  v-if="langueType === 'assembly'" onclick="callAssembler()" type="submit" class="btn btn-primary" style="float: right;">Assemble</button>
@@ -45,10 +47,23 @@ const bcode = ref("");
               ref="assembly-editor-dom" @scroll="syncScroll('assembly-editor-dom')">
       </textarea>
     </div>
+
+    <div v-else-if="langueType === 'assemblyInstructions'" class="form-floating numbered-textarea m-1">
+      <div class="line-numbers" ref="line-numbers-dom" style="border: none; text-align: left;">
+        <span style="height: 5px;"></span>
+        <span v-for="(line, index) in assemblyCodeLines" :key="index" :class="{ 'highlightCell': ((PCregister - 1) == (index+1)) }"
+                        :id="'Instruction' + index">
+          [{{ index + 1 }}]: {{ line }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import '../js/utilites.js';
+
+
 export default {
   name: 'TextEditor',
   methods: {
@@ -64,13 +79,26 @@ export default {
       otherEl.scrollLeft = originEl.scrollLeft;
       
       this.isSyncing = false;
+    },
+    Test() {
+      return window.Bracho_program.cpu.PC;
     }
+  },
+  props: {
+    assemblyCodeLines: {
+      type: Array,
+      required: true
+    },
+    PCregister: {
+      type: Number,
+      required: true
+    },
   },
   computed: {
     linesofcode() {
       return (code) => code.split('\n');
     },
-  }
+  },
 }
 </script>
 
