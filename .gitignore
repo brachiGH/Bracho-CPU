@@ -7,3 +7,4 @@ compiler/program
 compiler/assembler
 docs/lib/media/favicon.png
 web-branch/*
+web-branch/

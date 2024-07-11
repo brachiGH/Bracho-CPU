@@ -8,7 +8,9 @@ The bracho-4 is a 16-bit CPU design. It has a working **[Logisim Evolution]** ci
 
 Still In Progress: The creation of an emulator in c/c++, along with a higher level language.
 
-# Demos
+# Emulator & Demos
+
+Web [emulator](https://brachigh.github.io/Bracho-CPU/) try Bracho cpu.
 
 [Demos](https://brachigh.github.io/Bracho-CPU/docs/bracho-cpu/demos.html)
 
