@@ -8,3 +8,5 @@ compiler/assembler
 docs/lib/media/favicon.png
 web-branch/*
 web-branch/
+Bracho-emulator/src/js/assembler.wasm
+Bracho-emulator/src/js/assembler.js

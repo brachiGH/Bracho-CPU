@@ -16,7 +16,7 @@ import registerBank from './components/registers.vue';
 import { logMessages } from './components/console.vue';
 
 
-const textContent = ref("0000");
+const textContent = ref(Array(0XFFF).fill("0000").join(" "));
 const assemblyCodeLines = ref([]);
 
 // Method to update textContent
@@ -25,8 +25,9 @@ const updateBinaryViewerContent = (newContent) => {
   textContent.value = addNewlineEveryNthWord(newContent, 10);
 };
 
-const clock = 1;
+const clock = 1024;
 let Bracho_program = new controlUnite(clock);
+Bracho_program.reset();
 // Expose the update method to the window object
 window.Bracho_program = Bracho_program;
 
@@ -66,7 +67,7 @@ window.executeBinaryInstructions = executeBinaryInstructions;
                 Clock
               </button>
               <ul class="dropdown-menu clocklist">
-                <span ref="showclock">Clock set to: {{ 1 }}</span>
+                <span ref="showclock">Clock set to: {{ 1024 }}</span>
                 <li v-for="i in 4"><a class="dropdown-item" @click="changeClock(2**(-i))">{{ 2**(-i) }} Hz</a></li>
                 <li v-for="i in 11"><a class="dropdown-item" @click="changeClock(2**(i-1))">{{ 2**(i-1) }} Hz</a></li>
                 <li v-for="i in 11"><a class="dropdown-item" @click="changeClock((2**(i-1))*1000)">{{ 2**(i-1) }} HKz</a></li>
