@@ -1,39 +1,39 @@
-export const flag_asm = `
-####################################### 
+export const flag_asm = `####################################### 
 #
-#  demo tunisian flag:
+#   demo tunisian flag:
 #   https://brachigh.github.io/Bracho-CPU/docs/bracho-cpu/demos.html
+#   Usage & Documentation:
+#   https://brachigh.github.io/Bracho-CPU/bracho-cpu/components/alu/usage-&-documentation.html
 #
 #######################################
 
 @start:
-NOP
 
 # @FF7 <= 32-i
 BIN 32
 LDC 0xFFF
 SUB
-STA 0xFF7
+STA 0xFF7 # 4087
 
 
 # @FF7 <= 32-j
 BIN 32
 LDC 0xFFE
 SUB
-STA 0xFF6
+STA 0xFF6 # 4086
 
 
 # @FF5 <= (32-i)²
-LDB 0xFF7
-LDC 0xFF7
+LDB 0xFF7 # 4087
+LDC 0xFF7 # 4087
 MULT
 STA 0xFF5
 
 
 
 # @FF4 <= (32-j)²
-LDB 0xFF6
-LDC 0xFF6
+LDB 0xFF6 # 4086
+LDC 0xFF6 # 4086
 MULT
 STA 0xFF4
 
@@ -109,7 +109,6 @@ OR
 OUT
 
 @exit:
-NOP
 ### end if
 
 
