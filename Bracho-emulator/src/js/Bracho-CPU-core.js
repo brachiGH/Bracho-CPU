@@ -96,13 +96,14 @@ class brachocpu {
         this.A = this.B + this.C;
 
         if (this.A > 0xFFFF) {
-            this.A = 0xFFFF;
+            this.A = this.A & 0xFFFF;
             this.flags["overflow"] = 1;
         }
 
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("ADD" , this.B, " + ", this.C, " = ", this.A);
     }
 
     SUB() {
@@ -116,6 +117,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("SUB" , this.B, " - ", this.C, " = ", this.A);
     }
 
     MULT() {
@@ -123,13 +125,14 @@ class brachocpu {
         this.A = this.B * this.C;
 
         if (this.A > 0xFFFF) {
-            this.A = 0xFFFF;
+            this.A = this.A & 0xFFFF;
             this.flags["overflow"] = 1;
         }
 
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("MULT" , this.B, " * ", this.C, " = ", this.A);
     }
 
     DIV() {
@@ -142,6 +145,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("DIV" , this.B, " / ", this.C, " = ", this.A);
     }
 
     NOT() {
@@ -151,6 +155,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("NOT" , this.A);
     }
 
     AND() {
@@ -160,6 +165,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("AND" , this.B, " & ", this.C, " = ", this.A);
     }
 
     OR() {
@@ -169,6 +175,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("OR" , this.B, " | ", this.C, " = ", this.A);
     }
 
     XOR() {
@@ -178,6 +185,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("XOR" , this.B, " ^ ", this.C, " = ", this.A);
     }
 
     SHL(value) {
@@ -187,6 +195,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("SHL" , this.B, " << ", value, " = ", this.A);
     }
 
     SHR(value) {
@@ -196,6 +205,7 @@ class brachocpu {
         if (this.A == 0) {
             this.flags["zero"] = 1;
         }
+        console.log("SHR" , this.B, " >> ", value, " = ", this.A);
     }
 
 
@@ -215,7 +225,7 @@ class brachocpu {
     OUT() {
         this.restflag();
         let a = praseDisplayOUT(this.A);
-        console.log(a, this.A)
+        console.log("OUT", this.A, a);
         display.value[a['y']][a['x']] = a['color'];
     }
 
@@ -285,6 +295,7 @@ class brachocpu {
         }
         this.PC = address;
         this.restflag();
+        console.log("BR ", address);
     }
 
     BRN(address) {
@@ -293,6 +304,7 @@ class brachocpu {
         }
         if (this.flags["negative"] == 1) {
             this.PC = address;
+            console.log("BRN ", address);
         }
         this.restflag();
     }
@@ -303,6 +315,7 @@ class brachocpu {
         }
         if (this.flags["zero"] == 1) {
             this.PC = address;
+            console.log("BRZ ", address);
         }
         this.restflag();
     }
@@ -313,6 +326,7 @@ class brachocpu {
         }
         if (this.flags["overflow"] == 1) {
             this.PC = address;
+            console.log("BRV ", address);
         }
         this.restflag();
     }
@@ -431,7 +445,7 @@ export class controlUnite {
         } else if (opcode === "D000") {
             this.cpu.OUT();
         } else if (opcode === "F000") {
-            this.stop()
+            this.pause()
         } else if (opcode.slice(0, 1) === "C") {
             this.cpu.LDA(operand3);
         } else if (opcode.slice(0, 1) === "1") {
@@ -512,8 +526,10 @@ export class controlUnite {
         } else if (opcode.slice(0, 1) === "2") {
             return `LDC(${operand3})`;
         } else if (opcode.slice(0, 1) === "3") {
+            console.log("BIN", operand3);
             return `BIN(${operand3})`;
         } else if (opcode.slice(0, 1) === "4") {
+            console.log("CIN", operand3);
             return `CIN(${operand3})`;
         } else if (opcode.slice(0, 1) === "5") {
             return `STA(${operand3})`;
