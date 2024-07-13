@@ -234,6 +234,10 @@ void remove_empty_lines(char* str) {
         return;
     }
 
+    while(str[i] != '\0' && (str[i] == '\n' || str[i] == '#')) {
+        removeSubstring(str, i, 1);
+    }
+
     while (str[i] != '\0') {
         if (str[i] == '\n') {
             i++;
