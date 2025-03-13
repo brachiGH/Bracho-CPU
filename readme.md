@@ -16,7 +16,7 @@ Web [emulator](https://brachigh.github.io/Bracho-CPU/) try Bracho cpu.
 
 # Usage & Documentation
 
-[Usage and the Instruction Set In Detail](https://brachigh.github.io/Bracho-CPU/bracho-cpu/components/alu/usage-&-documentation.html)
+[Usage and the Instruction Set In Detail](https://brachigh.github.io/Bracho-CPU/docs/bracho-cpu/components/alu/usage-&-documentation.html)
 
 # Installation
 
