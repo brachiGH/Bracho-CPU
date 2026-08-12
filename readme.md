@@ -10,13 +10,13 @@ Still In Progress: The creation of an emulator in c/c++, along with a higher lev
 
 # Emulator & Demos
 
-Web [emulator](https://pages.brachi.me/) try Bracho cpu.
+Web [emulator](https://bracho.brachi.win/) try Bracho cpu.
 
-[Demos](https://pages.brachi.me/docs/bracho-cpu/demos.html)
+[Demos](https://bracho.brachi.win/docs/bracho-cpu/demos.html)
 
 # Usage & Documentation
 
-[Usage and the Instruction Set In Detail](https://pages.brachi.me/docs/bracho-cpu/components/alu/usage-&-documentation.html)
+[Usage and the Instruction Set In Detail](https://bracho.brachi.win/docs/bracho-cpu/components/alu/usage-&-documentation.html)
 
 # Installation
 
@@ -27,7 +27,7 @@ Web [emulator](https://pages.brachi.me/) try Bracho cpu.
 
 ## Architecture
 
-[click here](https://pages.brachi.me/)
+[click here](https://bracho.brachi.win/)
 
 ![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/CPU-preview.png?raw=true)
 
