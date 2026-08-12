@@ -27,7 +27,7 @@ Web [emulator](https://bracho.brachi.win/) try Bracho cpu.
 
 ## Architecture
 
-[click here](https://bracho.brachi.win/)
+[click here](https://bracho.brachi.win/docs/bracho-cpu/architecture.html)
 
 ![alt text](https://github.com/brachiGH/Bracho-CPU/blob/main/Components/asset/images/CPU-preview.png?raw=true)
 
